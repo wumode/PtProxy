@@ -1,0 +1,124 @@
+#---------------------------------------------------#
+## 更新：2020-09-30 09:09:30
+## 感谢：https://github.com/Hackl0us/SS-Rule-Snippet
+#---------------------------------------------------#
+
+proxies: []
+proxy-groups:
+# url-test 通过指定的 URL 测试并选择延迟最低的节点
+- name: "auto"
+  type: url-test
+#  strategy: round-robin
+  proxies: []
+  url: 'https://cp.cloudflare.com/generate_204'
+  tolerance: 120
+  interval: 300
+- name: "LoadBalance"
+  type: load-balance
+  strategy: round-robin
+  proxies: []
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: 120
+-
+  name: Proxy
+  type: select
+  proxies: ["auto", "LoadBalance","DIRECT"]
+#-
+#  name: Asian
+#  type: select
+#  proxies: []
+#-
+#  name: Europe
+#  type: select
+#  proxies: []
+#-
+#  name: SouthAmerica
+#  type: select
+#  proxies: []
+#-
+#  name: NorthAmerica
+#  type: select
+#  proxies: []
+#-
+#  name: Africa
+#  type: select
+#  proxies: []
+#-
+#  name: Oceania
+#  type: select
+#  proxies: []
+-
+  name: Domestic
+  type: select
+  proxies:
+    - DIRECT
+    - Proxy
+-
+  name: AsianTV
+  type: select
+  proxies:
+    - Domestic
+    - Proxy
+-
+  name: GlobalTV
+  type: select
+  proxies:
+    - Proxy
+    - DIRECT
+# Apple 服务代理
+- name: Apple
+  type: select
+  proxies:
+    - Proxy
+    - DIRECT
+- name: Openai
+  type: select
+  proxies:
+    - Proxy
+# Safe DNS
+- name: SafeDNS
+  type: select
+  proxies:
+    - Proxy
+    - DIRECT
+- name: Steam
+  type: select
+  proxies:
+    - Proxy
+    - DIRECT
+- name: Speedtest
+  type: select
+  proxies:
+    - Proxy
+    - DIRECT
+- name: Hijacking
+  type: select
+  proxies:
+    - REJECT
+    - DIRECT
+- name: Mitm
+  type: select
+  proxies:
+    - 'MitmProxy'
+    - DIRECT
+- name: Final
+  type: select
+  proxies:
+    - DIRECT
+    - Proxy
+#-
+#  name: Others
+#  type: select
+#  proxies:
+#    - Proxy
+#    - Domestic
+script:
+  shortcuts: {}
+rules: []
+dns:
+  nameserver-policy:             # lookup domain through assigned nameserver
+    '+.westsite.cn': '223.5.5.5'
+  fake-ip-filter:
+  - "+.*"
+profile:
+  tracing: false

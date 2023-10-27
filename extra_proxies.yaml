@@ -1,0 +1,12 @@
+proxies:
+- name: "MitmProxy"
+  type: vmess
+  server: mitmproxy.westsite.cn
+  port: 8082
+  uuid: 5473d1bd-3d84-450d-bc28-ba82699abd0c
+  cipher: auto
+  alterId: 0
+#- name: "MitmProxyB"
+#  type: socks5
+#  server: mitmproxy.westsite.cn
+#  port: 8082
