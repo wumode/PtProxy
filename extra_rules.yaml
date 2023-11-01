@@ -249,3 +249,16 @@ rules:
 - SCRIPT,NicePTBrowser,Proxy
 - DOMAIN-SUFFIX,pypi.org,Proxy
 - DOMAIN-SUFFIX,pytorch.org,Proxy
+- DOMAIN,api.zhihu.com,Mitm
+- DOMAIN-SUFFIX,metart.com,Proxy
+- DOMAIN-SUFFIX,metartnetwork.com,Proxy
+- DOMAIN,fsm.name,Proxy
+- DOMAIN-SUFFIX,urbanairship.com,Proxy
+- DOMAIN-SUFFIX,apptentive.com,Proxy
+- DOMAIN-SUFFIX,ngtv.io,Proxy
+- DOMAIN-SUFFIX,outbrain.com,Proxy
+- DOMAIN-SUFFIX,warnermediacdn.com,Proxy
+- DOMAIN-SUFFIX,brightline.tv,Proxy
+- DOMAIN-SUFFIX,weatherapi.com,Proxy
+- DOMAIN-SUFFIX,gethomepage.dev,Proxy
+- DOMAIN-SUFFIX,unsplash.com,Proxy

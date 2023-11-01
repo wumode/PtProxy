@@ -330,7 +330,7 @@ rules:
 - DOMAIN-SUFFIX,udacity.com,Domestic
 - DOMAIN-SUFFIX,xmcdn.com,Domestic
 - DOMAIN-SUFFIX,yangkeduo.com,Domestic
-- DOMAIN-SUFFIX,zhihu.com,Domestic
+# - DOMAIN-SUFFIX,zhihu.com,Domestic
 - DOMAIN-SUFFIX,zhimg.com,Domestic
 #USER-AGENT,NeteaseMusic*,Domestic
 #USER-AGENT,%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90*,Domestic
