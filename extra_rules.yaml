@@ -246,7 +246,7 @@ rules:
 - DOMAIN-SUFFIX,ttwstatic.com,Proxy
 - DOMAIN-SUFFIX,byteoversea.com,Proxy
 - DOMAIN-SUFFIX,mkrobot.orh,Proxy
-- SCRIPT,NicePTBrowser,Proxy
+#- SCRIPT,NicePTBrowser,Proxy
 - DOMAIN-SUFFIX,pypi.org,Proxy
 - DOMAIN-SUFFIX,pytorch.org,Proxy
 - DOMAIN,api.zhihu.com,Mitm
@@ -262,3 +262,9 @@ rules:
 - DOMAIN-SUFFIX,weatherapi.com,Proxy
 - DOMAIN-SUFFIX,gethomepage.dev,Proxy
 - DOMAIN-SUFFIX,unsplash.com,Proxy
+- DOMAIN-SUFFIX,bulianglin.com,Proxy
+- DOMAIN-SUFFIX,bbums.cn,Hijacking
+- DOMAIN-SUFFIX,bbums.org.cn,Hijacking
+- DOMAIN-SUFFIX,ptpimg.me,Proxy
+- DOMAIN-SUFFIX,helloimg.com,Proxy
+- DOMAIN-SUFFIX,pixhost.to,Proxy

@@ -142,13 +142,13 @@ rules:
 
 # (AsianTV)
 # > Bilibili
-- DOMAIN-KEYWORD,bilibili,AsianTV
+# - DOMAIN-KEYWORD,bilibili,AsianTV
 - DOMAIN-SUFFIX,acg.tv,AsianTV
 - DOMAIN-SUFFIX,acgvideo.com,AsianTV
 - DOMAIN-SUFFIX,b23.tv,AsianTV
 - DOMAIN-SUFFIX,biliapi.com,AsianTV
 - DOMAIN-SUFFIX,biliapi.net,AsianTV
-- DOMAIN-SUFFIX,bilibili.com,AsianTV
+# - DOMAIN-SUFFIX,bilibili.com,AsianTV
 - DOMAIN-SUFFIX,biligame.com,AsianTV
 - DOMAIN-SUFFIX,biligame.net,AsianTV
 - DOMAIN-SUFFIX,hdslb.com,AsianTV
@@ -232,7 +232,7 @@ rules:
 - DOMAIN-SUFFIX,xiaomi.com,Domestic
 # > bilibili
 - DOMAIN-SUFFIX,acgvideo.com,Domestic
-- DOMAIN-SUFFIX,bilibili.com,Domestic
+# - DOMAIN-SUFFIX,bilibili.com,Domestic
 - DOMAIN-SUFFIX,hdslb.com,Domestic
 # > iQiyi
 - DOMAIN-SUFFIX,iqiyi.com,Domestic
@@ -1070,6 +1070,6 @@ rules:
 - DOMAIN-SUFFIX,zhzzx.com,Hijacking
 
 # GeoIP China
-- GEOIP,CN,Domestic
+# - GEOIP,CN,Domestic
 
 - MATCH,Final
