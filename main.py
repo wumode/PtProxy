@@ -31,6 +31,7 @@ filter_keywords = configuration['filter_keywords']
 sub_link_list = configuration['subscribe_links']
 out_yaml = configuration['out_yaml']
 out_local_yaml = configuration['out_local_yaml']
+out_without_mitm_yaml = configuration['out_without_mitm_yaml']
 log_path = configuration['log_path']
 
 # 测试
@@ -559,10 +560,25 @@ if __name__ == "__main__":
     clash_config['script']['shortcuts'].update(extra_script_shortcut['shortcuts'])
     # clash_config['proxies'].append(pt_proxy)
     clash_config['proxy-groups'].append(pt_proxy_group)
+    clash_without_mitm_config = clash_config.copy()
+    extra_rules_without_mitm = []
+    for r in extra_rules:
+        method = r[(r.rfind(',')) + 1:]
+        if method == 'Mitm':
+            new_rule = r[:(r.rfind(','))] + ',DIRECT'
+            extra_rules_without_mitm.append(new_rule)
+        else:
+            extra_rules_without_mitm.append(r)
+    clash_without_mitm_config['rules'] = extra_rules_without_mitm + clash_without_mitm_config['rules']
     clash_config['rules'] = extra_rules + clash_config['rules']
     clash_config_yaml = yaml.dump(clash_config, allow_unicode=True)
     with open(out_yaml, 'w+', encoding='utf-8') as f:
         f.write(clash_config_yaml)
+
     clash_config_local_yaml = clash_config_yaml.replace('mitmproxy.westsite.cn', '192.168.0.221')
     with open(out_local_yaml, 'w+', encoding='utf-8') as fl:
         fl.write(clash_config_local_yaml)
+
+    clash_config_without_mitm_yaml = yaml.dump(clash_without_mitm_config, allow_unicode=True)
+    with open(out_without_mitm_yaml, 'w+', encoding='utf-8') as fl:
+        fl.write(clash_config_without_mitm_yaml)

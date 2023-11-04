@@ -268,3 +268,4 @@ rules:
 - DOMAIN-SUFFIX,ptpimg.me,Proxy
 - DOMAIN-SUFFIX,helloimg.com,Proxy
 - DOMAIN-SUFFIX,pixhost.to,Proxy
+- DOMAIN-SUFFIX,sagernet.org,Proxy
