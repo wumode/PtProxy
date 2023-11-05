@@ -262,3 +262,4 @@ rules:
 - DOMAIN-SUFFIX,sagernet.org,Proxy
 - DOMAIN-SUFFIX,band.us,Proxy
 - DOMAIN-SUFFIX,shuttle.gt-in.com,Proxy
+- DOMAIN-SUFFIX,shuttle.gt-in.com,Proxy
