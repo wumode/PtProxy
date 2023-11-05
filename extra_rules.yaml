@@ -6,8 +6,6 @@ rules:
 - DOMAIN-SUFFIX,nslu2-linux.org,Proxy
 - DOMAIN-SUFFIX,redd.it,Proxy
 - DOMAIN-SUFFIX,redditmedia.com,Proxy
-#- DOMAIN-SUFFIX,googleusercontent.com,Proxy
-#- DOMAIN-SUFFIX,googleapis.com,Proxy
 - DOMAIN-SUFFIX,agi.com,Proxy
 - DOMAIN-SUFFIX,github.com,Proxy
 - DOMAIN-SUFFIX,ytimg.com,Proxy
@@ -20,7 +18,6 @@ rules:
 - DOMAIN-SUFFIX,sourceforge.net,Proxy
 - DOMAIN-SUFFIX,osdn.net,Proxy
 - DOMAIN-SUFFIX,voachinese.com,Proxy
-#- DOMAIN-SUFFIX,google.com,Proxy
 - DOMAIN-SUFFIX,docker.io,Proxy
 - DOMAIN-SUFFIX,pythonhosted.org,Proxy
 - DOMAIN-SUFFIX,vtk.org,Proxy
@@ -100,7 +97,6 @@ rules:
 - DOMAIN-SUFFIX,gitbook.io,Proxy
 - DOMAIN-SUFFIX,orcid.org,Proxy
 - DOMAIN-SUFFIX,grss-ieee.org,Proxy
-#- DOMAIN-SUFFIX,texo.network,Proxy
 - DOMAIN-SUFFIX,arrc.fun,Proxy
 - DOMAIN-SUFFIX,microsoftonline.com,Proxy
 - DOMAIN-SUFFIX,launchpad.net,Proxy
@@ -110,7 +106,6 @@ rules:
 - DOMAIN-SUFFIX,v2fly.org,Proxy
 - DOMAIN-SUFFIX,mdpi.com,Proxy
 - DOMAIN-SUFFIX,api.cas.cn,Hijacking
-#- DOMAIN-SUFFIX,googletagmanager.com,Proxy
 - DOMAIN-SUFFIX,grammarly.com,Proxy
 - DOMAIN-KEYWORD,openai,Openai
 - DOMAIN-SUFFIX,mandrillapp.com,Proxy
@@ -119,7 +114,6 @@ rules:
 - DOMAIN-SUFFIX,byr.pt,PTProxy
 - DOMAIN-SUFFIX,npupt.com,Proxy
 - DOMAIN-SUFFIX,manuscriptcentral.com,Proxy
-# - DOMAIN-SUFFIX,ipify.org,Proxy
 - DOMAIN-SUFFIX,speedtest.net,Speedtest
 - DOMAIN-SUFFIX,pussytorrents.org,Proxy
 - DOMAIN-SUFFIX,chaturbate.com,Proxy
@@ -159,7 +153,6 @@ rules:
 - DOMAIN-SUFFIX,ala.im,Proxy
 - DOMAIN-SUFFIX,v2rayssr.com,Proxy
 - DOMAIN-SUFFIX,jb.gg,Proxy
-#- DOMAIN,docs.opencv.org,Mitm
 - DOMAIN,mb3admin.com,Mitm
 - DOMAIN-SUFFIX,opencv.org,Proxy
 - DOMAIN-SUFFIX,thetvdb.com,Proxy
@@ -173,7 +166,6 @@ rules:
 - DOMAIN-SUFFIX,office365.com,Proxy
 - DOMAIN-SUFFIX,jdbstatic.com,Proxy
 - DOMAIN-SUFFIX,jvid.com,Proxy
-#- DOMAIN,www.nicept.net,Proxy
 - DOMAIN-SUFFIX,yadi.sk,Proxy
 - DOMAIN-SUFFIX,yandex.com,Proxy
 - DOMAIN-SUFFIX,debian.org,Proxy
@@ -246,7 +238,6 @@ rules:
 - DOMAIN-SUFFIX,ttwstatic.com,Proxy
 - DOMAIN-SUFFIX,byteoversea.com,Proxy
 - DOMAIN-SUFFIX,mkrobot.orh,Proxy
-#- SCRIPT,NicePTBrowser,Proxy
 - DOMAIN-SUFFIX,pypi.org,Proxy
 - DOMAIN-SUFFIX,pytorch.org,Proxy
 - DOMAIN,api.zhihu.com,Mitm
@@ -269,3 +260,5 @@ rules:
 - DOMAIN-SUFFIX,helloimg.com,Proxy
 - DOMAIN-SUFFIX,pixhost.to,Proxy
 - DOMAIN-SUFFIX,sagernet.org,Proxy
+- DOMAIN-SUFFIX,band.us,Proxy
+- DOMAIN-SUFFIX,shuttle.gt-in.com,Proxy

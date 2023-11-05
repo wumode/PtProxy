@@ -565,7 +565,7 @@ if __name__ == "__main__":
     for r in extra_rules:
         method = r[(r.rfind(',')) + 1:]
         if method == 'Mitm':
-            new_rule = r[:(r.rfind(','))] + ',DIRECT'
+            new_rule = r[:(r.rfind(','))+1] + 'DIRECT'
             extra_rules_without_mitm.append(new_rule)
         else:
             extra_rules_without_mitm.append(r)

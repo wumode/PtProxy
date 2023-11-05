@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Domain</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h2>Submit Domain</h2>
+    <form id="domainForm" method="post" action="/process_domain">
+        <label for="rule_type">Rule:</label>
+        <select id="rule_type" name="rule_type" required>
+            <option value="Proxy">Proxy</option>
+            <option value="DIRECT">DIRECT</option>
+            <option value="Mitm">Mitm</option>
+            <option value="Hijacking">Hijacking</option>
+        </select>
+        <label for="domain_type">Domain Type:</label>
+        <select id="domain_type" name="domain_type" required>
+            <option value="DOMAIN-SUFFIX">DOMAIN-SUFFIX</option>
+            <option value="DOMAIN">DOMAIN</option>
+            <option value="DOMAIN-KEYWORD">DOMAIN-KEYWORD</option>
+        </select><br>
+        <label for="domain">Domain:</label>
+        <input type="text" id="domain" name="domain" required autocomplete="off"><br>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        {% if alert_message %}
+            alert("{{ alert_message }}");
+        {% endif %}
+        // function submitDomain() {
+        //     var form = document.getElementById('domainForm');
+        //     var formData = new FormData(form);
+        //
+        //     fetch('/process_domain', {
+        //         method: 'POST',
+        //         body: formData
+        //     })
+        //     .then(data => {
+        //         alert(data);
+        //         // document.getElementById('result').innerHTML = data;
+        //     })
+        //         .catch(error => {
+        //         console.error('Error:', error);
+        //     });
+        // }
+    </script>
+</body>
+</html>
