@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Domain</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -80,6 +82,8 @@
         <label for="domain">Domain:</label>
         <input type="text" id="domain" name="domain" required autocomplete="off"><br>
         <button type="submit">Submit</button>
+        <button type="button" onclick="applyChanges()">Apply Changes</button>
+        <button type="button" onclick="logout()">Logout</button>
     </form>
     <div id="result"></div>
 
@@ -87,22 +91,48 @@
         {% if alert_message %}
             alert("{{ alert_message }}");
         {% endif %}
-        // function submitDomain() {
-        //     var form = document.getElementById('domainForm');
-        //     var formData = new FormData(form);
-        //
-        //     fetch('/process_domain', {
-        //         method: 'POST',
-        //         body: formData
-        //     })
-        //     .then(data => {
-        //         alert(data);
-        //         // document.getElementById('result').innerHTML = data;
-        //     })
-        //         .catch(error => {
-        //         console.error('Error:', error);
-        //     });
-        // }
+
+    function applyChanges() {
+        // 使用Ajax向后端发送请求检查登录状态
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/check_login_status", true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    // 后端返回成功，表示用户已登录，继续应用更改
+                    applyChangesAfterLogin();
+                } else {
+                    // 后端返回其他状态，表示用户未登录，重定向到登录页面
+                    window.location.href = "/login";
+                }
+            }
+        };
+        xhr.send();
+    }
+
+    function applyChangesAfterLogin() {
+        // 用户已登录，继续应用更改
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/apply_changes", true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                alert(xhr.responseText);
+            }
+        };
+        xhr.send();
+    }
+        function logout() {
+        // 用户已登录，继续应用更改
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/logout", true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Assuming the logout was successful
+                window.location.href = "/login";
+            }
+        };
+        xhr.send();
+    }
     </script>
 </body>
 </html>

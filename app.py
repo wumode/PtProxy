@@ -1,13 +1,16 @@
 from flask import Flask, send_file, request, abort
 from datetime import datetime
-from flask import render_template, redirect, url_for, session, jsonify
+from flask import render_template, redirect, url_for, session, make_response
 import secrets
 import sys
 import yaml
+import os
+import requests
+import json
+
 
 app = Flask(__name__, template_folder='templates')
 app.secret_key = secrets.token_hex(16)
-# Mock user database (replace this with a proper user authentication system)
 domain_types = ['DOMAIN-SUFFIX', 'DOMAIN', 'DOMAIN-KEYWORD']
 rule_types = ['Proxy', 'DIRECT', 'Mitm', 'Hijacking']
 
@@ -16,28 +19,55 @@ with open(sys.argv[1], 'r', encoding='utf-8') as f:
     configuration = yaml.load(file_data, Loader=yaml.FullLoader)
 users = configuration['users_keys']
 extra_rules_yaml = configuration['extra_rules_yaml']
+update_sh = configuration['update_sh']
+update_subscription_sh = configuration['update_subscription_sh']
+temp_yaml = configuration['temp_yaml']
 
 
-@app.route('/config.yaml')
+def bark_notify(title, content):
+    url = f"{configuration['bark']['server']}/{configuration['bark']['key']}"
+    data = {"body": content,
+            "title": title,
+            # "device_key": configuration['bark']['key'],
+            "group": configuration['bark']['group'],
+            "icon": configuration['bark']['icon'],
+            "sound": "glass.caf"}
+    params = {'icon': 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png'}
+    json_data = json.dumps(data)
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    try:
+        response = requests.post(url, data=json_data, headers=headers, params=params, timeout=1)
+    except Exception as e:
+        print(f"Fail to send bark notification {e}")
+        return 0
+    return response.status_code
+
+
+@app.route('/config')
 def serve_config():
-    # Check for permission (you can customize this logic)
-    if request.args.get('permission') != 'granted':
+    if request.args.get('permission') not in users:
         abort(404)
-
-    # Customize the response headers based on current time
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    headers = {'Custom-Header': f'{current_time}',
-               'Subscription-Userinfo': 'upload=831029914; download=39919943627; total=161112653824; expire=1700708875'}
-
-    # Serve the specific file (config.yaml in this example)
-    return send_file('config.yaml', as_attachment=True, headers=headers)
+    headers = {'Time': f'{current_time}',
+               'Content-Type': 'application/octet-stream; charset=utf-8'}
+    try:
+        with open(temp_yaml, 'r', encoding='utf-8') as fl:
+            temp = yaml.load(fl.read(), Loader=yaml.FullLoader)
+            headers['Subscription-Userinfo'] = \
+                f'upload={temp["upload"]}; download={temp["download"]}; total={temp["total"]}; expire={temp["expire"]}'
+    except Exception as e:
+        print(f"Fail to open {temp_yaml}: {e}")
+    response = make_response(send_file(configuration['out_without_mitm_yaml'], as_attachment=True))
+    response.headers = headers
+    bark_notify(f'【PtProxy】', f'{current_time}\n\n{request.args.get("permission")} Is Updating Config\nIP \t{request.remote_addr}')
+    return response
 
 
 @app.route('/')
 def home():
     if 'username' in session:
-        return f'Logged in as {session["username"]}<br><a href="/logout">Logout</a>'
-    return 'You are not logged in<br><a href="/login">Login</a>'
+        return redirect(url_for('ptproxy'))
+    return redirect(url_for('login'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -55,7 +85,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('username', None)
-    return redirect(url_for('home'))
+    return redirect(url_for('login'))
 
 
 @app.route('/ptproxy', methods=['GET'])
@@ -83,8 +113,33 @@ def process_domain():
     with open(extra_rules_yaml, 'w+') as file:
         file.write(extra_rules_string)
     alert_message = f'{domain} submitted successfully!'
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    bark_notify(f'【PtProxy】', f'{current_time}\n\n{session["username"]} Added a New Rule\n'
+                              f'RULE \t{domain_type},{domain},{rule_type}\n'
+                              f'IP \t{request.remote_addr}')
     return render_template('ptproxy.html', alert_message=alert_message)
 
 
+@app.route('/apply_changes')
+def apply_changes():
+    # Check if the user is logged in
+    if 'username' in session:
+        if os.system(update_sh):
+            return "Fail to Update Clash Config"
+        os.system(update_subscription_sh)
+        return "Changes Applied Successfully!"
+    else:
+        return redirect(url_for('login'))
+
+
+@app.route('/check_login_status')
+def check_login_status():
+    # Check and return user login status
+    if 'username' in session:
+        return "OK"
+    else:
+        return "Unauthorized", 401
+
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=7887)
+    app.run(host='::', port=7887)

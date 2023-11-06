@@ -42,7 +42,7 @@ template_yaml = 'clash_template.yaml'
 extra_rules_yaml = 'extra_rules.yaml'
 extra_proxies_yaml = 'extra_proxies.yaml'
 extra_script_shortcut_yaml = 'extra_script_shortcut.yaml'
-
+temp_yaml = configuration['temp_yaml']
 
 local_path = os.path.dirname(__file__)
 # out_yaml = local_path + out_yaml
@@ -449,10 +449,7 @@ def continent_name_from_node(node_name: str):
 if __name__ == "__main__":
     with open('countries_json/countries.json', 'r') as f:
         countries = json.load(f)
-    # import time
-    # write_log(time.strftime("%a %b %d %H:%M:%S %Y\n", time.localtime()))
     session = requests.session()
-    # session.keep_alive = False
     rules = read_yaml(rule_yaml)
     extra_proxies = read_yaml(extra_proxies_yaml)
     clash_config = read_yaml(template_yaml)
@@ -468,6 +465,8 @@ if __name__ == "__main__":
                "sec-fetch-mode": "navigate",
                "upgrade-insecure-requests": '1'}
     headers['user-agent'] = user_agent_list[0]
+    is_success = False
+    userinfo = {'upload': 0, 'download': 0, 'total': 0, 'expire': 0}
     for sub_link in sub_link_list:
         print(sub_link)
         try:
@@ -479,10 +478,18 @@ if __name__ == "__main__":
         if r.status_code != 200:
             # exit(-1)
             continue
-        session.close()
+        # session.close()
+        is_success = True
         v2ray_str = r.content.decode('utf-8')
-        nodes = parse_subscribe(v2ray_str)
+        if 'Subscription-Userinfo' in r.headers:
+            matches = re.findall(r'(\w+)=(\d+)', r.headers['Subscription-Userinfo'])
+            variables = {key: int(value) for key, value in matches}
+            userinfo['download'] = variables['download'] + userinfo['download']
+            userinfo['upload'] = variables['upload'] + userinfo['upload']
+            userinfo['total'] = variables['total'] + userinfo['total']
+            userinfo['expire'] = max(variables['expire'], userinfo['expire'])
 
+        nodes = parse_subscribe(v2ray_str)
         clash_Proxy = []
         clash_Proxy_names = []
         for v2node in nodes:
@@ -497,21 +504,18 @@ if __name__ == "__main__":
             clash_Proxy_names.append(clash_v2['name'])
 
         clash_config['proxies'] += clash_Proxy
-        # clash_config['proxy-groups'][0]['proxies'] += clash_Proxy_names
-        # clash_config['proxy-groups'][1]['proxies'] += clash_Proxy_names
+    if not is_success:
+        exit(1)
+    temp = yaml.dump(userinfo, allow_unicode=True)
+    with open(temp_yaml, 'w+', encoding='utf-8') as fl:
+        fl.write(temp)
 
-    # delay_list = []
     continents_nodes = {'Asia': [], 'Europe': [], 'SouthAmerica': [], 'NorthAmerica': [], 'Africa': [], 'Oceania': [], 'Asia expect china': []}
-    # continents_nodes = [[], [], [], [], [], []]
     for proxy_node in clash_config['proxies']:
         continent = continent_name_from_node(proxy_node['name'])
         if not continent:
             continue
-        # index_c = continents_list[continent]
         continents_nodes[continent].append(proxy_node['name'])
-        # delay_serv = ping_host(proxy_node['server'])
-        # print("%s(%s): %d ms" % (proxy_node['name'],proxy_node['server'], delay_serv))
-        # delay_list.append(delay_serv)
     for continent_nodes in continents_nodes:
         if len(continents_nodes[continent_nodes]):
             proxy_group = {'name': continent_nodes, 'type': 'select', 'proxies': continents_nodes[continent_nodes]}
@@ -530,28 +534,11 @@ if __name__ == "__main__":
                 if continent_nodes != 'Asia' and len(continents_nodes[continent_nodes]):
                     clash_config['proxy-groups'][openai_index]['proxies'].insert(0, continent_nodes)
         openai_index += 1
-    # sorted_id = sorted(range(len(delay_list)), key=lambda x: delay_list[x], reverse=False)
-    #
-    # for index_proxy in range(0, min(len(sorted_id), 8)):
-    #     print(clash_config['proxies'][sorted_id[index_proxy]]['name'])
-    #     clash_config['proxy-groups'][0]['proxies'].append(clash_config['proxies'][sorted_id[index_proxy]]['name'])
-    # delay_list_sorted = sorted(delay_list, reverse=True)
     for proxy_node in clash_config['proxies']:
         clash_config['proxy-groups'][0]['proxies'].append(proxy_node['name'])
         clash_config['proxy-groups'][1]['proxies'].append(proxy_node['name'])
         clash_config['proxy-groups'][2]['proxies'].append(proxy_node['name'])
     clash_config['proxies'] += extra_proxies['proxies']
-    # for extra_proxy_node in extra_proxies['proxies']:
-    #     clash_config['proxy-groups'][0]['proxies'].append(extra_proxy_node['name'])
-    #     clash_config['proxy-groups'][1]['proxies'].append(extra_proxy_node['name'])
-    #     clash_config['proxy-groups'][2]['proxies'].append(extra_proxy_node['name'])
-
-    # clash_config['proxy-groups'][1]['proxies'] += ['PT']
-    # clash_config['proxy-groups'][0]['proxies'] += ['PT']
-    # pt_node = PtProxyNode()
-    # if not pt_node.able:
-    #     exit(-2)
-    # pt_proxy = pt_node.to_clash()
     pt_proxy_group = {'name': 'PTProxy', 'type': "select", 'proxies': ['LoadBalance', 'DIRECT']}
     # 附加规则
     extra_rules_dict = read_yaml(extra_rules_yaml)

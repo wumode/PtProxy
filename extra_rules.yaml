@@ -263,3 +263,4 @@ rules:
 - DOMAIN-SUFFIX,band.us,Proxy
 - DOMAIN-SUFFIX,shuttle.gt-in.com,Proxy
 - DOMAIN-SUFFIX,shuttle.gt-in.com,Proxy
+- DOMAIN-SUFFIX,ab12y.com,Proxy
