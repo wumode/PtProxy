@@ -43,6 +43,13 @@ def bark_notify(title, content):
     return response.status_code
 
 
+def check_exist_rule(rule, extra_rules):
+    for r in extra_rules:
+        if r == rule:
+            return True
+    return False
+
+
 @app.route('/config')
 def serve_config():
     if request.args.get('permission') not in users:
@@ -108,7 +115,11 @@ def process_domain():
     with open(extra_rules_yaml, 'r', encoding='utf-8') as f:
         file_data = f.read()
         extra_rules = yaml.load(file_data, Loader=yaml.FullLoader)
-    extra_rules['rules'].append(f'{domain_type},{domain},{rule_type}')
+    rule = f'{domain_type},{domain},{rule_type}'
+    if check_exist_rule(rule, extra_rules):
+        alert_message = f'[{rule}] has existed!'
+        return render_template('ptproxy.html', alert_message=alert_message)
+    extra_rules['rules'].append(rule)
     extra_rules_string = yaml.dump(extra_rules, allow_unicode=True)
     with open(extra_rules_yaml, 'w+') as file:
         file.write(extra_rules_string)
