@@ -264,3 +264,5 @@ rules:
 - DOMAIN-SUFFIX,shuttle.gt-in.com,Proxy
 - DOMAIN-SUFFIX,shuttle.gt-in.com,Proxy
 - DOMAIN-SUFFIX,ab12y.com,Proxy
+- DOMAIN-SUFFIX,wl-site5.com,Proxy
+- DOMAIN-SUFFIX,dmm.co.jp,Proxy
