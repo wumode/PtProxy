@@ -12,7 +12,7 @@ import json
 app = Flask(__name__, template_folder='templates')
 app.secret_key = secrets.token_hex(16)
 domain_types = ['DOMAIN-SUFFIX', 'DOMAIN', 'DOMAIN-KEYWORD']
-rule_types = ['Proxy', 'DIRECT', 'Mitm', 'Hijacking']
+rule_types = ['Proxy', 'DIRECT', 'Mitm', 'Hijacking', 'SafeDNS']
 
 with open(sys.argv[1], 'r', encoding='utf-8') as f:
     file_data = f.read()

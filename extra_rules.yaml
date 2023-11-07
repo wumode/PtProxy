@@ -262,7 +262,6 @@ rules:
 - DOMAIN-SUFFIX,sagernet.org,Proxy
 - DOMAIN-SUFFIX,band.us,Proxy
 - DOMAIN-SUFFIX,shuttle.gt-in.com,Proxy
-- DOMAIN-SUFFIX,shuttle.gt-in.com,Proxy
 - DOMAIN-SUFFIX,ab12y.com,Proxy
 - DOMAIN-SUFFIX,wl-site5.com,Proxy
 - DOMAIN-SUFFIX,dmm.co.jp,Proxy
@@ -273,6 +272,4 @@ rules:
 - DOMAIN-SUFFIX,wpadmngr.com,Proxy
 - DOMAIN-SUFFIX,guardeddummysoothing.com,Proxy
 - DOMAIN-SUFFIX,tapecontent.net,Proxy
-- DOMAIN-SUFFIX,guardeddummysoothing.com,Proxy
-- DOMAIN-SUFFIX,wpadmngr.com,Proxy
 - DOMAIN-SUFFIX,pornfhd.com,Proxy
