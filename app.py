@@ -29,10 +29,10 @@ def bark_notify(title, content):
     data = {"body": content,
             "title": title,
             # "device_key": configuration['bark']['key'],
-            "group": configuration['bark']['group'],
             "icon": configuration['bark']['icon'],
             "sound": "glass.caf"}
-    params = {'icon': 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png'}
+    params = {'icon': 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png',
+              "group": configuration['bark']['group']}
     json_data = json.dumps(data)
     headers = {"Content-Type": "application/json; charset=utf-8"}
     try:
