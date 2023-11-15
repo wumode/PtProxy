@@ -306,3 +306,4 @@ rules:
 - DOMAIN-SUFFIX,wireshark.org,Proxy
 - DOMAIN-SUFFIX,xyjgjp.com,Proxy
 - DOMAIN-SUFFIX,mgstage.com,Proxy
+- DOMAIN-SUFFIX,6park.com,Proxy

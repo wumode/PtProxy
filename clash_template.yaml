@@ -122,3 +122,4 @@ dns:
   - "+.*"
 profile:
   tracing: false
+log-level: error
