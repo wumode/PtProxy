@@ -1,5 +1,5 @@
 shortcuts:
   CiompHttpMitm: (host == 'www.ciomp.ac.cn' or host == 'www.ciomp.cas.cn') and dst_port == 80
-  HijackTVHome: src_ip == '192.168.0.170' and dst_port == 4010
+  # HijackTVHome: src_ip == '192.168.0.170' and dst_port == 4010
   NicePTBrowser: host == 'www.nicept.net' and (src_ip != '192.168.0.108' and src_ip != '192.168.0.188')
 

@@ -530,10 +530,21 @@ if __name__ == "__main__":
     openai_index = 0
     for proxy_group in clash_config['proxy-groups']:
         if proxy_group['name'] == 'Openai':
-            for continent_nodes in continents_nodes:
-                if continent_nodes != 'Asia' and len(continents_nodes[continent_nodes]):
-                    clash_config['proxy-groups'][openai_index]['proxies'].insert(0, continent_nodes)
+            break
         openai_index += 1
+    openai_auto = []
+    for continent_nodes in continents_nodes:
+        if continent_nodes != 'Asia' and len(continents_nodes[continent_nodes]):
+            clash_config['proxy-groups'][openai_index]['proxies'].insert(0, continent_nodes)
+            openai_auto.extend(continents_nodes[continent_nodes])
+    proxy_group_ao = {'name': 'Auto Openai',
+                      'type': 'url-test',
+                      'proxies': openai_auto,
+                      'url': 'https://chat.openai.com/',
+                      'tolerance': 120,
+                      'interval': 300}
+    clash_config['proxy-groups'][openai_index]['proxies'].insert(0, proxy_group_ao['name'])
+    clash_config['proxy-groups'].insert(openai_index, proxy_group_ao)
     for proxy_node in clash_config['proxies']:
         clash_config['proxy-groups'][0]['proxies'].append(proxy_node['name'])
         clash_config['proxy-groups'][1]['proxies'].append(proxy_node['name'])
@@ -562,7 +573,7 @@ if __name__ == "__main__":
     with open(out_yaml, 'w+', encoding='utf-8') as f:
         f.write(clash_config_yaml)
 
-    clash_config_local_yaml = clash_config_yaml.replace('mitmproxy.westsite.cn', '192.168.0.221')
+    clash_config_local_yaml = clash_config_yaml.replace('mitmproxy.westsite.cn', '192.168.0.103')
     with open(out_local_yaml, 'w+', encoding='utf-8') as fl:
         fl.write(clash_config_local_yaml)
 

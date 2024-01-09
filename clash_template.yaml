@@ -1,6 +1,11 @@
 #---------------------------------------------------#
 ## 更新：2020-09-30 09:09:30
 ## 感谢：https://github.com/Hackl0us/SS-Rule-Snippet
+## http://clients3.google.com/generate_204
+## http://www.gstatic.com/generate_204
+## http://cp.cloudflare.com/generate_204
+## http://www.qualcomm.cn/generate_204
+## http://clients3.google.com/generate_204
 #---------------------------------------------------#
 
 proxies: []
@@ -10,14 +15,14 @@ proxy-groups:
   type: url-test
 #  strategy: round-robin
   proxies: []
-  url: 'https://cp.cloudflare.com/generate_204'
+  url: 'http://clients3.google.com/generate_204'
   tolerance: 120
   interval: 300
 - name: "LoadBalance"
   type: load-balance
   strategy: round-robin
   proxies: []
-  url: 'http://cp.cloudflare.com/generate_204'
+  url: 'http://clients3.google.com/generate_204'
   interval: 120
 -
   name: Proxy
