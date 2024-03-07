@@ -366,3 +366,7 @@ rules:
 - DOMAIN-SUFFIX,conda.io,Proxy
 - DOMAIN-SUFFIX,belle-vie.xyz,Proxy
 - DOMAIN-SUFFIX,statically.io,Proxy
+- DOMAIN-SUFFIX,agrosino.net,Proxy
+- DOMAIN,audiences.me,Mitm
+- DOMAIN-SUFFIX,stun-2.chat.bilibili.com,Hijacking
+- DOMAIN-SUFFIX,stun.chat.bilibili.com,Hijacking
