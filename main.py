@@ -559,9 +559,14 @@ if __name__ == "__main__":
     # clash_config['proxies'].append(pt_proxy)
     clash_config['proxy-groups'].append(pt_proxy_group)
     clash_without_mitm_config = clash_config.copy()
+    if 'script' in clash_without_mitm_config:
+        del clash_without_mitm_config['script']
     extra_rules_without_mitm = []
     for r in extra_rules:
         method = r[(r.rfind(',')) + 1:]
+        rule_type = r[:(r.find(','))]
+        if rule_type == 'SCRIPT':
+            continue
         if method == 'Mitm':
             new_rule = r[:(r.rfind(','))+1] + 'DIRECT'
             extra_rules_without_mitm.append(new_rule)
