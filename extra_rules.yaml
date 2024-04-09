@@ -108,6 +108,7 @@ rules:
 - DOMAIN-SUFFIX,api.cas.cn,Hijacking
 - DOMAIN-SUFFIX,grammarly.com,Proxy
 - DOMAIN-KEYWORD,openai,Openai
+- DOMAIN-SUFFIX,chatgpt.com,Openai
 - DOMAIN-SUFFIX,mandrillapp.com,Proxy
 - DOMAIN-SUFFIX,sms-activate.org,Proxy
 - DOMAIN-SUFFIX,rightpdf.com,Proxy
@@ -370,3 +371,5 @@ rules:
 - DOMAIN,audiences.me,Mitm
 - DOMAIN-SUFFIX,stun-2.chat.bilibili.com,Hijacking
 - DOMAIN-SUFFIX,stun.chat.bilibili.com,Hijacking
+- DOMAIN-SUFFIX,erpweb.eu.org,Proxy
+- DOMAIN-SUFFIX,mij.rip,Proxy
