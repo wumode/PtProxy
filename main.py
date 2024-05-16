@@ -13,7 +13,7 @@ import re
 import os
 from ping3 import ping
 import sys
-
+from urllib.parse import urlparse, parse_qs
 
 def read_yaml(path) -> dict:
     with open(path, 'r', encoding='utf-8') as f:
@@ -75,6 +75,14 @@ class Node:
     def parse_link(self, link):
         pass
 
+def is_valid_json(input_string):
+    if not input_string:  # Check for empty string or None
+        return False
+    try:
+        json.loads(input_string)
+        return True
+    except (json.JSONDecodeError, TypeError):
+        return False
 
 class V2rayNode(Node):
     def __init__(self):
@@ -89,19 +97,39 @@ class V2rayNode(Node):
         self.headerType = "none"
         self.v = "2"
         self.type = "none"
-        self.ps = ""
-        self.remark = ""
-        self.id = ""
+        self.uuid = ""
+        self.remarks = ""
         self.v2class = ""
+        self.cipher = 'auto'
+        self.udp = True
+        self.alterId = 0
+        self.name = ''
 
     def parse_link(self, link):
-        base64_encode_str = link[8:]
+        base64_encode_str = link[8:link.find('?')]
         decode_str = base64_decode(base64_encode_str)
-        v2_config = json.loads(decode_str)
-        if 'ps' in v2_config:
-            self.ps = v2_config['ps']
+        query_str = link[link.find('?')+1:]
+        if is_valid_json(decode_str):
+            v2_config = json.loads(decode_str)
         else:
-            print('error')
+            v2_config = {}
+            matchObj = re.match(r"(.+):(.+)@(.+):(\d+)", decode_str)
+            if matchObj is None:
+                return
+            v2_config['cipher'] = matchObj.group(1)
+            v2_config['uuid'] = matchObj.group(2)
+            v2_config['add'] = matchObj.group(3)
+            v2_config['port'] = int(matchObj.group(4))
+            query_params = parse_qs(query_str)
+            if 'alterId' in query_params:
+                v2_config['alterId'] = int(query_params['alterId'][0])
+            if 'remarks' in query_params:
+                v2_config['remarks'] = query_params['remarks'][0]
+                v2_config['name'] = query_params['remarks'][0]
+        if 'uuid' in v2_config:
+            self.uuid = v2_config['uuid']
+        else:
+            print(f'An error occurred while parsing {link}')
             return
         if 'host' in v2_config:
             self.host = v2_config['host']
@@ -125,13 +153,13 @@ class V2rayNode(Node):
             self.v = v2_config['v']
         if 'type' in v2_config:
             self.type = v2_config['type']
-        if 'remark' in v2_config:
-            self.remark = v2_config['remark']
-            self.name = self.remark
-        if 'id' in v2_config:
-            self.id = v2_config['id']
+        if 'remarks' in v2_config:
+            self.remarks = v2_config['remarks']
+            self.name = self.remarks
         if 'class' in v2_config:
             self.v2class = v2_config['class']
+        if 'alterId' in v2_config:
+            self.alterId = v2_config['alterId']
         self.able = True
 
     def print(self):
@@ -146,22 +174,24 @@ class V2rayNode(Node):
         print(self.headerType)
         print(self.v)
         print(self.type)
-        print(self.ps)
-        print(self.remark)
-        print(self.id)
+        print(self.remarks)
+        print(self.uuid)
         print(self.v2class)
 
     def to_clash(self):
         clash_v2 = {"name": "", "type": "vmess", "server": "", "port": 0, "uuid": "", "alterId": 0, "cipher": "auto",
                     "udp": True, "network": "ws", "ws-path": "/", "ws-headers": {"host": ""}}
-        clash_v2['name'] = self.ps
+        clash_v2['name'] = self.name
         clash_v2['server'] = self.add
         clash_v2['port'] = self.port
-        clash_v2['uuid'] = self.id
+        clash_v2['uuid'] = self.uuid
         clash_v2['alterId'] = self.aid
         clash_v2['network'] = self.net
         clash_v2['ws-path'] = self.path
         clash_v2['ws-headers']['host'] = self.add
+        clash_v2['alterId'] = self.alterId
+        clash_v2['cipher'] = self.cipher
+        clash_v2['udp'] = self.udp
         return clash_v2
 
 
@@ -178,8 +208,7 @@ class SSNode(Node):
         decode_str = base64_decode(base64_encode_str)
         parts = decode_str.split(':')
         if len(parts) != 3:
-            print('error')
-            print(decode_str)
+            print(f'An error occurred while parsing {link}')
             return
         self.method = parts[0]
         password_and_ip = parts[1]
@@ -198,7 +227,7 @@ class SSNode(Node):
         decode_str = base64_decode(base64_encode_str)
         parts = decode_str.split(':')
         if len(parts) != 3:
-            print('error')
+            print(f'An error occurred while parsing {link}')
             return
         self.method = parts[0]
         password_and_ip = parts[1]
@@ -238,8 +267,7 @@ class SSRNode(SSNode):
         decode_str = base64_decode(base64_encode_str)
         parts = decode_str.split(':')
         if len(parts) != 6:
-            print('error')
-            print(decode_str)
+            print(f'An error occurred while parsing {link}')
             return
         self.server = parts[0]
         self.port = int(parts[1])
