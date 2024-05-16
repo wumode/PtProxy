@@ -454,6 +454,9 @@ if __name__ == "__main__":
     extra_proxies = read_yaml(extra_proxies_yaml)
     clash_config = read_yaml(template_yaml)
     clash_config['rules'] += rules["rules"]
+    clash_config['rule-providers'] = rules["rule-providers"]
+    clash_config['rule-providers']['proxied_rules']['url'] = configuration['rule_providers']['proxied_rules_url']
+    clash_config['rule-providers']['direct_rules']['url'] = configuration['rule_providers']['direct_rules_url']
     user_agent_list = [
         "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"]
     headers = {"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -579,6 +582,7 @@ if __name__ == "__main__":
         f.write(clash_config_yaml)
 
     clash_config_local_yaml = clash_config_yaml.replace('mitmproxy.westsite.cn', '192.168.0.103')
+    clash_config_local_yaml = clash_config_local_yaml.replace('s://ptproxy.westsite.cn:7888', '://192.168.0.108:7887')
     with open(out_local_yaml, 'w+', encoding='utf-8') as fl:
         fl.write(clash_config_local_yaml)
 

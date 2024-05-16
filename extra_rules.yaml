@@ -369,7 +369,11 @@ rules:
 - DOMAIN-SUFFIX,statically.io,Proxy
 - DOMAIN-SUFFIX,agrosino.net,Proxy
 - DOMAIN,audiences.me,Mitm
+- DOMAIN-SUFFIX,gamersky.com,Mitm
 - DOMAIN-SUFFIX,stun-2.chat.bilibili.com,Hijacking
 - DOMAIN-SUFFIX,stun.chat.bilibili.com,Hijacking
 - DOMAIN-SUFFIX,erpweb.eu.org,Proxy
 - DOMAIN-SUFFIX,mij.rip,Proxy
+- DOMAIN-SUFFIX,adtroop.cn,Hijacking
+- DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,Hijacking
+- DOMAIN,open.e.kuaishou.com,Hijacking

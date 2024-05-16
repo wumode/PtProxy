@@ -1,8 +1,24 @@
+rule-providers:
+  proxied_rules:
+    behavior: "domain" # domain, ipcidr or classical (premium core only)
+    type: http
+    url: ""
+    # format: 'yaml' # or 'text'
+    interval: 3600
+    path: ./proxied_rules.yaml
+  direct_rules:
+    behavior: "domain"
+    type: http
+    url: ""
+    interval: 3600
+    path: ./direct_rules.yaml
 rules:
 - DST-PORT,7895,REJECT
 - DST-PORT,7892,REJECT
 - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
 # - SRC-IP-CIDR,198.18.0.1/16,DIRECT
+- RULE-SET,direct_rules,DIRECT
+- RULE-SET,proxied_rules,Proxy
 - DOMAIN-SUFFIX,awesome-hd.me,DIRECT
 - DOMAIN-SUFFIX,broadcasthe.net,DIRECT
 - DOMAIN-SUFFIX,chdbits.co,DIRECT

@@ -51,12 +51,13 @@ def check_exist_rule(rule, extra_rules):
 
 
 @app.route('/config')
-def serve_config():
+def server_config():
     if request.args.get('permission') not in users:
         abort(404)
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     headers = {'Time': f'{current_time}',
-               'Content-Type': 'application/octet-stream; charset=utf-8'}
+               'Content-Type': 'application/octet-stream; charset=utf-8',
+               'Content-Disposition': 'attachment; filename="ptproxy.yaml"'}
     try:
         with open(temp_yaml, 'r', encoding='utf-8') as fl:
             temp = yaml.load(fl.read(), Loader=yaml.FullLoader)
@@ -69,6 +70,45 @@ def serve_config():
     bark_notify(f'【PtProxy】', f'{current_time}\n\n{request.args.get("permission")} Is Updating Config\nIP \t{request.remote_addr}')
     return response
 
+
+@app.route('/proxied_rules')
+def server_proxied_rules():
+    if request.args.get('permission') not in users:
+        abort(404)
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    headers = {'Time': f'{current_time}',
+               'Content-Type': 'application/octet-stream; charset=utf-8',
+               'Content-Disposition': 'attachment; filename="proxied_rules.yaml"'}
+    try:
+        with open(temp_yaml, 'r', encoding='utf-8') as fl:
+            temp = yaml.load(fl.read(), Loader=yaml.FullLoader)
+            headers['Subscription-Userinfo'] = \
+                f'upload={temp["upload"]}; download={temp["download"]}; total={temp["total"]}; expire={temp["expire"]}'
+    except Exception as e:
+        print(f"Fail to open {temp_yaml}: {e}")
+    response = make_response(send_file(configuration['rule_providers']['proxied_rules_yaml'], as_attachment=True))
+    response.headers = headers
+    return response
+
+
+@app.route('/direct_rules')
+def server_direct_rules():
+    if request.args.get('permission') not in users:
+        abort(404)
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    headers = {'Time': f'{current_time}',
+               'Content-Type': 'application/octet-stream; charset=utf-8',
+               'Content-Disposition': 'attachment; filename="direct_rules.yaml"'}
+    try:
+        with open(temp_yaml, 'r', encoding='utf-8') as fl:
+            temp = yaml.load(fl.read(), Loader=yaml.FullLoader)
+            headers['Subscription-Userinfo'] = \
+                f'upload={temp["upload"]}; download={temp["download"]}; total={temp["total"]}; expire={temp["expire"]}'
+    except Exception as e:
+        print(f"Fail to open {temp_yaml}: {e}")
+    response = make_response(send_file(configuration['rule_providers']['direct_rules_yaml'], as_attachment=True))
+    response.headers = headers
+    return response
 
 @app.route('/')
 def home():
