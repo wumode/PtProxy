@@ -1,7 +1,9 @@
 payload:
   - '.blogger.com'
   - '.frostsky.com'
-  - 'sideloadly.io'
-  - 'slproweb.com'
-  - 'trollstore.app'
-  - 'urldecoder.org'
+  - '+.sideloadly.io'
+  - '+.slproweb.com'
+  - '+.trollstore.app'
+  - '+.urldecoder.org'
+  - '+.linkcloud.me'
+  - '+.linkcloud.network'

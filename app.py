@@ -7,7 +7,7 @@ import yaml
 import os
 import requests
 import json
-
+from pathlib import Path
 
 app = Flask(__name__, template_folder='templates')
 app.secret_key = secrets.token_hex(16)
@@ -22,6 +22,11 @@ extra_rules_yaml = configuration['extra_rules_yaml']
 update_sh = configuration['update_sh']
 update_subscription_sh = configuration['update_subscription_sh']
 temp_yaml = configuration['temp_yaml']
+file_path = Path(temp_yaml)
+
+if not file_path.exists():
+    file_path.touch()
+    print(f"File '{temp_yaml}' created successfully.")
 
 
 def bark_notify(title, content):
@@ -58,6 +63,7 @@ def server_config():
     headers = {'Time': f'{current_time}',
                'Content-Type': 'application/octet-stream; charset=utf-8',
                'Content-Disposition': 'attachment; filename="ptproxy.yaml"'}
+    user_agent = request.headers.get('User-Agent')
     try:
         with open(temp_yaml, 'r', encoding='utf-8') as fl:
             temp = yaml.load(fl.read(), Loader=yaml.FullLoader)
@@ -67,7 +73,8 @@ def server_config():
         print(f"Fail to open {temp_yaml}: {e}")
     response = make_response(send_file(configuration['out_without_mitm_yaml'], as_attachment=True))
     response.headers = headers
-    bark_notify(f'【PtProxy】', f'{current_time}\n\n{request.args.get("permission")} Is Updating Config\nIP \t{request.remote_addr}')
+    real_ip = request.headers['X-Real-IP']
+    bark_notify(f'【PtProxy】', f'{current_time}\n\n【{request.args.get("permission")} Is Updating Config】\nIP address: \t{real_ip}\nUser-Agent: \t{user_agent}')
     return response
 
 
@@ -79,6 +86,8 @@ def server_proxied_rules():
     headers = {'Time': f'{current_time}',
                'Content-Type': 'application/octet-stream; charset=utf-8',
                'Content-Disposition': 'attachment; filename="proxied_rules.yaml"'}
+    user_agent = request.headers.get('User-Agent')
+    print(user_agent)
     try:
         with open(temp_yaml, 'r', encoding='utf-8') as fl:
             temp = yaml.load(fl.read(), Loader=yaml.FullLoader)
@@ -109,6 +118,7 @@ def server_direct_rules():
     response = make_response(send_file(configuration['rule_providers']['direct_rules_yaml'], as_attachment=True))
     response.headers = headers
     return response
+
 
 @app.route('/')
 def home():
