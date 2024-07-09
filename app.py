@@ -74,9 +74,22 @@ def server_config():
     response = make_response(send_file(configuration['out_without_mitm_yaml'], as_attachment=True))
     response.headers = headers
     real_ip = request.headers['X-Real-IP']
-    bark_notify(f'【PtProxy】', f'{current_time}\n\n【{request.args.get("permission")} Is Updating Config】\nIP address: \t{real_ip}\nUser-Agent: \t{user_agent}')
+    bark_notify(f'【PtProxy】 {request.args.get("permission")} is updating config', f'{current_time}\n\nIP address: \t{real_ip}\nUser-Agent: \t{user_agent}')
     return response
 
+
+@app.route('/bypassed_list')
+def server_bypassed_list():
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    headers = {'Time': f'{current_time}',
+               'Content-Type': 'application/octet-stream; charset=utf-8',
+               'Content-Disposition': 'attachment; filename="bypassed_list.txt"'}
+    user_agent = request.headers.get('User-Agent')
+    response = make_response(send_file('bypassed_list.txt', as_attachment=True))
+    response.headers = headers
+    real_ip = request.headers['X-Real-IP']
+    bark_notify(f'【PtProxy】 Request to update bypassed list', f'{current_time}\n\nIP address: \t{real_ip}\nUser-Agent: \t{user_agent}')
+    return response
 
 @app.route('/proxied_rules')
 def server_proxied_rules():

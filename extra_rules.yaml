@@ -116,7 +116,7 @@ rules:
 - DOMAIN-SUFFIX,mandrillapp.com,Proxy
 - DOMAIN-SUFFIX,sms-activate.org,Proxy
 - DOMAIN-SUFFIX,rightpdf.com,Proxy
-- DOMAIN-SUFFIX,byr.pt,PTProxy
+- DOMAIN,byr.pt,PTProxy
 - DOMAIN-SUFFIX,npupt.com,Proxy
 - DOMAIN-SUFFIX,manuscriptcentral.com,Proxy
 - DOMAIN-SUFFIX,speedtest.net,Speedtest
@@ -189,7 +189,6 @@ rules:
 - DOMAIN-SUFFIX,tclei.top,Proxy
 - DOMAIN-SUFFIX,curcolbudol.com,Proxy
 - DOMAIN-SUFFIX,sex8.cc,Proxy
-- DOMAIN-KEYWORD,回家,Proxy
 - DOMAIN-SUFFIX,xbluntan78.life,Proxy
 - DOMAIN-SUFFIX,chengrenn18.xyz,Proxy
 - DOMAIN-SUFFIX,aibaaiba.xyz,Proxy

@@ -1,3 +1,4 @@
 config.yaml
 extra_proxies.yaml
 .idea
+bypassed_list.txt
