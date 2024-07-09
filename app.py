@@ -29,6 +29,17 @@ if not file_path.exists():
     print(f"File '{temp_yaml}' created successfully.")
 
 
+def query_ip_detail(ip):
+    url = f'https://ipinfo.io/{ip}/json?token={configuration["ipinfo_token"]}'
+    try:
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()  # Raise an exception for HTTP errors
+        data = response.json()
+    except Exception as e:
+        print(f"Fail to query ip {ip}")
+        return None
+    return data
+
 def bark_notify(title, content):
     url = f"{configuration['bark']['server']}/{configuration['bark']['key']}"
     data = {"body": content,
@@ -74,7 +85,9 @@ def server_config():
     response = make_response(send_file(configuration['out_without_mitm_yaml'], as_attachment=True))
     response.headers = headers
     real_ip = request.headers['X-Real-IP']
-    bark_notify(f'【PtProxy】 {request.args.get("permission")} is updating config', f'{current_time}\n\nIP address: \t{real_ip}\nUser-Agent: \t{user_agent}')
+    ip_details = query_ip_detail(real_ip)
+    location = f'{ip_details["country"]} {ip_details["region"]} {ip_details["city"]}' if ip_details else 'Unknown'
+    bark_notify(f'【PtProxy】 {request.args.get("permission")} is updating config', f'{current_time}\n\nIP address: \t{real_ip} ({location})\nUser-Agent: \t{user_agent}')
     return response
 
 
