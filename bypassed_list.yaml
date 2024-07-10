@@ -11,6 +11,7 @@ domains:
   - 'www.pttime.org'
   - 'ipv6.ip.sb'
   - 'tracker.m-team.cc'
+  - 'tracker.m-team.io'
 ips:
   - '::/128'
   - '::1/128'

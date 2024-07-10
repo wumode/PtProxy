@@ -1,6 +1,7 @@
 import yaml
 import socket
 import requests
+import sys
 
 chnroute6_lists_URL = 'https://ispip.clang.cn/all_cn_ipv6.txt'
 def resolve_domain(domain_name):
@@ -46,7 +47,7 @@ def doh_dns_lookup(domain, query_type):
 
 def main():
     # Load domains from YAML file
-    with open('bypassed_list.yaml', 'r') as file:
+    with open(sys.argv[1], 'r') as file:
         data = yaml.safe_load(file)
     domains = data.get('domains', [])
     ips = data.get('ips', [])
@@ -73,8 +74,8 @@ def main():
             continue
         for address in ipv6_addresses:
             new_list.append(f"{address}/128")
-
-    with open('bypassed_list.txt', 'w') as file:
+    print(f'write bypassed list into {sys.argv[2]}')
+    with open(sys.argv[2], 'w') as file:
         for i in new_list:
             file.write(f'{i}\n')
 
