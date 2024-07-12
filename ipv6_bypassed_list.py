@@ -2,17 +2,22 @@ import yaml
 import socket
 import requests
 import sys
+import ipaddress
 
 chnroute6_lists_URL = 'https://ispip.clang.cn/all_cn_ipv6.txt'
-def resolve_domain(domain_name):
-    try:
-        # Resolve IPv6 address
-        ipv6_info = socket.getaddrinfo(domain_name, None, socket.AF_INET6)
-        ipv6_address = ipv6_info[0][4][0] if ipv6_info else None
-    except socket.gaierror:
-        ipv6_address = None
 
-    return ipv6_address
+
+def is_ip_in_subnet(ip: str, subnet: str) -> bool:
+    """
+    Check if the given IP address is in the specified subnet.
+
+    :param ip: IP address as a string (e.g., '192.168.1.1')
+    :param subnet: Subnet in CIDR notation (e.g., '192.168.1.0/24')
+    :return: True if IP is in the subnet, False otherwise
+    """
+    ip_obj = ipaddress.ip_address(ip)
+    subnet_obj = ipaddress.ip_network(subnet, strict=False)
+    return ip_obj in subnet_obj
 
 
 def doh_dns_lookup(domain, query_type):
@@ -73,7 +78,13 @@ def main():
             print(domain)
             continue
         for address in ipv6_addresses:
-            new_list.append(f"{address}/128")
+            has_flag = False
+            for subnet in new_list:
+                if is_ip_in_subnet(address, subnet):
+                    has_flag = True
+                    break
+            if not has_flag:
+                new_list.append(ipaddress.ip_network(f"{address}/64", strict=False))
     print(f'write bypassed list into {sys.argv[2]}')
     with open(sys.argv[2], 'w') as file:
         for i in new_list:
