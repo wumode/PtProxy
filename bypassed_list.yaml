@@ -7,11 +7,12 @@ domains:
   - 'hitpt.com'
   - 'pthome.net'
   - 'hdtime.org'
-  - 'eastgame.org'
+  - 'pt.eastgame.org'
   - 'www.pttime.org'
   - 'ipv6.ip.sb'
   - 'tracker.m-team.cc'
   - 'tracker.m-team.io'
+  - 't.hddolby.com'
 ips:
   - '::/128'
   - '::1/128'
