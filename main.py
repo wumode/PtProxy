@@ -59,6 +59,7 @@ continents_names = {'欧洲': 'Europe',
                     '北美洲': 'NorthAmerica',
                     '南美洲': 'SouthAmerica'}
 
+
 class Node:
     def __init__(self):
         self.port = 0
@@ -75,6 +76,7 @@ class Node:
     def parse_link(self, link):
         pass
 
+
 def is_valid_json(input_string):
     if not input_string:  # Check for empty string or None
         return False
@@ -83,6 +85,7 @@ def is_valid_json(input_string):
         return True
     except (json.JSONDecodeError, TypeError):
         return False
+
 
 class V2rayNode(Node):
     def __init__(self):
@@ -162,22 +165,6 @@ class V2rayNode(Node):
             self.alterId = v2_config['alterId']
         self.able = True
 
-    def print(self):
-        print(self.host)
-        print(self.port)
-        print(self.path)
-        print(self.tls)
-        print(self.verify_cert)
-        print(self.add)
-        print(self.aid)
-        print(self.net)
-        print(self.headerType)
-        print(self.v)
-        print(self.type)
-        print(self.remarks)
-        print(self.uuid)
-        print(self.v2class)
-
     def to_clash(self):
         clash_v2 = {"name": "", "type": "vmess", "server": "", "port": 0, "uuid": "", "alterId": 0, "cipher": "auto",
                     "udp": True, "network": "ws", "ws-path": "/", "ws-headers": {"host": ""}}
@@ -245,12 +232,6 @@ class SSNode(Node):
                     "password": self.password}
         return clash_ss
 
-    def print(self):
-        print(self.method)
-        print(self.server)
-        print(self.password)
-        print(self.port)
-
 
 class SSRNode(SSNode):
     def __init__(self):
@@ -311,18 +292,6 @@ class SSRNode(SSNode):
         print(encode_link)
         return encode_link
 
-    def print(self):
-        print(self.method)
-        print(self.server)
-        print(self.obfs)
-        print(self.group)
-        print(self.obfsparam)
-        print(self.password)
-        print(self.port)
-        print(self.protocol)
-        print(self.protoparam)
-        print(self.remarks)
-
     def to_clash(self):
         clash_v2 = {"name": self.name, "type": "ssr", "server": self.server, "port": self.port, "cipher": self.method,
                     "password": self.password, "obfs": self.obfs, "protocol": self.protocol,
@@ -358,11 +327,6 @@ class TorjanNode(Node):
         clash_ss = {"name": self.name, "type": "trojan", "server": self.server, "port": self.port, "password": self.password,
                     "sni": self.sni, "udp": self.udp}
         return clash_ss
-
-    def print(self):
-        print(self.server)
-        print(self.password)
-        print(self.port)
 
 
 def fill_padding(base64_encode_str):
