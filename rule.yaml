@@ -342,7 +342,6 @@ rules:
 - DOMAIN-SUFFIX,sogou.com,Domestic
 - DOMAIN-SUFFIX,teamviewer.com,Domestic
 - DOMAIN-SUFFIX,totheglory.im,Domestic
-- DOMAIN-SUFFIX,tp.m-team.cc,Domestic
 - DOMAIN-SUFFIX,udacity.com,Domestic
 - DOMAIN-SUFFIX,xmcdn.com,Domestic
 - DOMAIN-SUFFIX,yangkeduo.com,Domestic
@@ -788,9 +787,9 @@ rules:
 - DOMAIN-SUFFIX,dler.cloud,Proxy
 
 # Local Area Network
-- DOMAIN-KEYWORD,announce,DIRECT
-- DOMAIN-KEYWORD,torrent,DIRECT
-- DOMAIN-KEYWORD,tracker,DIRECT
+# - DOMAIN-KEYWORD,announce,DIRECT
+# - DOMAIN-KEYWORD,torrent,DIRECT
+# - DOMAIN-KEYWORD,tracker,DIRECT
 - DOMAIN-SUFFIX,smtp,DIRECT
 - DOMAIN-SUFFIX,local,DIRECT
 - IP-CIDR,192.168.0.0/16,DIRECT

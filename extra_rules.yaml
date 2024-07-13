@@ -148,6 +148,8 @@ rules:
 - DOMAIN-SUFFIX,hostloc.com,Proxy
 - DOMAIN,kp.m-team.cc,Proxy
 - DOMAIN,img.m-team.cc,Proxy
+- DOMAIN,tracker.m-team.cc,Armbian
+- DOMAIN,tracker.m-team.io,Armbian
 - DOMAIN-SUFFIX,gushiciku.cn,Proxy
 - DOMAIN-SUFFIX,readfog.com,Proxy
 - DOMAIN-SUFFIX,azureedge.net,Proxy
@@ -200,7 +202,6 @@ rules:
 - DOMAIN-SUFFIX,katfile.com,Proxy
 - DOMAIN-SUFFIX,binstream.live,Hijacking
 - DOMAIN-SUFFIX,groueta.cc,Proxy
-- DOMAIN-SUFFIX,tra1.m-team.cc,DIRECT
 - DOMAIN-SUFFIX,e-hentai.org,Proxy
 - DOMAIN-SUFFIX,pximg.net,Proxy
 - DOMAIN-SUFFIX,gravatar.com,Proxy
@@ -390,3 +391,4 @@ rules:
 - DOMAIN,open.e.kuaishou.com,Hijacking
 - DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,Hijacking
 - DOMAIN-SUFFIX,metacubex.one,Proxy
+- DOMAIN-SUFFIX,uuidgenerator.net,Proxy
