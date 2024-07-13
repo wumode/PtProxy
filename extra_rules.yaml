@@ -172,7 +172,6 @@ rules:
 - DOMAIN-SUFFIX,jvid.com,Proxy
 - DOMAIN-SUFFIX,yadi.sk,Proxy
 - DOMAIN-SUFFIX,yandex.com,Proxy
-- DOMAIN-SUFFIX,debian.org,Proxy
 - DOMAIN-SUFFIX,photobucket.com,Proxy
 - DOMAIN-SUFFIX,freeimage.us,Proxy
 - DOMAIN-SUFFIX,loli.net,Proxy
