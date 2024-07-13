@@ -2,3 +2,4 @@ config.yaml
 extra_proxies.yaml
 .idea
 bypassed_list.txt
+ipv6_bypassed_list.txt

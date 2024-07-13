@@ -4,7 +4,10 @@ import requests
 import sys
 import ipaddress
 
-chnroute6_lists_URL = 'https://ispip.clang.cn/all_cn_ipv6.txt'
+chnroute6_lists_url = 'https://ispip.clang.cn/all_cn_ipv6.txt'
+chnroute_lists_url = 'https://ispip.clang.cn/all_cn.txt'
+china_ip_route = False
+china_ipv6_route = True
 
 
 def is_ip_in_subnet(ip: str, subnet: str) -> bool:
@@ -42,12 +45,11 @@ def doh_dns_lookup(domain, query_type):
         response.raise_for_status()  # Raise an exception for HTTP errors
 
         data = response.json()
-        return  [answer['data'] for answer in data.get('Answer', [])]
-
+        return [answer['data'] for answer in data.get('Answer', [])]
 
     except requests.RequestException as e:
         print(f"An error occurred: {e}")
-        return None
+        return []
 
 
 def main():
@@ -58,36 +60,55 @@ def main():
     ips = data.get('ips', [])
     replacing = data.get('replace')
 
-    # Load Chnroute6 Lists
-    r = requests.get(chnroute6_lists_URL, timeout=10)
-    chnroute6_lists = r.content.decode('utf-8')[:-1].split('\n')
-    new_list = []
-
-    # replace ips
-    for ipr in chnroute6_lists:
-        if ipr in replacing:
-            for replacing_ip in replacing[ipr]:
-                new_list.append(replacing_ip)
-        else:
-            new_list.append(ipr)
-    # for ip in ips:
-    #     new_list.append(ip)
+    ipv6_list = []
+    ip_list = []
+    if china_ipv6_route:
+        # Load Chnroute6 Lists
+        r = requests.get(chnroute6_lists_url, timeout=10)
+        chnroute6_lists = r.content.decode('utf-8')[:-1].split('\n')
+        # replace ips
+        for ipr in chnroute6_lists:
+            if ipr in replacing:
+                for replacing_ip in replacing[ipr]:
+                    ipv6_list.append(replacing_ip)
+            else:
+                ipv6_list.append(ipr)
+        # for ip in ips:
+        #     new_list.append(ip)
+    if china_ip_route:
+        # Load Chnroute Lists
+        r = requests.get(chnroute_lists_url, timeout=10)
+        chnroute_lists = r.content.decode('utf-8')[:-1].split('\n')
+        for ipr in chnroute_lists:
+            ip_list.append(ipr)
     for domain in domains:
         ipv6_addresses = doh_dns_lookup(domain, 'AAAA')
-        if not ipv6_addresses:
-            print(domain)
-            continue
         for address in ipv6_addresses:
             has_flag = False
-            for subnet in new_list:
+            for subnet in ipv6_list:
                 if is_ip_in_subnet(address, subnet):
                     has_flag = True
                     break
             if not has_flag:
-                new_list.append(ipaddress.ip_network(f"{address}/64", strict=False))
+                ipv6_list.append(ipaddress.ip_network(f"{address}/64", strict=False))
+
+        ip_addresses = doh_dns_lookup(domain, 'A')
+        for address in ip_addresses:
+            has_flag = False
+            for subnet in ip_list:
+                if is_ip_in_subnet(address, subnet):
+                    has_flag = True
+                    break
+            if not has_flag:
+                ip_list.append(f"{address}/32")
+
     print(f'write bypassed list into {sys.argv[2]}')
     with open(sys.argv[2], 'w') as file:
-        for i in new_list:
+        for i in ip_list:
+            file.write(f'{i}\n')
+    print(f'write ipv6 bypassed list into {sys.argv[3]}')
+    with open(sys.argv[3], 'w') as file:
+        for i in ipv6_list:
             file.write(f'{i}\n')
 
 

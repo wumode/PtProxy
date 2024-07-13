@@ -40,6 +40,7 @@ def query_ip_detail(ip):
         return None
     return data
 
+
 def bark_notify(title, content):
     url = f"{configuration['bark']['server']}/{configuration['bark']['key']}"
     data = {"body": content,
@@ -93,16 +94,21 @@ def server_config():
 
 @app.route('/bypassed_list')
 def server_bypassed_list():
+    v = request.args.get('v')
+    if not v or (v != '4' and v != '6'):
+        abort(404)
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     headers = {'Time': f'{current_time}',
                'Content-Type': 'application/octet-stream; charset=utf-8',
                'Content-Disposition': 'attachment; filename="bypassed_list.txt"'}
     user_agent = request.headers.get('User-Agent')
-    response = make_response(send_file('bypassed_list.txt', as_attachment=True))
+    list_path = 'bypassed_list.txt' if v == '4' else 'ipv6_bypassed_list.txt'
+    response = make_response(send_file(list_path, as_attachment=True))
     response.headers = headers
     real_ip = request.headers['X-Real-IP']
-    bark_notify(f'【PtProxy】 Request to update bypassed list', f'{current_time}\n\nIP address: \t{real_ip}\nUser-Agent: \t{user_agent}')
+    bark_notify(f'【PtProxy】 Request to update bypassed list', f'{current_time}\n\nIP address: \t{real_ip}\nUser-Agent: \t{user_agent}\nVersion:   \tIPv{v}')
     return response
+
 
 @app.route('/proxied_rules')
 def server_proxied_rules():

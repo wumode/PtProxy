@@ -148,8 +148,8 @@ rules:
 - DOMAIN-SUFFIX,hostloc.com,Proxy
 - DOMAIN,kp.m-team.cc,Proxy
 - DOMAIN,img.m-team.cc,Proxy
-- DOMAIN,tracker.m-team.cc,Armbian
-- DOMAIN,tracker.m-team.io,Armbian
+# - DOMAIN,tracker.m-team.cc,Armbian
+# - DOMAIN,tracker.m-team.io,Armbian
 - DOMAIN-SUFFIX,gushiciku.cn,Proxy
 - DOMAIN-SUFFIX,readfog.com,Proxy
 - DOMAIN-SUFFIX,azureedge.net,Proxy
