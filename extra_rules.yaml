@@ -147,6 +147,7 @@ rules:
 - DOMAIN,public.dns.iij.jp,SafeDNS
 - DOMAIN-SUFFIX,hostloc.com,Proxy
 - DOMAIN,kp.m-team.cc,Proxy
+- DOMAIN,api2.m-team.cc,Proxy
 - DOMAIN,img.m-team.cc,Proxy
 # - DOMAIN,tracker.m-team.cc,Armbian
 # - DOMAIN,tracker.m-team.io,Armbian
