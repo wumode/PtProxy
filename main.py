@@ -15,6 +15,7 @@ from ping3 import ping
 import sys
 from urllib.parse import urlparse, parse_qs
 
+
 def read_yaml(path) -> dict:
     with open(path, 'r', encoding='utf-8') as f:
         file_data = f.read()
@@ -34,9 +35,6 @@ out_local_yaml = configuration['out_local_yaml']
 out_without_mitm_yaml = configuration['out_without_mitm_yaml']
 log_path = configuration['log_path']
 
-# 测试
-# out_yaml = 'clash.yaml'
-# out_local_yaml = 'clash_local.yaml'
 rule_yaml = 'rule.yaml'
 template_yaml = 'clash_template.yaml'
 extra_rules_yaml = 'extra_rules.yaml'
@@ -406,7 +404,6 @@ def parsing_domain_name(h):
     hostip = None
     try:
         hostip =socket.gethostbyname(h)
-        print(hostip)
     except socket.error as e:
         print("gethostbyname failed")
     return hostip

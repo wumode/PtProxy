@@ -73,8 +73,6 @@ def main():
                     ipv6_list.append(replacing_ip)
             else:
                 ipv6_list.append(ipr)
-        # for ip in ips:
-        #     new_list.append(ip)
     if china_ip_route:
         # Load Chnroute Lists
         r = requests.get(chnroute_lists_url, timeout=10)
@@ -101,6 +99,14 @@ def main():
                     break
             if not has_flag:
                 ip_list.append(f"{address}/32")
+
+    # add ips
+    for subnet in ips:
+        ip_obj = ipaddress.ip_address(subnet[:subnet.rfind('/')])
+        if isinstance(ip_obj, ipaddress.IPv4Address):
+            ip_list.append(subnet)
+        elif isinstance(ip_obj, ipaddress.IPv6Address):
+            ipv6_list.append(subnet)
 
     print(f'write bypassed list into {sys.argv[2]}')
     with open(sys.argv[2], 'w') as file:
