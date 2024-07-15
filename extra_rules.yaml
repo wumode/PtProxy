@@ -393,3 +393,4 @@ rules:
 - DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,Hijacking
 - DOMAIN-SUFFIX,metacubex.one,Proxy
 - DOMAIN-SUFFIX,uuidgenerator.net,Proxy
+- DOMAIN-SUFFIX,op.gg,Proxy
