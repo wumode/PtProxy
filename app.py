@@ -8,6 +8,7 @@ import os
 import requests
 import json
 from pathlib import Path
+from bark import bark_sender
 
 app = Flask(__name__, template_folder='templates')
 app.secret_key = secrets.token_hex(16)
@@ -23,6 +24,9 @@ update_sh = configuration['update_sh']
 update_subscription_sh = configuration['update_subscription_sh']
 temp_yaml = configuration['temp_yaml']
 file_path = Path(temp_yaml)
+barker = bark_sender(configuration['bark']['server'], configuration['bark']['port'], configuration['bark']['https'],
+                     configuration['bark']['key'], configuration['bark']['icon'])
+
 
 if not file_path.exists():
     file_path.touch()
@@ -39,25 +43,6 @@ def query_ip_detail(ip):
         print(f"Fail to query ip {ip}")
         return None
     return data
-
-
-def bark_notify(title, content):
-    url = f"{configuration['bark']['server']}/{configuration['bark']['key']}"
-    data = {"body": content,
-            "title": title,
-            # "device_key": configuration['bark']['key'],
-            "icon": configuration['bark']['icon'],
-            "sound": "glass.caf"}
-    params = {'icon': 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png',
-              "group": configuration['bark']['group']}
-    json_data = json.dumps(data)
-    headers = {"Content-Type": "application/json; charset=utf-8"}
-    try:
-        response = requests.post(url, data=json_data, headers=headers, params=params, timeout=1)
-    except Exception as e:
-        print(f"Fail to send bark notification {e}")
-        return 0
-    return response.status_code
 
 
 def check_exist_rule(rule, extra_rules):
@@ -88,7 +73,13 @@ def server_config():
     real_ip = request.headers['X-Real-IP']
     ip_details = query_ip_detail(real_ip)
     location = f'{ip_details["country"]} {ip_details["region"]} {ip_details["city"]}' if ip_details else 'Unknown'
-    bark_notify(f'【PtProxy】 {request.args.get("permission")} is updating config', f'{current_time}\n\nIP address: \t{real_ip} ({location})\nUser-Agent: \t{user_agent}')
+    message_data = {'IP address': f'{real_ip} ({location})', 'User-Agent': user_agent}
+    barker.bark_notify(f'{request.args.get("permission")} is updating config',
+                       'Request details',
+                       message_data,
+                       configuration['bark']['group'],
+                       'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png')
+    # bark_notify(f'【PtProxy】 {request.args.get("permission")} is updating config', f'{current_time}\n\nIP address: \t{real_ip} ({location})\nUser-Agent: \t{user_agent}')
     return response
 
 
@@ -106,7 +97,13 @@ def server_bypassed_list():
     response = make_response(send_file(list_path, as_attachment=True))
     response.headers = headers
     real_ip = request.headers['X-Real-IP']
-    bark_notify(f'【PtProxy】 Request to update bypassed list', f'{current_time}\n\nIP address: \t{real_ip}\nUser-Agent: \t{user_agent}\nVersion:   \tIPv{v}')
+    message_data = {'IP address': f'{real_ip}', 'User-Agent': user_agent, 'Version': f'IPv{v}'}
+    barker.bark_notify(f'Request to update bypassed list',
+                       'Request details',
+                       message_data,
+                       configuration['bark']['group'],
+                       'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png')
+    # bark_notify(f'【PtProxy】 Request to update bypassed list', f'{current_time}\n\nIP address: \t{real_ip}\nUser-Agent: \t{user_agent}\nVersion:   \tIPv{v}')
     return response
 
 
@@ -206,10 +203,17 @@ def process_domain():
     with open(extra_rules_yaml, 'w+') as file:
         file.write(extra_rules_string)
     alert_message = f'{domain} submitted successfully!'
-    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    bark_notify(f'【PtProxy】', f'{current_time}\n\n{session["username"]} Added a New Rule\n'
-                              f'RULE \t{domain_type},{domain},{rule_type}\n'
-                              f'IP \t{request.remote_addr}')
+    user_agent = request.headers.get('User-Agent')
+    message_data = {'RULE': f'{domain_type},{domain},{rule_type}\n', 'User-Agent': user_agent,
+                    'IP': f'{request.headers["X-Real-IP"]}'}
+    barker.bark_notify(f'Request to update rules',
+                       'Request details',
+                       message_data,
+                       configuration['bark']['group'],
+                       'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png')
+    # bark_notify(f'【PtProxy】', f'{current_time}\n\n{session["username"]} Added a New Rule\n'
+    #                           f'RULE \t{domain_type},{domain},{rule_type}\n'
+    #                           f'IP \t{request.remote_addr}')
     return render_template('ptproxy.html', alert_message=alert_message)
 
 

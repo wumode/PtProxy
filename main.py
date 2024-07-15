@@ -14,6 +14,7 @@ import os
 from ping3 import ping
 import sys
 from urllib.parse import urlparse, parse_qs
+from bark import bark_sender
 
 
 def read_yaml(path) -> dict:
@@ -27,6 +28,9 @@ if len(sys.argv) < 2:
     print('No configuration file')
     exit(-1)
 configuration = read_yaml(sys.argv[1])
+
+barker = bark_sender(configuration['bark']['server'], configuration['bark']['port'], configuration['bark']['https'],
+                     configuration['bark']['key'], configuration['bark']['icon'])
 
 filter_keywords = configuration['filter_keywords']
 sub_link_list = configuration['subscribe_links']
@@ -464,7 +468,11 @@ if __name__ == "__main__":
         try:
             r = session.get(sub_link, timeout=10, headers=headers)
         except Exception as e:
-            print(e)
+            barker.bark_notify(f'Failed to get {sub_link}',
+                               'Error details',
+                               {'Error': f'{e}', 'URL': sub_link},
+                               configuration['bark']['group'],
+                               'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png')
             continue
         print("http response code: %d" % r.status_code)
         if r.status_code != 200:
@@ -543,7 +551,7 @@ if __name__ == "__main__":
         clash_config['proxy-groups'][2]['proxies'].append(proxy_node['name'])
     clash_config['proxies'] += extra_proxies['proxies']
     pt_proxy_group = {'name': 'PTProxy', 'type': "select", 'proxies': ['LoadBalance', 'DIRECT']}
-    # 附加规则
+    # additional rules
     extra_rules_dict = read_yaml(extra_rules_yaml)
     extra_rules = extra_rules_dict['rules']
     extra_script_shortcut = read_yaml(extra_script_shortcut_yaml)
