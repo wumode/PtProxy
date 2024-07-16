@@ -66,6 +66,7 @@
 <body>
     <h2>Submit Domain</h2>
     <form id="domainForm" method="post" action="/process_domain">
+        <h3>Extra Rules</h3>
         <label for="rule_type">Rule:</label>
         <select id="rule_type" name="rule_type" required>
             <option value="Proxy">Proxy</option>
@@ -86,6 +87,20 @@
         <button type="submit">Submit</button>
         <button type="button" onclick="applyChanges()">Update</button>
         <button type="button" onclick="logout()">Logout</button>
+    </form>
+    <br>
+    <form id="proxiedDomainForm" method="post" action="/process_rule">
+        <h3>Rule Providers | Proxied Rules</h3>
+        <label for="rule_type">Wildcard Type</label>
+        <select id="wildcard_type" name="wildcard_type" required>
+            <option value="+.">Multi-level wildcard (+)</option>
+            <option value="*.">Single-level wildcard subdomain (*)</option>
+            <option value=".">Multi-level wildcard subdomain (.)</option>
+            <option value="">Custom</option>
+        </select>
+        <label for="domain">Domain:</label>
+        <input type="text" id="domainInput" name="domainInput" required autocomplete="off"><br>
+        <button type="submit">Submit</button>
     </form>
     <div id="result"></div>
 

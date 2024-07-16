@@ -15,10 +15,10 @@ domain_types = ['DOMAIN-SUFFIX', 'DOMAIN', 'DOMAIN-KEYWORD']
 rule_types = ['Proxy', 'DIRECT', 'Mitm', 'Hijacking', 'SafeDNS']
 
 with open(sys.argv[1], 'r', encoding='utf-8') as f:
-    file_data = f.read()
-    configuration = yaml.load(file_data, Loader=yaml.FullLoader)
+    configuration = yaml.load(f.read(), Loader=yaml.FullLoader)
 users = configuration['users_keys']
 extra_rules_yaml = configuration['extra_rules_yaml']
+proxied_rules_yaml = configuration['rule_providers']['proxied_rules_yaml']
 update_sh = configuration['update_sh']
 update_subscription_sh = configuration['update_subscription_sh']
 temp_yaml = configuration['temp_yaml']
@@ -88,7 +88,6 @@ def server_config():
                        message_data,
                        configuration['bark']['group'],
                        'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png')
-    # bark_notify(f'【PtProxy】 {request.args.get("permission")} is updating config', f'{current_time}\n\nIP address: \t{real_ip} ({location})\nUser-Agent: \t{user_agent}')
     return response
 
 
@@ -112,7 +111,6 @@ def server_bypassed_list():
                        message_data,
                        configuration['bark']['group'],
                        'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png')
-    # bark_notify(f'【PtProxy】 Request to update bypassed list', f'{current_time}\n\nIP address: \t{real_ip}\nUser-Agent: \t{user_agent}\nVersion:   \tIPv{v}')
     return response
 
 
@@ -190,6 +188,32 @@ def ptproxy_page():
     return render_template('ptproxy.html')
 
 
+@app.route('/process_rule', methods=['POST'])
+def process_rule():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    domain = request.form['domainInput']
+    wildcard_type = request.form['wildcard_type']
+    with open(proxied_rules_yaml, 'r', encoding='utf-8') as f:
+        file_data = f.read()
+        proxied_rules = yaml.load(file_data, Loader=yaml.FullLoader)
+    rule = f'{wildcard_type}{domain}'
+    proxied_rules['payload'].append(rule)
+    proxied_rules_string = yaml.dump(proxied_rules, allow_unicode=True)
+    with open(proxied_rules_yaml, 'w+') as file:
+        file.write(proxied_rules_string)
+    alert_message = f'`{rule}` submitted successfully!'
+    user_agent = request.headers.get('User-Agent')
+    message_data = {'RULE': f'{rule}', 'User-Agent': user_agent,
+                    'IP': f'{request.headers["X-Real-IP"]}'}
+    barker.bark_notify(f'Request to update proxied rules',
+                       'Request details',
+                       message_data,
+                       configuration['bark']['group'],
+                       'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png')
+    return render_template('ptproxy.html', alert_message=alert_message)
+
+
 @app.route('/process_domain', methods=['POST'])
 def process_domain():
     if 'username' not in session:
@@ -211,18 +235,15 @@ def process_domain():
     extra_rules_string = yaml.dump(extra_rules, allow_unicode=True)
     with open(extra_rules_yaml, 'w+') as file:
         file.write(extra_rules_string)
-    alert_message = f'{domain} submitted successfully!'
+    alert_message = f'`{domain}` submitted successfully!'
     user_agent = request.headers.get('User-Agent')
-    message_data = {'RULE': f'{domain_type},{domain},{rule_type}\n', 'User-Agent': user_agent,
+    message_data = {'RULE': f'{domain_type},{domain},{rule_type}', 'User-Agent': user_agent,
                     'IP': f'{request.headers["X-Real-IP"]}'}
     barker.bark_notify(f'Request to update rules',
                        'Request details',
                        message_data,
                        configuration['bark']['group'],
                        'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png')
-    # bark_notify(f'【PtProxy】', f'{current_time}\n\n{session["username"]} Added a New Rule\n'
-    #                           f'RULE \t{domain_type},{domain},{rule_type}\n'
-    #                           f'IP \t{request.remote_addr}')
     return render_template('ptproxy.html', alert_message=alert_message)
 
 

@@ -1,11 +1,11 @@
 payload:
-  - '.blogger.com'
-  - '.frostsky.com'
-  - '+.sideloadly.io'
-  - '+.slproweb.com'
-  - '+.trollstore.app'
-  - '+.urldecoder.org'
-  - '+.linkcloud.me'
-  - '+.linkcloud.network'
-  - '+.imgtp.com'
-  - '+.ccp.ovh'
+- .blogger.com
+- .frostsky.com
+- +.sideloadly.io
+- +.slproweb.com
+- +.trollstore.app
+- +.urldecoder.org
+- +.linkcloud.me
+- +.linkcloud.network
+- +.imgtp.com
+- +.ccp.ovh
