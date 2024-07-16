@@ -1,5 +1,7 @@
 config.yaml
 extra_proxies.yaml
 .idea
+__pycache__
 bypassed_list.txt
 ipv6_bypassed_list.txt
+convert_config.py

@@ -394,3 +394,4 @@ rules:
 - DOMAIN-SUFFIX,metacubex.one,Proxy
 - DOMAIN-SUFFIX,uuidgenerator.net,Proxy
 - DOMAIN-SUFFIX,op.gg,Proxy
+- DOMAIN-SUFFIX,rockstargames.com,Proxy

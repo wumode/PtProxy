@@ -6,7 +6,6 @@ import sys
 import yaml
 import os
 import requests
-import json
 from pathlib import Path
 from bark import bark_sender
 
@@ -39,6 +38,8 @@ def query_ip_detail(ip):
         response = requests.get(url, timeout=5)
         response.raise_for_status()  # Raise an exception for HTTP errors
         data = response.json()
+        if data['bogon']:
+            return None
     except Exception as e:
         print(f"Fail to query ip {ip}")
         return None
@@ -61,6 +62,7 @@ def server_config():
                'Content-Type': 'application/octet-stream; charset=utf-8',
                'Content-Disposition': 'attachment; filename="ptproxy.yaml"'}
     user_agent = request.headers.get('User-Agent')
+    version = request.args.get('version')
     try:
         with open(temp_yaml, 'r', encoding='utf-8') as fl:
             temp = yaml.load(fl.read(), Loader=yaml.FullLoader)
@@ -68,12 +70,19 @@ def server_config():
                 f'upload={temp["upload"]}; download={temp["download"]}; total={temp["total"]}; expire={temp["expire"]}'
     except Exception as e:
         print(f"Fail to open {temp_yaml}: {e}")
-    response = make_response(send_file(configuration['out_without_mitm_yaml'], as_attachment=True))
+    response_file = configuration['out_without_mitm_yaml']
+    if version == 'mitm':
+        response_file = configuration['out_yaml']
+    elif version == 'local':
+        response_file = configuration['out_local_yaml']
+    response = make_response(send_file(response_file, as_attachment=True))
     response.headers = headers
-    real_ip = request.headers['X-Real-IP']
+    real_ip = request.remote_addr if not request.headers.get('X-Real-IP') else request.headers.get('X-Real-IP')
     ip_details = query_ip_detail(real_ip)
     location = f'{ip_details["country"]} {ip_details["region"]} {ip_details["city"]}' if ip_details else 'Unknown'
-    message_data = {'IP address': f'{real_ip} ({location})', 'User-Agent': user_agent}
+    message_data = {'IP address': f'{real_ip} ({location})',
+                    'User agent': user_agent,
+                    'Config version': 'normal' if not version else version}
     barker.bark_notify(f'{request.args.get("permission")} is updating config',
                        'Request details',
                        message_data,
@@ -96,7 +105,7 @@ def server_bypassed_list():
     list_path = 'bypassed_list.txt' if v == '4' else 'ipv6_bypassed_list.txt'
     response = make_response(send_file(list_path, as_attachment=True))
     response.headers = headers
-    real_ip = request.headers['X-Real-IP']
+    real_ip = request.remote_addr if not request.headers.get('X-Real-IP') else request.headers.get('X-Real-IP')
     message_data = {'IP address': f'{real_ip}', 'User-Agent': user_agent, 'Version': f'IPv{v}'}
     barker.bark_notify(f'Request to update bypassed list',
                        'Request details',

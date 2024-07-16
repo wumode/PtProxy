@@ -12,7 +12,7 @@ class bark_sender():
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         content = f'{current_time}\n\n 【{text}】\n'
         for i in data:
-            content += f' {i}: \t{data[i]}\n'
+            content += f'{i}: \t{data[i]}\n'
         data = {"body": content,
                 "title": f'【{group}】 {title}',
                 # "device_key": configuration['bark']['key'],

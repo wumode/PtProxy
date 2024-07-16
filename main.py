@@ -35,8 +35,7 @@ barker = bark_sender(configuration['bark']['server'], configuration['bark']['por
 filter_keywords = configuration['filter_keywords']
 sub_link_list = configuration['subscribe_links']
 out_yaml = configuration['out_yaml']
-out_local_yaml = configuration['out_local_yaml']
-out_without_mitm_yaml = configuration['out_without_mitm_yaml']
+
 log_path = configuration['log_path']
 
 rule_yaml = 'rule.yaml'
@@ -190,7 +189,6 @@ class SSNode(Node):
         self.method = 'aes-256-cfb'
         self.server = '1.1.1.1'
         self.password = ''
-        # self.name = ''
 
     def parse_link(self, link):
         base64_encode_str = link[5:]
@@ -556,33 +554,9 @@ if __name__ == "__main__":
     extra_rules = extra_rules_dict['rules']
     extra_script_shortcut = read_yaml(extra_script_shortcut_yaml)
     clash_config['script']['shortcuts'].update(extra_script_shortcut['shortcuts'])
-    # clash_config['proxies'].append(pt_proxy)
     clash_config['proxy-groups'].append(pt_proxy_group)
-    clash_without_mitm_config = clash_config.copy()
-    if 'script' in clash_without_mitm_config:
-        del clash_without_mitm_config['script']
-    extra_rules_without_mitm = []
-    for r in extra_rules:
-        method = r[(r.rfind(',')) + 1:]
-        rule_type = r[:(r.find(','))]
-        if rule_type == 'SCRIPT':
-            continue
-        if method == 'Mitm':
-            new_rule = r[:(r.rfind(','))+1] + 'DIRECT'
-            extra_rules_without_mitm.append(new_rule)
-        else:
-            extra_rules_without_mitm.append(r)
-    clash_without_mitm_config['rules'] = extra_rules_without_mitm + clash_without_mitm_config['rules']
+
     clash_config['rules'] = extra_rules + clash_config['rules']
     clash_config_yaml = yaml.dump(clash_config, allow_unicode=True)
     with open(out_yaml, 'w+', encoding='utf-8') as f:
         f.write(clash_config_yaml)
-
-    clash_config_local_yaml = clash_config_yaml.replace('mitmproxy.westsite.cn', '192.168.0.103')
-    clash_config_local_yaml = clash_config_local_yaml.replace('s://ptproxy.westsite.cn:7888', '://192.168.0.108:7887')
-    with open(out_local_yaml, 'w+', encoding='utf-8') as fl:
-        fl.write(clash_config_local_yaml)
-
-    clash_config_without_mitm_yaml = yaml.dump(clash_without_mitm_config, allow_unicode=True)
-    with open(out_without_mitm_yaml, 'w+', encoding='utf-8') as fl:
-        fl.write(clash_config_without_mitm_yaml)
