@@ -17,7 +17,7 @@ domains:
   - 'p.qpic.cn'
   - 'lgame.tdm.qq.com'
 ips:
-  - '182.254.116.117'
+  - '182.254.116.117/32'
 replace:
   '2001:da8::/32':  # except btr.pt
     - '2001:da8::/35'
