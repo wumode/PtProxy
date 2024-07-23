@@ -45,12 +45,7 @@ def doh_dns_lookup(domain, query_type):
         response.raise_for_status()  # Raise an exception for HTTP errors
 
         data = response.json()
-        addresses = []
-        for answer in data.get('Answer', []):
-            if answer.get('type') == 28 or answer.get('type') == 1:
-                addresses.append(answer.get('data'))
-        return addresses
-        # return [answer['data'] for answer in data.get('Answer', [])]
+        return [answer['data'] for answer in data.get('Answer', []) if answer.get('type') == 28 or answer.get('type') == 1]
 
     except requests.RequestException as e:
         print(f"An error occurred: {e}")
