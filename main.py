@@ -380,7 +380,7 @@ def parse_subscribe(base64_encode_str):
     return nodes
 
 
-def generate_subscribe(nodes):
+def generate_subscribe(nodes: list):
     links = ''
     for node in nodes:
         ss_link = node.encode()
@@ -446,8 +446,8 @@ if __name__ == "__main__":
     clash_config = read_yaml(template_yaml)
     clash_config['rules'] += rules["rules"]
     clash_config['rule-providers'] = rules["rule-providers"]
-    clash_config['rule-providers']['proxied_rules']['url'] = configuration['rule_providers']['proxied_rules_url']
-    clash_config['rule-providers']['direct_rules']['url'] = configuration['rule_providers']['direct_rules_url']
+    clash_config['rule-providers']['proxied_rules']['url'] = configuration['rule_providers']['proxied_rules']['url']
+    clash_config['rule-providers']['direct_rules']['url'] = configuration['rule_providers']['direct_rules']['url']
     user_agent_list = [
         "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"]
     headers = {"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",

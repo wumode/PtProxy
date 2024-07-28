@@ -18,8 +18,8 @@ with open(sys.argv[1], 'r', encoding='utf-8') as f:
     configuration = yaml.load(f.read(), Loader=yaml.FullLoader)
 users = configuration['users_keys']
 extra_rules_yaml = configuration['extra_rules_yaml']
-proxied_rules_yaml = configuration['rule_providers']['proxied_rules_yaml']
 update_sh = configuration['update_sh']
+rule_sets = [rs for rs in configuration['rule_providers']]
 update_subscription_sh = configuration['update_subscription_sh']
 temp_yaml = configuration['temp_yaml']
 file_path = Path(temp_yaml)
@@ -51,6 +51,15 @@ def check_exist_rule(rule, extra_rules):
         if r == rule:
             return True
     return False
+
+
+def update_rule_set(rule_set: str) -> int:
+    url = f'{configuration["clash"]["server"]}/providers/rules/{rule_set}'
+    headers = {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate, br, zstd',
+               'Authorization': f'Bearer {configuration["clash"]["secret"]}',
+               'Content-Length': '0', 'Content-Type': 'application/json', 'Priority': 'u=1, i'}
+    r = requests.put(url, headers=headers, timeout=5)
+    return r.status_code
 
 
 @app.route('/config')
@@ -114,16 +123,18 @@ def server_bypassed_list():
     return response
 
 
-@app.route('/proxied_rules')
-def server_proxied_rules():
+@app.route('/rule_providers')
+def server_rule_providers():
     if request.args.get('permission') not in users:
+        abort(404)
+    rule_set = request.args.get('rule_set')
+    if not rule_set:
         abort(404)
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     headers = {'Time': f'{current_time}',
                'Content-Type': 'application/octet-stream; charset=utf-8',
-               'Content-Disposition': 'attachment; filename="proxied_rules.yaml"'}
-    user_agent = request.headers.get('User-Agent')
-    print(user_agent)
+               'Content-Disposition': f'attachment; filename="{rule_set}.yaml"'}
+    # user_agent = request.headers.get('User-Agent')
     try:
         with open(temp_yaml, 'r', encoding='utf-8') as fl:
             temp = yaml.load(fl.read(), Loader=yaml.FullLoader)
@@ -131,27 +142,7 @@ def server_proxied_rules():
                 f'upload={temp["upload"]}; download={temp["download"]}; total={temp["total"]}; expire={temp["expire"]}'
     except Exception as e:
         print(f"Fail to open {temp_yaml}: {e}")
-    response = make_response(send_file(configuration['rule_providers']['proxied_rules_yaml'], as_attachment=True))
-    response.headers = headers
-    return response
-
-
-@app.route('/direct_rules')
-def server_direct_rules():
-    if request.args.get('permission') not in users:
-        abort(404)
-    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    headers = {'Time': f'{current_time}',
-               'Content-Type': 'application/octet-stream; charset=utf-8',
-               'Content-Disposition': 'attachment; filename="direct_rules.yaml"'}
-    try:
-        with open(temp_yaml, 'r', encoding='utf-8') as fl:
-            temp = yaml.load(fl.read(), Loader=yaml.FullLoader)
-            headers['Subscription-Userinfo'] = \
-                f'upload={temp["upload"]}; download={temp["download"]}; total={temp["total"]}; expire={temp["expire"]}'
-    except Exception as e:
-        print(f"Fail to open {temp_yaml}: {e}")
-    response = make_response(send_file(configuration['rule_providers']['direct_rules_yaml'], as_attachment=True))
+    response = make_response(send_file(configuration['rule_providers'][rule_set]['path'], as_attachment=True))
     response.headers = headers
     return response
 
@@ -194,13 +185,17 @@ def process_rule():
         return redirect(url_for('login'))
     domain = request.form['domainInput']
     wildcard_type = request.form['wildcard_type']
-    with open(proxied_rules_yaml, 'r', encoding='utf-8') as f:
+    rule_set = request.form.get('rule_set')
+    if rule_set not in rule_sets:
+        alert_message = f'Unknown rule set: {rule_set}'
+        return render_template('ptproxy.html', alert_message=alert_message)
+    with open(configuration['rule_providers'][rule_set]['path'], 'r', encoding='utf-8') as f:
         file_data = f.read()
         proxied_rules = yaml.load(file_data, Loader=yaml.FullLoader)
     rule = f'{wildcard_type}{domain}'
     proxied_rules['payload'].append(rule)
     proxied_rules_string = yaml.dump(proxied_rules, allow_unicode=True)
-    with open(proxied_rules_yaml, 'w+') as file:
+    with open(configuration['rule_providers'][rule_set]['path'], 'w+') as file:
         file.write(proxied_rules_string)
     alert_message = f'`{rule}` submitted successfully!'
     user_agent = request.headers.get('User-Agent')
@@ -211,6 +206,7 @@ def process_rule():
                        message_data,
                        configuration['bark']['group'],
                        'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png')
+    update_rule_set(rule_set)
     return render_template('ptproxy.html', alert_message=alert_message)
 
 

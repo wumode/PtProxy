@@ -90,8 +90,13 @@
     </form>
     <br>
     <form id="proxiedDomainForm" method="post" action="/process_rule">
-        <h3>Rule Providers | Proxied Rules</h3>
-        <label for="rule_type">Wildcard Type</label>
+        <h3>Rule Providers</h3>
+        <label for="rule_set">Rule Set</label>
+        <select id="rule_set" name="rule_set" required>
+            <option value="proxied_rules">proxied rules</option>
+            <option value="direct_rules">direct rules</option>
+        </select>
+        <label for="wildcard_type">Wildcard Type</label>
         <select id="wildcard_type" name="wildcard_type" required>
             <option value="+.">Multi-level wildcard (+)</option>
             <option value="*.">Single-level wildcard subdomain (*)</option>
