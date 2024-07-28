@@ -53,6 +53,7 @@ rules:
 - DOMAIN-SUFFIX,catcloud.fun,Proxy
 - DOMAIN-SUFFIX,transact.netsarang.com,Hijacking
 - DOMAIN-SUFFIX,update.netsarang.com,Hijacking
+- DOMAIN,mall.bilibili.com,Hijacking
 - DOMAIN,mi.gdt.qq.com,Hijacking
 - DOMAIN,pgdt.ugdtimg.com,Hijacking
 - DOMAIN-SUFFIX,www.netsarang.com,Proxy
