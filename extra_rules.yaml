@@ -164,7 +164,7 @@ rules:
 - DOMAIN-SUFFIX,opencv.org,Proxy
 - DOMAIN-SUFFIX,thetvdb.com,Proxy
 - DOMAIN,mitm.it,Mitm
-- SCRIPT,CiompHttpMitm,Mitm
+# - SCRIPT,CiompHttpMitm,Mitm
 - DOMAIN-SUFFIX,wikiwand.com,Proxy
 - DOMAIN-SUFFIX,kxcdn.com.com,Proxy
 - DOMAIN-SUFFIX,funet.fi,Proxy
@@ -373,6 +373,7 @@ rules:
 - DOMAIN-SUFFIX,agrosino.net,Proxy
 - DOMAIN,audiences.me,Mitm
 - DOMAIN,httpdns.bilivideo.com,Mitm
+- DOMAIN,app.biliapi.net,Mitm
 - IP-CIDR,203.107.1.33/32,Mitm
 - IP-CIDR,203.107.1.34/32,Mitm
 - IP-CIDR,203.107.1.65/32,Mitm

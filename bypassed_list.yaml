@@ -16,6 +16,7 @@ domains:
   - 'receiver.tdm.qq.com'
   - 'p.qpic.cn'
   - 'lgame.tdm.qq.com'
+  - '52pt.site'
 ips:
   - '182.254.116.117/32'
 replace:
