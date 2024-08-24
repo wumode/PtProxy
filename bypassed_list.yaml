@@ -43,3 +43,13 @@ replace:
     - '2001:da8:215e::/48'
     - '2001:da8:215f::/48'
     - '2001:da8:2160::/43'
+exempt_domains:
+  - 'app.bilibili.com'
+  - 'httpdns.bilivideo.com'
+  - 'api.zhihu.com'
+  - 'router.gamersky.com'
+  - 'router1.gamersky.com'
+  - 'router2.gamersky.com'
+  - 'router3.gamersky.com'
+  - 'router4.gamersky.com'
+  - 'router5.gamersky.com'

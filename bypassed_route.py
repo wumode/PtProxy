@@ -6,7 +6,7 @@ import ipaddress
 
 chnroute6_lists_url = 'https://ispip.clang.cn/all_cn_ipv6.txt'
 chnroute_lists_url = 'https://ispip.clang.cn/all_cn.txt'
-china_ip_route = False
+china_ip_route = True
 china_ipv6_route = True
 
 
@@ -52,6 +52,42 @@ def doh_dns_lookup(domain, query_type):
         return []
 
 
+def resolve_domain(domain_name):
+    try:
+        # Get address info for both IPv4 and IPv6
+        addr_info = socket.getaddrinfo(domain_name, None, socket.AF_UNSPEC, socket.SOCK_STREAM)
+
+        ipv4_addresses = []
+        ipv6_addresses = []
+
+        # Iterate over the address info
+        for info in addr_info:
+            # Address info is a tuple: (family, type, proto, canonname, sockaddr)
+            # We're interested in the sockaddr which contains the actual IP address
+            ip_address = info[4][0]
+
+            # Check if the IP address is IPv4 or IPv6
+            if '.' in ip_address:
+                ipv4_addresses.append(ip_address)
+            elif ':' in ip_address:
+                ipv6_addresses.append(ip_address)
+        # print(f"IPv4 addresses of {domain_name}: {ipv4_addresses}")
+        # print(f"IPv6 addresses of {domain_name}: {ipv6_addresses}")
+        return [domain_name, ipv4_addresses, ipv6_addresses]
+
+    except socket.gaierror as e:
+        return None
+
+
+def search_ip(ip, ips_list):
+    i = 0
+    for ip_range in ips_list:
+        if is_ip_in_subnet(ip, ip_range):
+            return i
+        i += 1
+    return -1
+
+
 def main():
     # Load domains from YAML file
     with open(sys.argv[1], 'r') as file:
@@ -59,6 +95,7 @@ def main():
     domains = data.get('domains', [])
     ips = data.get('ips', [])
     replacing = data.get('replace')
+    exempt_domains = data.get('exempt_domains', [])
 
     ipv6_list = []
     ip_list = []
@@ -107,6 +144,22 @@ def main():
             ip_list.append(subnet)
         elif isinstance(ip_obj, ipaddress.IPv6Address):
             ipv6_list.append(subnet)
+
+    # remove exempt domain names
+    for domain in exempt_domains:
+        ip_res = resolve_domain(domain)
+        if not ip_res:
+            continue
+        for ip in ip_res[1]:
+            index = search_ip(ip, ip_list)
+            if index != -1:
+                print(f'exempt {domain}({ip}) from {ip_list[index]}')
+                ip_list.pop(index)
+        for ip in ip_res[2]:
+            index = search_ip(ip, ipv6_list)
+            if index != -1:
+                print(f'exempt {domain}({ip}) from {ip_list[index]}')
+                ipv6_list.pop(index)
 
     print(f'write bypassed list into {sys.argv[2]}')
     with open(sys.argv[2], 'w') as file:
