@@ -13,9 +13,9 @@ rule-providers:
     interval: 3600
     path: ./direct_rules.yaml
 rules:
-- DST-PORT,7895,REJECT
-- DST-PORT,7892,REJECT
-- IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+# - DST-PORT,7895,REJECT
+# - DST-PORT,7892,REJECT
+# - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
 # - SRC-IP-CIDR,198.18.0.1/16,DIRECT
 - RULE-SET,direct_rules,DIRECT
 - RULE-SET,proxied_rules,Proxy
@@ -164,7 +164,7 @@ rules:
 - DOMAIN-SUFFIX,b23.tv,AsianTV
 - DOMAIN-SUFFIX,biliapi.com,AsianTV
 - DOMAIN-SUFFIX,biliapi.net,AsianTV
-# - DOMAIN-SUFFIX,bilibili.com,AsianTV
+- DOMAIN-SUFFIX,bilibili.com,AsianTV
 - DOMAIN-SUFFIX,biligame.com,AsianTV
 - DOMAIN-SUFFIX,biligame.net,AsianTV
 - DOMAIN-SUFFIX,hdslb.com,AsianTV

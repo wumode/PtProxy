@@ -125,7 +125,7 @@ def main():
                     has_flag = True
                     break
             if not has_flag:
-                ipv6_list.append(ipaddress.ip_network(f"{address}/64", strict=False))
+                ipv6_list.append(ipaddress.ip_network(f"{address}/128", strict=False))
 
         ip_addresses = doh_dns_lookup(domain, 'A')
         for address in ip_addresses:

@@ -46,6 +46,8 @@ replace:
 exempt_domains:
   - 'app.bilibili.com'
   - 'httpdns.bilivideo.com'
+  - 'cm.bilibili.com'
+  - 'dataflow.biliapi.com'
   - 'api.zhihu.com'
   - 'router.gamersky.com'
   - 'router1.gamersky.com'
