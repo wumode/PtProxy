@@ -157,6 +157,19 @@ rules:
 - DOMAIN-SUFFIX,youtu.be,GlobalTV
 
 # (AsianTV)
+# > Bilibili
+# - DOMAIN-KEYWORD,bilibili,AsianTV
+- DOMAIN-SUFFIX,acg.tv,AsianTV
+- DOMAIN-SUFFIX,acgvideo.com,AsianTV
+- DOMAIN-SUFFIX,b23.tv,AsianTV
+- DOMAIN-SUFFIX,biliapi.com,AsianTV
+- DOMAIN-SUFFIX,biliapi.net,AsianTV
+- DOMAIN-SUFFIX,bilibili.com,AsianTV
+- DOMAIN-SUFFIX,biligame.com,AsianTV
+- DOMAIN-SUFFIX,biligame.net,AsianTV
+- DOMAIN-SUFFIX,hdslb.com,AsianTV
+- DOMAIN-SUFFIX,im9.com,AsianTV
+
 # > IQIYI
 - DOMAIN-KEYWORD,qiyi,AsianTV
 - DOMAIN-SUFFIX,qy.net,AsianTV
@@ -636,9 +649,40 @@ rules:
 - DOMAIN,abc.net.au,Proxy
 - DOMAIN,wego.here.com,Proxy
 #USER-AGENT,Roam*,Proxy
+
+# (The Most Popular Sites)
 # > Apple
-# - GEOSITE,apple-cn,DIRECT
-# - GEOSITE,apple,Apple
+# > Apple URL Shortener
+- DOMAIN-SUFFIX,appsto.re,Apple
+# > TestFlight
+- DOMAIN,beta.itunes.apple.com,Apple
+# > iBooks Store download
+- DOMAIN,books.itunes.apple.com,Apple
+# > iTunes Store Moveis Trailers
+- DOMAIN,hls.itunes.apple.com,Apple
+# App Store Preview
+- DOMAIN,itunes.apple.com,Apple
+# > Spotlight
+- DOMAIN,api-glb-sea.smoot.apple.com,Apple
+# > Dictionary
+- DOMAIN,lookup-api.apple.com,Apple
+# > Apple
+- DOMAIN-SUFFIX,itunes.apple.com.mwcname.com,Apple
+- DOMAIN-SUFFIX,aaplimg.com,Apple
+- DOMAIN-SUFFIX,apple.co,Apple
+- DOMAIN-SUFFIX,apple.com,Apple
+- DOMAIN-SUFFIX,apple-cloudkit.com,Apple
+- DOMAIN-SUFFIX,appstore.com,Apple
+- DOMAIN-SUFFIX,cdn-apple.com,Apple
+- DOMAIN-SUFFIX,crashlytics.com,Apple
+- DOMAIN-SUFFIX,icloud.com,Apple
+- DOMAIN-SUFFIX,icloud-content.com,Apple
+- DOMAIN-SUFFIX,me.com,Apple
+- DOMAIN,www-cdn.icloud.com.akadns.net,Apple
+- DOMAIN-SUFFIX,mzstatic.com,Apple
+- IP-CIDR,17.0.0.0/8,Apple,no-resolve
+
+#PROCESS-NAME,LookupViewService,Proxy
 # > Google
 - DOMAIN-SUFFIX,abc.xyz,Proxy
 - DOMAIN-SUFFIX,android.com,Proxy

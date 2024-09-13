@@ -38,7 +38,7 @@ def query_ip_detail(ip):
         response = requests.get(url, timeout=5)
         response.raise_for_status()  # Raise an exception for HTTP errors
         data = response.json()
-        if data['bogon']:
+        if data.get('bogon'):
             return None
     except Exception as e:
         print(f"Fail to query ip {ip}")
