@@ -45,6 +45,7 @@ replace:
     - '2001:da8:2160::/43'
 exempt_domains:
   - 'app.bilibili.com'
+  - 'app.biliapi.net'
   - 'httpdns.bilivideo.com'
   - 'cm.bilibili.com'
   - 'dataflow.biliapi.com'

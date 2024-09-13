@@ -508,7 +508,7 @@ if __name__ == "__main__":
     with open(temp_yaml, 'w+', encoding='utf-8') as fl:
         fl.write(temp)
 
-    continents_nodes = {'Asia': [], 'Europe': [], 'SouthAmerica': [], 'NorthAmerica': [], 'Africa': [], 'Oceania': [], 'Asia expect china': []}
+    continents_nodes = {'Asia': [], 'Europe': [], 'SouthAmerica': [], 'NorthAmerica': [], 'Africa': [], 'Oceania': [], 'Asia except China': []}
     for proxy_node in clash_config['proxies']:
         continent = continent_name_from_node(proxy_node['name'])
         if not continent:
@@ -522,8 +522,8 @@ if __name__ == "__main__":
     for continent_node in continents_nodes['Asia']:
         if '中国' in continent_node or '香港' in continent_node:
             continue
-        continents_nodes['Asia expect china'].append(continent_node)
-    proxy_group = {'name': 'Asia expect china', 'type': 'select', 'proxies': continents_nodes['Asia expect china']}
+        continents_nodes['Asia except China'].append(continent_node)
+    proxy_group = {'name': 'Asia except China', 'type': 'select', 'proxies': continents_nodes['Asia except China']}
     clash_config['proxy-groups'].insert(3, proxy_group)
     openai_index = 0
     for proxy_group in clash_config['proxy-groups']:

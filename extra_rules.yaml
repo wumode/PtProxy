@@ -74,7 +74,6 @@ rules:
 - DOMAIN-SUFFIX,bbci.co.uk,Proxy
 - DOMAIN-SUFFIX,ccache.org,Proxy
 - DOMAIN-SUFFIX,wallhaven.cc,Proxy
-- DOMAIN-SUFFIX,itunes-apple.com.akadns.net,Apple
 - DOMAIN-SUFFIX,fastly.net,Proxy
 - DOMAIN-SUFFIX,api.zuihuimai.com,Hijacking
 - DOMAIN-SUFFIX,baichuan-sdk.taobao.com,Hijacking
@@ -138,7 +137,7 @@ rules:
 - DOMAIN-SUFFIX,msftncsi.com,DIRECT
 - DOMAIN-SUFFIX,cpu-panda.com,Proxy
 - DOMAIN-SUFFIX,edu.cn,Domestic
-- DOMAIN-KEYWORD,edu,Proxy
+# - DOMAIN-KEYWORD,edu,Proxy
 - DOMAIN-SUFFIX,etrovub.be,Proxy
 - DOMAIN-SUFFIX,dns.cloudflare.com,SafeDNS
 - DOMAIN-SUFFIX,doh.opendns.com,SafeDNS
@@ -206,7 +205,6 @@ rules:
 - DOMAIN-SUFFIX,pximg.net,Proxy
 - DOMAIN-SUFFIX,gravatar.com,Proxy
 - DOMAIN-SUFFIX,smartnews.be,Proxy
-- DOMAIN-SUFFIX,apple.news,Proxy
 - DOMAIN-SUFFIX,cnn.com,Proxy
 - DOMAIN-SUFFIX,deepl.com,Proxy
 - DOMAIN-SUFFIX,media-amazon.com,Proxy
@@ -233,7 +231,6 @@ rules:
 - DOMAIN-SUFFIX,netcdn.space,Proxy
 - DOMAIN-SUFFIX,bestgirlsexy.com,Proxy
 - DOMAIN-SUFFIX,hotgirl.biz,Proxy
-- DOMAIN,app.bilibili.com,Mitm
 - DOMAIN-SUFFIX,xchina.biz,Proxy
 - DOMAIN-SUFFIX,mozilla.org,Proxy
 - DOMAIN-SUFFIX,tiktok.com,Proxy
@@ -372,10 +369,17 @@ rules:
 - DOMAIN-SUFFIX,statically.io,Proxy
 - DOMAIN-SUFFIX,agrosino.net,Proxy
 - DOMAIN,audiences.me,Mitm
-- DOMAIN,httpdns.bilivideo.com,Mitm
+#- DOMAIN,app.bilibili.com,Mitm
+# - DOMAIN,httpdns.bilivideo.com,Mitm
 - DOMAIN-SUFFIX,biliapi.net,Mitm
 - DOMAIN-SUFFIX,biliapi.com,Mitm
 - DOMAIN-SUFFIX,bilibili.com,Mitm
+- DOMAIN-SUFFIX,stun-2.chat.bilibili.com,Hijacking
+- DOMAIN-SUFFIX,stun.chat.bilibili.com,Hijacking
+# - GEOSITE,bilibili,DIRECT
+# - GEOSITE,category-scholar-!cn,Proxy
+- GEOSITE,steam@cn,DIRECT
+- GEOSITE,category-games@cn,DIRECT
 - IP-CIDR,203.107.1.33/32,Mitm
 - IP-CIDR,203.107.1.34/32,Mitm
 - IP-CIDR,203.107.1.65/32,Mitm
@@ -385,8 +389,6 @@ rules:
 - DOMAIN,router2.gamersky.com,Mitm
 - DOMAIN,router3.gamersky.com,Mitm
 - DOMAIN,appapi2click.gamersky.com,Hijacking
-- DOMAIN-SUFFIX,stun-2.chat.bilibili.com,Hijacking
-- DOMAIN-SUFFIX,stun.chat.bilibili.com,Hijacking
 - DOMAIN-SUFFIX,erpweb.eu.org,Proxy
 - DOMAIN-SUFFIX,mij.rip,Proxy
 - DOMAIN-SUFFIX,adtroop.cn,Hijacking

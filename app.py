@@ -91,7 +91,8 @@ def server_config():
     location = f'{ip_details["country"]} {ip_details["region"]} {ip_details["city"]}' if ip_details else 'Unknown'
     message_data = {'IP address': f'{real_ip} ({location})',
                     'User agent': user_agent,
-                    'Config version': 'normal' if not version else version}
+                    'Config version': 'normal' if not version else version,
+					'URL': f'{request.base_url}'}
     barker.bark_notify(f'{request.args.get("permission")} is updating config',
                        'Request details',
                        message_data,
