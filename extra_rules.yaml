@@ -74,7 +74,6 @@ rules:
 - DOMAIN-SUFFIX,bbci.co.uk,Proxy
 - DOMAIN-SUFFIX,ccache.org,Proxy
 - DOMAIN-SUFFIX,wallhaven.cc,Proxy
-- DOMAIN-SUFFIX,itunes-apple.com.akadns.net,Apple
 - DOMAIN-SUFFIX,fastly.net,Proxy
 - DOMAIN-SUFFIX,api.zuihuimai.com,Hijacking
 - DOMAIN-SUFFIX,baichuan-sdk.taobao.com,Hijacking
