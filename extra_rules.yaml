@@ -119,8 +119,7 @@ rules:
 - DOMAIN,byr.pt,PTProxy
 - DOMAIN-SUFFIX,npupt.com,Proxy
 - DOMAIN-SUFFIX,manuscriptcentral.com,Proxy
-- DOMAIN-SUFFIX,speedtest.net,Speedtest
-- DOMAIN-SUFFIX,ooklaserver.net,Speedtest
+- GEOSITE,speedtest,Speedtest
 - DOMAIN-SUFFIX,pussytorrents.org,Proxy
 - DOMAIN-SUFFIX,chaturbate.com,Proxy
 - DOMAIN-SUFFIX,highwebmedia.com,Proxy
@@ -137,7 +136,6 @@ rules:
 - DOMAIN-SUFFIX,msftncsi.com,DIRECT
 - DOMAIN-SUFFIX,cpu-panda.com,Proxy
 - DOMAIN-SUFFIX,edu.cn,Domestic
-# - DOMAIN-KEYWORD,edu,Proxy
 - DOMAIN-SUFFIX,etrovub.be,Proxy
 - DOMAIN-SUFFIX,dns.cloudflare.com,SafeDNS
 - DOMAIN-SUFFIX,doh.opendns.com,SafeDNS
@@ -369,15 +367,11 @@ rules:
 - DOMAIN-SUFFIX,statically.io,Proxy
 - DOMAIN-SUFFIX,agrosino.net,Proxy
 - DOMAIN,audiences.me,Mitm
-#- DOMAIN,app.bilibili.com,Mitm
-# - DOMAIN,httpdns.bilivideo.com,Mitm
 - DOMAIN-SUFFIX,biliapi.net,Mitm
 - DOMAIN-SUFFIX,biliapi.com,Mitm
 - DOMAIN-SUFFIX,bilibili.com,Mitm
 - DOMAIN-SUFFIX,stun-2.chat.bilibili.com,Hijacking
 - DOMAIN-SUFFIX,stun.chat.bilibili.com,Hijacking
-# - GEOSITE,bilibili,DIRECT
-# - GEOSITE,category-scholar-!cn,Proxy
 - GEOSITE,steam@cn,DIRECT
 - GEOSITE,category-games@cn,DIRECT
 - IP-CIDR,203.107.1.33/32,Mitm
@@ -388,6 +382,7 @@ rules:
 - DOMAIN,router1.gamersky.com,Mitm
 - DOMAIN,router2.gamersky.com,Mitm
 - DOMAIN,router3.gamersky.com,Mitm
+- DOMAIN,router11.gamersky.com,Mitm
 - DOMAIN,appapi2click.gamersky.com,Hijacking
 - DOMAIN-SUFFIX,erpweb.eu.org,Proxy
 - DOMAIN-SUFFIX,mij.rip,Proxy
@@ -403,3 +398,39 @@ rules:
 - DOMAIN-SUFFIX,digicert.com,Proxy
 - DOMAIN-SUFFIX,input.shouji.sogou.com,Hijacking
 - DOMAIN-SUFFIX,mplstudios.com,Proxy
+- DOMAIN-SUFFIX,redditspace.com,Proxy
+- DOMAIN-SUFFIX,windows.com,Proxy
+- DOMAIN-SUFFIX,clashverge.dev,Proxy
+- DOMAIN-SUFFIX,blogger.com,Proxy
+- DOMAIN-SUFFIX,frostsky.com,Proxy
+- DOMAIN-SUFFIX,sideloadly.io,Proxy
+- DOMAIN-SUFFIX,slproweb.com,Proxy
+- DOMAIN-SUFFIX,trollstore.app,Proxy
+- DOMAIN-SUFFIX,urldecoder.org,Proxy
+- DOMAIN-SUFFIX,linkcloud.me,Proxy
+- DOMAIN-SUFFIX,linkcloud.network,Proxy
+- DOMAIN-SUFFIX,imgtp.com,Proxy
+- DOMAIN-SUFFIX,ccp.ovh,Proxy
+- DOMAIN-SUFFIX,msgamestudios.com,Proxy
+- DOMAIN-SUFFIX,yarnpkg.com,Proxy
+- DOMAIN-SUFFIX,pypa.io,Proxy
+- DOMAIN-SUFFIX,linux.do,Proxy
+- DOMAIN-SUFFIX,staticflickr.com,Proxy
+- DOMAIN-SUFFIX,mapgenie.io,Proxy
+- DOMAIN-SUFFIX,typekit.net,Proxy
+- DOMAIN-SUFFIX,gta-5-map.com,Proxy
+- DOMAIN-SUFFIX,pcgamer.com,Proxy
+- DOMAIN-SUFFIX,metacritic.com,Proxy
+- DOMAIN-SUFFIX,jwplayer.com,Proxy
+- DOMAIN-SUFFIX,ks51hw546js1ro.xyz,Proxy
+- DOMAIN-SUFFIX,clash-meta.wiki,Proxy
+- DOMAIN-SUFFIX,cdn-image.com,Proxy
+- DOMAIN-SUFFIX,hayav.com,Proxy
+- DOMAIN-SUFFIX,arrc.fun,Proxy
+- DOMAIN-SUFFIX,hostloc.net,Proxy
+- DOMAIN-SUFFIX,netflav.tv,Proxy
+- DOMAIN-SUFFIX,eyny.com,Proxy
+- DOMAIN-SUFFIX,avbebe.com,Proxy
+- DOMAIN-SUFFIX,cdn-jupiter.com,Proxy
+- DOMAIN-SUFFIX,akabebe.com,Proxy
+- DOMAIN-SUFFIX,greenhalt.info,Proxy

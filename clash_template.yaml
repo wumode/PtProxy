@@ -119,7 +119,7 @@ proxy-groups:
 #    - Domestic
 script:
   shortcuts: {}
-rule-providers: []
+# rule-providers: []
 rules: []
 dns:
   nameserver-policy:             # lookup domain through assigned nameserver
