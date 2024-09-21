@@ -1,6 +1,8 @@
-from flask import Flask, send_file, request, abort
+from flask import send_file, abort
 from datetime import datetime
 from flask import render_template, redirect, url_for, session, make_response
+from flask import Flask, request, url_for, jsonify, flash
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import secrets
 import sys
 import yaml
@@ -11,25 +13,31 @@ from bark import bark_sender
 
 app = Flask(__name__, template_folder='templates')
 app.secret_key = secrets.token_hex(16)
-domain_types = ['DOMAIN-SUFFIX', 'DOMAIN', 'DOMAIN-KEYWORD']
+domain_types = ['DOMAIN-SUFFIX', 'DOMAIN', 'DOMAIN-KEYWORD', 'GEOSITE', 'RULE-SET', 'IP-CIDR']
 rule_types = ['Proxy', 'DIRECT', 'Mitm', 'Hijacking', 'SafeDNS']
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 
 with open(sys.argv[1], 'r', encoding='utf-8') as f:
     configuration = yaml.load(f.read(), Loader=yaml.FullLoader)
 users = configuration['users_keys']
 extra_rules_yaml = configuration['extra_rules_yaml']
 update_sh = configuration['update_sh']
-rule_sets = [rs for rs in configuration['rule_providers']]
+# rule_sets = [rs for rs in configuration['rule_providers']]
+rule_sets = configuration['rule_providers']
 update_subscription_sh = configuration['update_subscription_sh']
 temp_yaml = configuration['temp_yaml']
-file_path = Path(temp_yaml)
+rules = []
+ruleset_rules = []
+
 barker = bark_sender(configuration['bark']['server'], configuration['bark']['port'], configuration['bark']['https'],
                      configuration['bark']['key'], configuration['bark']['icon'])
 
 
-if not file_path.exists():
-    file_path.touch()
-    print(f"File '{temp_yaml}' created successfully.")
+# 创建 User 类，继承 UserMixin 用于管理登录状态
+class User(UserMixin):
+    def __init__(self, username):
+        self.id = username
 
 
 def query_ip_detail(ip):
@@ -149,10 +157,9 @@ def server_rule_providers():
 
 
 @app.route('/')
+@login_required
 def home():
-    if 'username' in session:
-        return redirect(url_for('ptproxy'))
-    return redirect(url_for('login'))
+    return redirect(url_for('ptproxy'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -160,24 +167,171 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        if username in users and users[username] == password:
-            session['username'] = username
-            return redirect(url_for('ptproxy_page'))
-        return 'Invalid username or password'
+        if username in users and users[username]['password'] == password:
+            user = User(username)
+            login_user(user)
+            flash("Logged in successfully!", "success")
+            return redirect(url_for('ptproxy'))
+        else:
+            flash("Invalid credentials", "danger")
     return render_template('login.html')
 
 
 @app.route('/logout')
+@login_required
 def logout():
-    session.pop('username', None)
+    # session.pop('username', None)
+    logout_user()
+    flash("Logged out successfully!", "info")
     return redirect(url_for('login'))
 
 
+# API 返回所有规则 (用于实时获取)，受保护路由
+@app.route('/api/rules')
+@login_required
+def get_rules():
+    # 获取分页参数
+    page = int(request.args.get('page', 1))  # 默认页码为1
+    limit = int(request.args.get('limit', 10))  # 每页默认10条记录
+
+    # 计算分页的起始和结束位置
+    start = (page - 1) * limit
+    end = start + limit
+
+    # 获取当前分页的规则
+    paginated_rules = rules[start:end]
+
+    # 返回数据总条数和分页后的规则
+    return jsonify({
+        'total': len(rules),
+        'page': page,
+        'limit': limit,
+        'rules': paginated_rules
+    })
+
+
+@app.route('/api/ruleset/rules')
+@login_required
+def get_ruleset_rules():
+    page = int(request.args.get('page', 1))
+    limit = int(request.args.get('limit', 10))
+
+    # 计算分页的起始和结束位置
+    start = (page - 1) * limit
+    end = start + limit
+
+    # 获取当前分页的规则
+    paginated_rules = ruleset_rules[start:end]
+
+    # 返回数据总条数和分页后的规则
+    return jsonify({
+        'total': len(ruleset_rules),
+        'page': page,
+        'limit': limit,
+        'rules': paginated_rules
+    })
+
+
 @app.route('/ptproxy', methods=['GET'])
-def ptproxy_page():
-    if 'username' not in session:
-        return redirect(url_for('login'))
+@login_required
+def ptproxy():
     return render_template('ptproxy.html')
+
+
+@app.route('/ruleset', methods=['GET'])
+@login_required
+def ruleset():
+    return render_template('ruleset.html')
+
+
+# 增加规则
+@app.route('/add', methods=['POST'])
+@login_required
+def add_rule():
+    if request.method == 'POST':
+        rule_type = request.form['type']
+        value = request.form['value']
+        policy = request.form['policy']
+        option = request.form['option']
+        rule_id = max([rule["id"] for rule in rules]) + 1 if rules else 1
+        new_rule = {"id": rule_id, "type": rule_type, "value": value,
+                    "policy": policy, "option": None if option == 'None' else 'no-resolve'}
+        rules.append(new_rule)
+        return redirect(url_for('ptproxy'))
+
+
+@app.route('/ruleset/add', methods=['POST'])
+@login_required
+def add_ruleset_rule():
+    if request.method == 'POST':
+        wildcard_type = request.form['wildcard_type']
+        value = request.form['value']
+        rule_set = request.form['rule_set']
+        rule_id = max([rule["id"] for rule in ruleset_rules]) + 1 if ruleset_rules else 1
+        new_rule = {"id": rule_id, "wildcard_type": wildcard_type, "value": value,
+                    "rule_set": rule_set}
+        ruleset_rules.append(new_rule)
+        save_ruleset_rules(rule_sets)
+        return redirect(url_for('ruleset'))
+
+
+@app.route('/delete/<int:rule_id>')
+@login_required
+def delete_rule(rule_id):
+    global rules
+    rules = [rule for rule in rules if rule["id"] != rule_id]
+    return redirect(url_for('ptproxy'))
+
+
+@app.route('/ruleset/delete/<int:rule_id>')
+@login_required
+def delete_ruleset_rule(rule_id):
+    global ruleset_rules
+    ruleset_rules = [rule for rule in ruleset_rules if rule["id"] != rule_id]
+    save_ruleset_rules(rule_sets)
+    return redirect(url_for('ruleset'))
+
+
+@app.route('/edit/<int:rule_id>')
+@login_required
+def edit_rule(rule_id):
+    rule = next((rule for rule in rules if rule["id"] == rule_id), None)
+    return render_template('edit.html', rule=rule)
+
+
+@app.route('/update/<int:rule_id>', methods=['POST'])
+@login_required
+def update_rule(rule_id):
+    if request.method == 'POST':
+        rule_type = request.form['type']
+        value = request.form['value']
+        policy = request.form['policy']
+        option = request.form['option']
+
+        for rule in rules:
+            if rule['id'] == rule_id:
+                rule['type'] = rule_type
+                rule['value'] = value
+                rule['policy'] = policy
+                rule['option'] = None if option == 'None' else 'no-resolve'
+                break
+        return redirect(url_for('ptproxy'))
+
+
+@app.route('/save-rules-to-file', methods=['POST'])
+@login_required
+def save_rules_to_file():
+    save_rules(extra_rules_yaml)
+    return jsonify({"message": "Rules saved successfully"}), 200
+
+
+@app.route('/update-config-file', methods=['POST'])
+@login_required
+def update_config_file():
+    if not os.system(update_sh):
+        return jsonify({"message": "Config updated successfully"}), 200
+    else:
+        return jsonify({"message": "Fail to update clash config"}), 500
 
 
 @app.route('/process_rule', methods=['POST'])
@@ -245,25 +399,88 @@ def process_domain():
 
 
 @app.route('/apply_changes')
+@login_required
 def apply_changes():
     # Check if the user is logged in
-    if 'username' in session:
-        if os.system(update_sh):
-            return "Fail to Update Clash Config"
-        os.system(update_subscription_sh)
-        return "Changes Applied Successfully!"
-    else:
-        return redirect(url_for('login'))
+    if os.system(update_sh):
+        return "Fail to Update Clash Config"
+    os.system(update_subscription_sh)
+    return "Changes Applied Successfully!"
 
 
-@app.route('/check_login_status')
-def check_login_status():
-    # Check and return user login status
-    if 'username' in session:
-        return "OK"
-    else:
-        return "Unauthorized", 401
+# 设置加载用户回调函数
+@login_manager.user_loader
+def load_user(user_id):
+    if user_id in users:
+        return User(user_id)
+    return None
+
+
+def load_rules(rules_path: str) -> list:
+    global rules
+    with open(rules_path, 'r', encoding='utf-8') as f:
+        file_data = f.read()
+        extra_rules = yaml.load(file_data, Loader=yaml.FullLoader)
+        rules = []
+        line_number = 0
+        for rule_string in extra_rules['rules']:
+            r = rule_string.split(',')
+            if r[0] == 'MATCH':
+                rule = {"id": line_number, "type": r[0], "value": r[1], "policy": None, 'option': None}
+            elif len(r) == 3:
+                rule = {"id": line_number, "type": r[0], "value": r[1], "policy": r[2], 'option': None}
+            else:
+                rule = {"id": line_number, "type": r[0], "value": r[1], "policy": r[2], 'option': r[3]}
+            rules.append(rule)
+            line_number += 1
+    return rules
+
+
+def load_ruleset_rules(sets) -> list:
+    global ruleset_rules
+    ruleset_rules = []
+    line_number = 0
+    for rule_set in sets:
+        with open(sets[rule_set]['path'], 'r', encoding='utf-8') as f:
+            file_data = f.read()
+            rs = yaml.load(file_data, Loader=yaml.FullLoader)
+            for rule_string in rs['payload']:
+                rule = {"id": line_number, 'wildcard_type': '', 'rule_set': rule_set, 'value': rule_string}
+                ruleset_rules.append(rule)
+                line_number += 1
+    return ruleset_rules
+
+
+def save_rules(rules_path: str) -> list:
+    extra_rules = {"rules": []}
+    for rule in rules:
+        rule_string = f'{rule["type"]},{rule["value"]},{rule["policy"]}'
+        if rule['option']:
+            rule_string += f',{rule["option"]}'
+        extra_rules['rules'].append(rule_string)
+    with open(rules_path, 'w+', encoding='utf-8') as f:
+        extra_rules_string = yaml.dump(extra_rules, allow_unicode=True)
+        f.write(extra_rules_string)
+    return rules
+
+
+def save_ruleset_rules(rulesets: dict) -> list:
+    sets = {rs: [] for rs in rulesets}
+    for rule in ruleset_rules:
+        rule_string = f'{rule["wildcard_type"]}{rule["value"]}'
+        sets[rule['rule_set']].append(rule_string)
+    for rs in rule_sets:
+        with open(rule_sets[rs]['path'], 'w+', encoding='utf-8') as f:
+            string = yaml.dump({'payload': sets[rs]}, allow_unicode=True)
+            f.write(string)
+    return rules
 
 
 if __name__ == '__main__':
-    app.run(host='::', port=7887)
+    file_path = Path(temp_yaml)
+    if not file_path.exists():
+        file_path.touch()
+        print(f"File '{temp_yaml}' created successfully.")
+    load_rules(extra_rules_yaml)
+    load_ruleset_rules(rule_sets)
+    app.run(host='::', port=7887, debug=True)

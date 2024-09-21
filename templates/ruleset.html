@@ -31,7 +31,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">Extra Rules</a>
+        <a class="navbar-brand" href="/ruleset">Rule Set</a>
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
                 {% if current_user.is_authenticated %}
@@ -47,7 +47,7 @@
                     </li>
                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/ruleset">Rule Set</a>
+                    <a class="nav-link" href="/ptproxy">Extra Rules</a>
                 </li>
             </ul>
         </div>
@@ -55,52 +55,30 @@
 </nav>
     <div class="container">
         <h1 class="text-center">Clash Rules Management</h1>
-        <!-- Buttons -->
-        <div class="d-flex justify-content-end mb-3">
-            <!-- Save Rules -->
-            <button class="btn btn-success me-2" onclick="saveRulesToFile()">Save Rules</button>
-            <button class="btn btn-info me-2" onclick="updateConfigFile()">Update Config</button>
-            <!-- Export Rules -->
-            <button class="btn btn-primary" onclick="exportRules()">Export Rules</button>
 
-
-        </div>
         <h2>Add New Rule</h2>
-        <form action="/add" method="post">
+        <form action="/ruleset/add" method="post">
             <div class="mb-3">
-                <label for="type" class="form-label">Type:</label>
-                <select id="type" name="type" class="form-select" required>
-                    <option value="DOMAIN-SUFFIX">DOMAIN-SUFFIX</option>
-                    <option value="DOMAIN">DOMAIN</option>
-                    <option value="DOMAIN-KEYWORD">DOMAIN-KEYWORD</option>
-                    <option value="GEOSITE">GEOSITE</option>
-                    <option value="RULE-SET">RULE-SET</option>
-                    <option value="IP-CIDR">IP-CIDR</option>
+                <label for="rule_set" class="form-label">Rule Set:</label>
+                <select id="rule_set" name="rule_set" class="form-select" required>
+                    <option value="proxied_rules">Proxied Rules</option>
+                    <option value="direct_rules">Direct Rules</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="wildcard_type" class="form-label">Wildcard Type:</label>
+                <select id="wildcard_type" name="wildcard_type" class="form-select" required>
+                    <option value="+.">Multi-level wildcard (+)</option>
+                    <option value="*.">Single-level wildcard subdomain (*)</option>
+                    <option value=".">Multi-level wildcard subdomain (.)</option>
+                    <option value="">Custom</option>
                 </select>
             </div>
 
             <div class="mb-3">
                 <label for="value" class="form-label">Value:</label>
                 <input type="text" id="value" name="value" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="policy" class="form-label">Type:</label>
-                <select id="policy" name="policy" class="form-select" required>
-                    <option value="Proxy">Proxy</option>
-                    <option value="DIRECT">DIRECT</option>
-                    <option value="Mitm">Mitm</option>
-                    <option value="Hijacking">Hijacking</option>
-                    <option value="SafeDNS">SafeDNS</option>
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <label for="option" class="form-label">Type:</label>
-                <select id="option" name="option" class="form-select" required>
-                    <option value="None">None</option>
-                    <option value="no-resolve">no-resolve</option>
-                </select>
             </div>
 
             <button type="submit" class="btn btn-primary">Add Rule</button>
@@ -111,10 +89,9 @@
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
-                    <th>Type</th>
+                    <th>Wildcard Type</th>
                     <th>Value</th>
-                    <th>Policy</th>
-                    <th>Option</th>
+                    <th>Rule Set</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -138,7 +115,7 @@
         const limit = 10;
 
         function fetchRules(page = 1) {
-            fetch(`/api/rules?page=${page}&limit=${limit}`)
+            fetch(`/api/ruleset/rules?page=${page}&limit=${limit}`)
                 .then(response => response.json())
                 .then(data => {
                     const rulesTableBody = document.getElementById('rulesTableBody');
@@ -147,13 +124,11 @@
                     data.rules.forEach(rule => {
                         let row = `<tr>
                             <td>${rule.id}</td>
-                            <td>${rule.type}</td>
+                            <td>${rule.wildcard_type}</td>
                             <td>${rule.value}</td>
-                            <td>${rule.policy}</td>
-                            <td>${rule.option}</td>
+                            <td>${rule.rule_set}</td>
                             <td>
-                                <a href="/edit/${rule.id}" class="btn btn-warning btn-sm">Edit</a>
-                                <a href="/delete/${rule.id}" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="/ruleset/delete/${rule.id}" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>`;
                         rulesTableBody.innerHTML += row;
@@ -216,45 +191,7 @@
                 `;
             }
         }
-        // 保存规则到服务器文件
-        function saveRulesToFile() {
-            fetch('/save-rules-to-file', {
-                method: 'POST'
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
-            })
-            .catch(error => console.error('Error saving rules to file:', error));
-        }
 
-        // 保存规则到服务器文件
-        function updateConfigFile() {
-            fetch('/update-config-file', {
-                method: 'POST'
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
-            })
-            .catch(error => console.error('Error updating config:', error));
-        }
-        // 导出规则到 JSON 文件
-        function exportRules() {
-            fetch('/api/rules?page=1&limit=10000') // 获取所有规则
-                .then(response => response.json())
-                .then(data => {
-                    const rules = data.rules;
-                    const blob = new Blob([JSON.stringify(rules, null, 2)], { type: 'application/json' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'rules.json';
-                    a.click();
-                    URL.revokeObjectURL(url); // 释放内存
-                })
-                .catch(error => console.error('Error exporting rules:', error));
-        }
         // 页面加载完成时立即调用 fetchRules 来获取初始数据
         document.addEventListener('DOMContentLoaded', function() {
             fetchRules(currentPage);
