@@ -582,7 +582,7 @@ rules:
 - DOMAIN-SUFFIX,zeronet.io,Proxy
 - DOMAIN,cdn-images.mailchimp.com,Proxy
 - DOMAIN,id.heroku.com,Proxy
-- DOMAIN-KEYWORD,github,Proxy
+# - DOMAIN-KEYWORD,github,Proxy
 - DOMAIN-KEYWORD,jav,Proxy
 - DOMAIN-KEYWORD,pinterest,Proxy
 - DOMAIN-KEYWORD,porn,Proxy

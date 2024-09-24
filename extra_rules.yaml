@@ -434,3 +434,5 @@ rules:
 - DOMAIN-SUFFIX,cdn-jupiter.com,Proxy
 - DOMAIN-SUFFIX,akabebe.com,Proxy
 - DOMAIN-SUFFIX,greenhalt.info,Proxy
+- IP-CIDR,208.67.222.222/32,Proxy,no-resolve
+- IP-CIDR,9.9.9.9/32,Proxy,no-resolve

@@ -483,4 +483,4 @@ if __name__ == '__main__':
         print(f"File '{temp_yaml}' created successfully.")
     load_rules(extra_rules_yaml)
     load_ruleset_rules(rule_sets)
-    app.run(host='::', port=7887, debug=True)
+    app.run(host='::', port=7887)
