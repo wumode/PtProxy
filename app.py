@@ -105,7 +105,7 @@ def server_config():
                        'Request details',
                        message_data,
                        configuration['bark']['group'],
-                       'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png')
+                       )
     return response
 
 
@@ -127,8 +127,7 @@ def server_bypassed_list():
     barker.bark_notify(f'Request to update bypassed list',
                        'Request details',
                        message_data,
-                       configuration['bark']['group'],
-                       'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png')
+                       configuration['bark']['group'])
     return response
 
 
@@ -272,6 +271,16 @@ def add_ruleset_rule():
                     "rule_set": rule_set}
         ruleset_rules.append(new_rule)
         save_ruleset_rules(rule_sets)
+        update_rule_set(rule_set)
+        user_agent = request.headers.get('User-Agent')
+        rule_string = f'{new_rule["wildcard_type"]}{new_rule["value"]}'
+        message_data = {'RULE': f'{rule_string}', 'User-Agent': user_agent,
+                        'IP': f'{request.headers["X-Real-IP"]}',
+                        'RULE SET': f'{new_rule["rule_set"]}'}
+        barker.bark_notify(f'Request to add a rule',
+                           'Request details',
+                           message_data,
+                           configuration['bark']['group'])
         return redirect(url_for('ruleset'))
 
 
@@ -287,8 +296,20 @@ def delete_rule(rule_id):
 @login_required
 def delete_ruleset_rule(rule_id):
     global ruleset_rules
+    rules_to_delete = [rule for rule in ruleset_rules if rule["id"] == rule_id]
     ruleset_rules = [rule for rule in ruleset_rules if rule["id"] != rule_id]
     save_ruleset_rules(rule_sets)
+    for r in rules_to_delete:
+        update_rule_set(r['rule_set'])
+    user_agent = request.headers.get('User-Agent')
+    rule_string = f'{rules_to_delete[0]["wildcard_type"]}{rules_to_delete[0]["value"]}'
+    message_data = {'RULE': f'{rule_string}', 'User-Agent': user_agent,
+                    'IP': f'{request.headers["X-Real-IP"]}',
+                    'RULE SET': f'{rules_to_delete[0]["rule_set"]}'}
+    barker.bark_notify(f'Request to delete a rule',
+                       'Request details',
+                       message_data,
+                       configuration['bark']['group'])
     return redirect(url_for('ruleset'))
 
 
@@ -334,37 +355,6 @@ def update_config_file():
         return jsonify({"message": "Fail to update clash config"}), 500
 
 
-@app.route('/process_rule', methods=['POST'])
-def process_rule():
-    if 'username' not in session:
-        return redirect(url_for('login'))
-    domain = request.form['domainInput']
-    wildcard_type = request.form['wildcard_type']
-    rule_set = request.form.get('rule_set')
-    if rule_set not in rule_sets:
-        alert_message = f'Unknown rule set: {rule_set}'
-        return render_template('ptproxy.html', alert_message=alert_message)
-    with open(configuration['rule_providers'][rule_set]['path'], 'r', encoding='utf-8') as f:
-        file_data = f.read()
-        proxied_rules = yaml.load(file_data, Loader=yaml.FullLoader)
-    rule = f'{wildcard_type}{domain}'
-    proxied_rules['payload'].append(rule)
-    proxied_rules_string = yaml.dump(proxied_rules, allow_unicode=True)
-    with open(configuration['rule_providers'][rule_set]['path'], 'w+') as file:
-        file.write(proxied_rules_string)
-    alert_message = f'`{rule}` submitted successfully!'
-    user_agent = request.headers.get('User-Agent')
-    message_data = {'RULE': f'{rule}', 'User-Agent': user_agent,
-                    'IP': f'{request.headers["X-Real-IP"]}'}
-    barker.bark_notify(f'Request to update proxied rules',
-                       'Request details',
-                       message_data,
-                       configuration['bark']['group'],
-                       'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png')
-    update_rule_set(rule_set)
-    return render_template('ptproxy.html', alert_message=alert_message)
-
-
 @app.route('/process_domain', methods=['POST'])
 def process_domain():
     if 'username' not in session:
@@ -396,16 +386,6 @@ def process_domain():
                        configuration['bark']['group'],
                        'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png')
     return render_template('ptproxy.html', alert_message=alert_message)
-
-
-@app.route('/apply_changes')
-@login_required
-def apply_changes():
-    # Check if the user is logged in
-    if os.system(update_sh):
-        return "Fail to Update Clash Config"
-    os.system(update_subscription_sh)
-    return "Changes Applied Successfully!"
 
 
 # 设置加载用户回调函数
