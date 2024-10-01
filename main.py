@@ -432,8 +432,8 @@ def ping_host(ip: str):
 
 def continent_name_from_node(node_name: str):
     for country in countries:
-        if country['country_cname'] in node_name:
-            return continents_names[country['continent_cname']]
+        if country['chinese'] in node_name or country['english'] in node_name:
+            return continents_names[country['state']]
     return None
 
 
