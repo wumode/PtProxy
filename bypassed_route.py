@@ -147,20 +147,30 @@ def main():
 
     # remove exempt domain names
     for domain in exempt_domains:
-        ip_res = resolve_domain(domain)
+        ip_res = resolve_domain(domain['domain'])
         if not ip_res:
             continue
         for ip in ip_res[1]:
+            domain['v4'].append(ip)
+            if len(domain['v4']) > 10:
+                del domain['v4'][0]
+        for ip in domain['v4']:
             index = search_ip(ip, ip_list)
             if index != -1:
-                print(f'exempt {domain}({ip}) from {ip_list[index]}')
+                print(f'exempt {domain["domain"]}({ip}) from {ip_list[index]}')
                 ip_list.pop(index)
         for ip in ip_res[2]:
+            domain['v6'].append(ip)
+            if len(domain['v6']) > 10:
+                del domain['v6'][0]
+        for ip in domain['v6']:
             index = search_ip(ip, ipv6_list)
             if index != -1:
-                print(f'exempt {domain}({ip}) from {ip_list[index]}')
+                print(f'exempt {domain["domain"]}({ip}) from {ip_list[index]}')
                 ipv6_list.pop(index)
-
+    data['exempt_domains'] = exempt_domains
+    with open(sys.argv[1], 'w') as file:
+        yaml.dump(data, file)
     print(f'write bypassed list into {sys.argv[2]}')
     with open(sys.argv[2], 'w') as file:
         for i in ip_list:
