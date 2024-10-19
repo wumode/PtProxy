@@ -36,7 +36,7 @@ rules:
 - DOMAIN-SUFFIX,pincong.rocks,Proxy
 - DOMAIN-SUFFIX,v2ex.com,Proxy
 - DOMAIN-SUFFIX,gudumibug.top,Proxy
-- DOMAIN-SUFFIX,download.synology.com,Proxy
+- DOMAIN-SUFFIX,synology.com,Proxy
 - DOMAIN-SUFFIX,origin-a.akamaihd.net,Proxy
 - DOMAIN-SUFFIX,nvidia.cn,Proxy
 - DOMAIN-SUFFIX,msn.com,Proxy
@@ -439,3 +439,5 @@ rules:
 - DOMAIN-SUFFIX,githubusercontent.com,Proxy
 - DOMAIN-SUFFIX,mitmproxy.org,Proxy
 - DOMAIN-SUFFIX,vercel.app,Proxy
+- DOMAIN-SUFFIX,cdn2020.com,Proxy
+- DOMAIN-SUFFIX,cdnplaypro.com,Proxy

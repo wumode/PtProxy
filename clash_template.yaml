@@ -84,8 +84,8 @@ proxy-groups:
 - name: SafeDNS
   type: select
   proxies:
-    - Proxy
     - DIRECT
+    - Proxy
 - name: Steam
   type: select
   proxies:
