@@ -19,6 +19,8 @@ rules:
 # - SRC-IP-CIDR,198.18.0.1/16,DIRECT
 - RULE-SET,direct_rules,DIRECT
 - RULE-SET,proxied_rules,Proxy
+- AND,((DOMAIN,api.zhihu.com),(NETWORK,UDP)),REJECT
+- DOMAIN,api.zhihu.com,Mitm
 - DOMAIN-SUFFIX,awesome-hd.me,DIRECT
 - DOMAIN-SUFFIX,broadcasthe.net,DIRECT
 - DOMAIN-SUFFIX,chdbits.co,DIRECT
@@ -1039,8 +1041,6 @@ rules:
 - DOMAIN-SUFFIX,yuanchengxiezuo.com,Hijacking
 - DOMAIN-SUFFIX,zbrushcn.com,Hijacking
 - DOMAIN-SUFFIX,zhzzx.com,Hijacking
-
 # GeoIP China
 # - GEOIP,CN,Domestic
-
 - MATCH,Final

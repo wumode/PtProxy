@@ -62,8 +62,6 @@ def resolve_domain(domain_name):
 
         # Iterate over the address info
         for info in addr_info:
-            # Address info is a tuple: (family, type, proto, canonname, sockaddr)
-            # We're interested in the sockaddr which contains the actual IP address
             ip_address = info[4][0]
 
             # Check if the IP address is IPv4 or IPv6
@@ -92,11 +90,14 @@ def main():
     # Load domains from YAML file
     with open(sys.argv[1], 'r') as file:
         data = yaml.safe_load(file)
+    with open(sys.argv[4], 'r') as file:
+        record = yaml.safe_load(file)
     domains = data.get('domains', [])
     ips = data.get('ips', [])
-    replacing = data.get('replace')
+    # replacing = data.get('replace')
     exempt_domains = data.get('exempt_domains', [])
-
+    exempt_ips = data.get('exempt_ips', [])
+    records = record.get('exempt_domains', [])
     ipv6_list = []
     ip_list = []
     if china_ipv6_route:
@@ -105,11 +106,11 @@ def main():
         chnroute6_lists = r.content.decode('utf-8')[:-1].split('\n')
         # replace ips
         for ipr in chnroute6_lists:
-            if ipr in replacing:
-                for replacing_ip in replacing[ipr]:
-                    ipv6_list.append(replacing_ip)
-            else:
-                ipv6_list.append(ipr)
+            # if ipr in replacing:
+            #     for replacing_ip in replacing[ipr]:
+            #         ipv6_list.append(replacing_ip)
+            # else:
+            ipv6_list.append(ipr)
     if china_ip_route:
         # Load Chnroute Lists
         r = requests.get(chnroute_lists_url, timeout=10)
@@ -147,30 +148,43 @@ def main():
 
     # remove exempt domain names
     for domain in exempt_domains:
-        ip_res = resolve_domain(domain['domain'])
+        ri = 0
+        for domain_record in records:
+            if domain_record['domain'] == domain:
+                break
+            ri += 1
+        if ri == len(records):
+            records.append({'domain': domain, 'v4': [], 'v6': []})
+        ip_res = resolve_domain(domain)
         if not ip_res:
             continue
         for ip in ip_res[1]:
-            domain['v4'].append(ip)
-            if len(domain['v4']) > 10:
-                del domain['v4'][0]
-        for ip in domain['v4']:
+            records[ri]['v4'].append(ip)
+            if len(records[ri]['v4']) > 10:
+                del records[ri]['v4'][0]
+        for ip in records[ri]['v4']:
             index = search_ip(ip, ip_list)
             if index != -1:
-                print(f'exempt {domain["domain"]}({ip}) from {ip_list[index]}')
+                print(f'exempt {records[ri]["domain"]}({ip}) from {ip_list[index]}')
                 ip_list.pop(index)
         for ip in ip_res[2]:
-            domain['v6'].append(ip)
-            if len(domain['v6']) > 10:
-                del domain['v6'][0]
-        for ip in domain['v6']:
+            records[ri]['v6'].append(ip)
+            if len(records[ri]['v6']) > 10:
+                del records[ri]['v6'][0]
+        for ip in records[ri]['v6']:
             index = search_ip(ip, ipv6_list)
             if index != -1:
-                print(f'exempt {domain["domain"]}({ip}) from {ip_list[index]}')
+                print(f'exempt {records[ri]["domain"]}({ip}) from {ip_list[index]}')
                 ipv6_list.pop(index)
+    for ip in exempt_ips:
+        index = search_ip(ip, ip_list)
+        if index != -1:
+            print(f'exempt {ip} from {ip_list[index]}')
+            ip_list.pop(index)
     data['exempt_domains'] = exempt_domains
-    with open(sys.argv[1], 'w') as file:
-        yaml.dump(data, file)
+    record['exempt_domains'] = records
+    with open(sys.argv[4], 'w') as file:
+        yaml.dump(record, file)
     print(f'write bypassed list into {sys.argv[2]}')
     with open(sys.argv[2], 'w') as file:
         for i in ip_list:

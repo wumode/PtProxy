@@ -105,7 +105,9 @@ proxy-groups:
   type: select
   proxies:
     - 'MitmProxy'
+    - 'MitmProxyX'
     - DIRECT
+    - Hijacking
 - name: Final
   type: select
   proxies:

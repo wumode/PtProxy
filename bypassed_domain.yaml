@@ -1,0 +1,36 @@
+domains:
+- 6.ipw.cn
+- tracker.byr.pt
+- tracker-public.tjupt.org
+- www.nicept.net
+- rousi.zip
+- hitpt.com
+- pthome.net
+- hdtime.org
+- pt.eastgame.org
+- www.pttime.org
+- ipv6.ip.sb
+- tracker.m-team.cc
+- tracker.m-team.io
+- t.hddolby.com
+- receiver.tdm.qq.com
+- p.qpic.cn
+- lgame.tdm.qq.com
+- 52pt.site
+exempt_domains:
+- app.bilibili.com
+- app.biliapi.net
+- httpdns.bilivideo.com
+- api.zhihu.com
+- router.gamersky.com
+- router1.gamersky.com
+- router2.gamersky.com
+- router3.gamersky.com
+- router4.gamersky.com
+- router5.gamersky.com
+- router11.gamersky.com
+- cm.bilibili.com
+exempt_ips:
+- 103.41.167.237
+ips:
+- 182.254.116.117/32
