@@ -444,3 +444,24 @@ rules:
 - DOMAIN-SUFFIX,cdnplaypro.com,Proxy
 - DOMAIN-SUFFIX,v1.mk,Proxy
 - DOMAIn-SUFFIX,v2rayse.com,Proxy
+- DOMAIN-SUFFIX,readthedocs.io,Proxy
+- DOMAIN-SUFFIX,cloudconvert.com,Proxy
+- DOMAIN-SUFFIX,convertio.co,Proxy
+- DOMAIN-SUFFIX,swag.live,Proxy
+- DOMAIN-SUFFIX,dmm.co.jp,Proxy
+- DOMAIN-SUFFIX,droyc-studios.com,Proxy
+- DOMAIN-SUFFIX,avbebe.com,Proxy
+- DOMAIN-SUFFIX,manwa.me,Proxy
+- DOMAIN-SUFFIX,githubusercontent.com,Proxy
+- DOMAIN-SUFFIX,mitmproxy.org,Proxy
+- DOMAIN-SUFFIX,vercel.app,Proxy
+- DOMAIN-SUFFIX,missav.uno,Proxy
+- DOMAIN-SUFFIX,synology.com,Proxy
+- DOMAIN-SUFFIX,cdn2020.com,Proxy
+- DOMAIN-SUFFIX,cdnplaypro.com,Proxy
+- DOMAIN-SUFFIX,sis.la,Proxy
+- DOMAIN-SUFFIX,filelions.live,Proxy
+- DOMAIN-SUFFIX,zuise.co,Proxy
+- DOMAIN-SUFFIX,sentry.io,Proxy
+- DOMAIN-SUFFIX,browser-intake-datadohq.com,Proxy
+
