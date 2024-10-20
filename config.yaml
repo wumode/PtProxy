@@ -1,6 +1,6 @@
 out_yaml: 'clash_mitm.yaml'
-#out_local_yaml: 'clash_local.yaml'
-#out_without_mitm_yaml: 'clash.yaml'
+bypassed_list: 'bypassed_list.txt'
+ipv6_bypassed_list: 'ipv6_bypassed_list.txt'
 extra_rules_yaml: 'extra_rules.yaml'
 clash_config:
   local: 'clash_local.yaml'

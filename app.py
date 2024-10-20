@@ -118,7 +118,7 @@ def server_bypassed_list():
                'Content-Type': 'application/octet-stream; charset=utf-8',
                'Content-Disposition': 'attachment; filename="bypassed_list.txt"'}
     user_agent = request.headers.get('User-Agent')
-    list_path = 'bypassed_list.txt' if v == '4' else 'ipv6_bypassed_list.txt'
+    list_path = configuration['bypassed_list'] if v == '4' else configuration['ipv6_bypassed_list']
     response = make_response(send_file(list_path, as_attachment=True))
     response.headers = headers
     real_ip = request.remote_addr if not request.headers.get('X-Real-IP') else request.headers.get('X-Real-IP')
