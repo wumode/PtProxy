@@ -299,7 +299,7 @@ class SSRNode(SSNode):
         return clash_v2
 
 
-class TorjanNode(Node):
+class TrojanNode(Node):
     def __init__(self):
         super().__init__()
         # self.method = 'aes-256-cfb'
@@ -373,7 +373,7 @@ def parse_subscribe(base64_encode_str):
             node = V2rayNode()
             node.parse_link(ss_link)
         elif ss_link.startswith('trojan://'):
-            node = TorjanNode()
+            node = TrojanNode()
             node.parse_link(ss_link)
         if node.able:
             nodes.append(node)

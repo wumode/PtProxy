@@ -87,11 +87,10 @@ def server_config():
                 f'upload={temp["upload"]}; download={temp["download"]}; total={temp["total"]}; expire={temp["expire"]}'
     except Exception as e:
         print(f"Fail to open {temp_yaml}: {e}")
-    response_file = configuration['out_without_mitm_yaml']
-    if version == 'mitm':
-        response_file = configuration['out_yaml']
-    elif version == 'local':
-        response_file = configuration['out_local_yaml']
+    response_file = configuration['out_yaml']
+    if version in configuration['clash_config']:
+        response_file = configuration['clash_config'][version]
+
     response = make_response(send_file(response_file, as_attachment=True))
     response.headers = headers
     real_ip = request.remote_addr if not request.headers.get('X-Real-IP') else request.headers.get('X-Real-IP')

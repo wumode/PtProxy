@@ -464,4 +464,3 @@ rules:
 - DOMAIN-SUFFIX,zuise.co,Proxy
 - DOMAIN-SUFFIX,sentry.io,Proxy
 - DOMAIN-SUFFIX,browser-intake-datadohq.com,Proxy
-

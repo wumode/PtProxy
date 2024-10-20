@@ -1,0 +1,37 @@
+out_yaml: 'clash_mitm.yaml'
+#out_local_yaml: 'clash_local.yaml'
+#out_without_mitm_yaml: 'clash.yaml'
+extra_rules_yaml: 'extra_rules.yaml'
+clash_config:
+  local: 'clash_local.yaml'
+  normal: 'clash.yaml'
+rule_providers:
+  proxied_rules:
+    path: 'proxied_rules.yaml'
+    url: ''
+  direct_rules:
+    path: 'direct_rules.yaml'
+    url: ''
+clash:
+  server: 'server'
+  secret: ''
+log_path: '/tmp/pp.log'
+temp_yaml: '/tmp/ptproxy_temp.yaml'
+subscribe_links:
+- ''
+filter_keywords:
+- "公益性"
+- "高延迟"
+run_sh: 'run.sh'
+update_sh: 'run.sh'
+update_subscription_sh: 'update_subscription.sh'
+ipinfo_token: ''
+users_keys:
+  user_name: {'password': ''}
+bark:
+  server: 'server'
+  port: 8888
+  https: true
+  key: ''
+  group: 'PtProxy'
+  icon: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png'
