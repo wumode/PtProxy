@@ -370,6 +370,7 @@ rules:
 - DOMAIN-SUFFIX,biliapi.net,Mitm
 - DOMAIN-SUFFIX,biliapi.com,Mitm
 - DOMAIN-SUFFIX,bilibili.com,Mitm
+- DOMAIN,httpdns.bilivideo.com,Mitm
 - DOMAIN-SUFFIX,stun-2.chat.bilibili.com,Hijacking
 - DOMAIN-SUFFIX,stun.chat.bilibili.com,Hijacking
 - GEOSITE,steam@cn,DIRECT
@@ -464,4 +465,3 @@ rules:
 - DOMAIN-SUFFIX,zuise.co,Proxy
 - DOMAIN-SUFFIX,sentry.io,Proxy
 - DOMAIN-SUFFIX,browser-intake-datadohq.com,Proxy
-
