@@ -444,7 +444,7 @@ rules:
 - DOMAIN-SUFFIX,cdn2020.com,Proxy
 - DOMAIN-SUFFIX,cdnplaypro.com,Proxy
 - DOMAIN-SUFFIX,v1.mk,Proxy
-- DOMAIn-SUFFIX,v2rayse.com,Proxy
+- DOMAIN-SUFFIX,v2rayse.com,Proxy
 - DOMAIN-SUFFIX,readthedocs.io,Proxy
 - DOMAIN-SUFFIX,cloudconvert.com,Proxy
 - DOMAIN-SUFFIX,convertio.co,Proxy
@@ -463,5 +463,7 @@ rules:
 - DOMAIN-SUFFIX,sis.la,Proxy
 - DOMAIN-SUFFIX,filelions.live,Proxy
 - DOMAIN-SUFFIX,zuise.co,Proxy
-- DOMAIN-SUFFIX,sentry.io,Proxy
-- DOMAIN-SUFFIX,browser-intake-datadohq.com,Proxy
+- DOMAIN-SUFFIX,sentry.io,Openai
+- DOMAIN-SUFFIX,browser-intake-datadohq.com,Openai
+- DOMAIN-SUFFIX,revenuecat.com,Openai
+- DOMAIN-SUFFIX,oaiusercontent.com,Openai
