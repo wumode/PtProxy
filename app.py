@@ -66,7 +66,10 @@ def update_rule_set(rule_set: str) -> int:
     headers = {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate, br, zstd',
                'Authorization': f'Bearer {configuration["clash"]["secret"]}',
                'Content-Length': '0', 'Content-Type': 'application/json', 'Priority': 'u=1, i'}
-    r = requests.put(url, headers=headers, timeout=5)
+    try:
+        r = requests.put(url, headers=headers, timeout=5)
+    except Exception as e:
+        return 0
     return r.status_code
 
 

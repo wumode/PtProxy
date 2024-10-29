@@ -467,3 +467,17 @@ rules:
 - DOMAIN-SUFFIX,browser-intake-datadohq.com,Openai
 - DOMAIN-SUFFIX,revenuecat.com,Openai
 - DOMAIN-SUFFIX,oaiusercontent.com,Openai
+- DOMAIN-SUFFIX,91ai.net,Proxy
+- DOMAIN-SUFFIX,manhuabika.com,Proxy
+- DOMAIN-SUFFIX,appsflyersdk.com,Proxy
+- DOMAIN-SUFFIX,app-analytics-services.com,Proxy
+- DOMAIN-SUFFIX,tiktokv.us,Proxy
+- DOMAIN-SUFFIX,snapkit.com,Proxy
+- DOMAIN-SUFFIX,app-analytics-services-att.com,Proxy
+- DOMAIN-SUFFIX,cpu-monkey.com,Proxy
+- DOMAIN-SUFFIX,cpubenchmark.net,Proxy
+- DOMAIN-SUFFIX,hp.com,Proxy
+- DOMAIN-SUFFIX,proxmox.com,Proxy
+- DOMAIN-SUFFIX,hicy.cn,Proxy
+- DOMAIN-SUFFIX,proxmox.com,Proxy
+- DOMAIN-SUFFIX,immortalwrt.org,Proxy
