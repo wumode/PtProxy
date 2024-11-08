@@ -641,7 +641,14 @@ rules:
 # > Apple
 # - GEOSITE,apple-cn,DIRECT
 # - GEOSITE,apple,Apple
-# > Google
+# apple News
+- DOMAIN,gateway.icloud.com,Proxy
+- DOMAIN,gspe1-ssl.ls.apple.com,Proxy
+- DOMAIN-SUFFIX,apple.news,Proxy
+- DOMAIN,apple.comscoreresearch.com,Proxy
+- DOMAIN,news-client.apple.com,Proxy
+- DOMAIN,news-events.apple.com,Proxy
+- DOMAIN,news-edge.apple.com,Proxy
 - DOMAIN-SUFFIX,abc.xyz,Proxy
 - DOMAIN-SUFFIX,android.com,Proxy
 - DOMAIN-SUFFIX,androidify.com,Proxy
