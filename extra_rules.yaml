@@ -464,7 +464,6 @@ rules:
 - DOMAIN-SUFFIX,filelions.live,Proxy
 - DOMAIN-SUFFIX,zuise.co,Proxy
 - DOMAIN-SUFFIX,sentry.io,Openai
-- DOMAIN-SUFFIX,browser-intake-datadohq.com,Openai
 - DOMAIN-SUFFIX,revenuecat.com,Openai
 - DOMAIN-SUFFIX,oaiusercontent.com,Openai
 - DOMAIN-SUFFIX,91ai.net,Proxy
@@ -481,3 +480,4 @@ rules:
 - DOMAIN-SUFFIX,hicy.cn,Proxy
 - DOMAIN-SUFFIX,proxmox.com,Proxy
 - DOMAIN-SUFFIX,immortalwrt.org,Proxy
+- DOMAIN-SUFFIX,browser-intake-datadoghq.com,Proxy
