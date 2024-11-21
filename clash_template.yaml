@@ -130,4 +130,6 @@ dns:
   - "+.*"
 profile:
   tracing: false
+  store-selected: true
 log-level: error
+tcp-concurrent: true

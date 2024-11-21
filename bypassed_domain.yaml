@@ -17,6 +17,7 @@ domains:
 - p.qpic.cn
 - lgame.tdm.qq.com
 - 52pt.site
+- connects.icu
 exempt_domains:
 - app.bilibili.com
 - app.biliapi.net
