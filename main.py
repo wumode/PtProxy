@@ -526,14 +526,19 @@ if __name__ == "__main__":
     proxy_group = {'name': 'Asia except China', 'type': 'select', 'proxies': continents_nodes['Asia except China']}
     clash_config['proxy-groups'].insert(3, proxy_group)
     openai_index = 0
+    gemini_index = 0
+    index = 0
     for proxy_group in clash_config['proxy-groups']:
         if proxy_group['name'] == 'Openai':
-            break
-        openai_index += 1
+            openai_index = index
+        if proxy_group['name'] == 'Gemini':
+            gemini_index = index
+        index += 1
     openai_auto = []
     for continent_nodes in continents_nodes:
         if continent_nodes != 'Asia' and len(continents_nodes[continent_nodes]):
             clash_config['proxy-groups'][openai_index]['proxies'].insert(0, continent_nodes)
+            clash_config['proxy-groups'][gemini_index]['proxies'].insert(0, continent_nodes)
             openai_auto.extend(continents_nodes[continent_nodes])
     proxy_group_ao = {'name': 'Auto Openai',
                       'type': 'url-test',
@@ -543,6 +548,7 @@ if __name__ == "__main__":
                       'interval': 300}
     clash_config['proxy-groups'][openai_index]['proxies'].insert(0, proxy_group_ao['name'])
     clash_config['proxy-groups'].insert(openai_index, proxy_group_ao)
+
     for proxy_node in clash_config['proxies']:
         clash_config['proxy-groups'][0]['proxies'].append(proxy_node['name'])
         clash_config['proxy-groups'][1]['proxies'].append(proxy_node['name'])

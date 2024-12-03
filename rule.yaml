@@ -341,6 +341,10 @@ rules:
 
 # (DNS Cache Pollution Protection)
 # > Google
+- DOMAIN,gemini.google.com,Gemini
+- DOMAIN-SUFFIX,google.com,Proxy
+- DOMAIN-SUFFIX,googlevideo.com,Proxy
+- DOMAIN-SUFFIX,google.com.hk,Proxy
 - DOMAIN-SUFFIX,appspot.com,Proxy
 - DOMAIN-SUFFIX,blogger.com,Proxy
 - DOMAIN-SUFFIX,getoutline.org,Proxy
@@ -348,7 +352,7 @@ rules:
 - DOMAIN-SUFFIX,gvt1.com,Proxy
 - DOMAIN-SUFFIX,gvt3.com,Proxy
 - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,Proxy
-- DOMAIN-KEYWORD,google,Proxy
+#- DOMAIN-KEYWORD,google,Proxy
 - DOMAIN-KEYWORD,blogspot,Proxy
 # > Facebook
 - DOMAIN-SUFFIX,cdninstagram.com,Proxy

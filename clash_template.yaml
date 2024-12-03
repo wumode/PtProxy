@@ -80,6 +80,10 @@ proxy-groups:
   type: select
   proxies:
     - Proxy
+- name: Gemini
+  type: select
+  proxies:
+    - Proxy
 # Safe DNS
 - name: SafeDNS
   type: select

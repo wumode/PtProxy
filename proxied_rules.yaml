@@ -1,1 +1,7 @@
-payload: []
+payload:
+- +.vantecusa.com
+- +.googleusercontent.com
+- +.googleapis.com
+- +.synologydownload.com
+- +.cnx-software.cn
+- +.office.net
