@@ -500,3 +500,4 @@ rules:
 - DOMAIN-SUFFIX,cnx-software.cn,Proxy
 - DOMAIN-SUFFIX,office.net,Proxy
 - DOMAIN-SUFFIX,office.com,Proxy
+- IP-CIDR,107.173.199.18,Proxy,no-resolve

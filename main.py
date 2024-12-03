@@ -502,11 +502,8 @@ if __name__ == "__main__":
             clash_Proxy_names.append(clash_v2['name'])
 
         clash_config['proxies'] += clash_Proxy
-    if not is_success:
-        exit(1)
-    temp = yaml.dump(userinfo, allow_unicode=True)
-    with open(temp_yaml, 'w+', encoding='utf-8') as fl:
-        fl.write(temp)
+
+
 
     continents_nodes = {'Asia': [], 'Europe': [], 'SouthAmerica': [], 'NorthAmerica': [], 'Africa': [], 'Oceania': [], 'Asia except China': []}
     for proxy_node in clash_config['proxies']:
@@ -556,6 +553,14 @@ if __name__ == "__main__":
     clash_config['proxies'] += extra_proxies['proxies']
     pt_proxy_group = {'name': 'PTProxy', 'type': "select", 'proxies': ['LoadBalance', 'DIRECT']}
     # additional rules
+    if is_success:
+        temp = yaml.dump(userinfo, allow_unicode=True)
+        with open(temp_yaml, 'w+', encoding='utf-8') as fl:
+            fl.write(temp)
+    else:
+        prev_clash_config = read_yaml(out_yaml)
+        clash_config['proxy-groups'] = prev_clash_config['proxy-groups']
+        clash_config['proxies'] = prev_clash_config['proxies']
     extra_rules_dict = read_yaml(extra_rules_yaml)
     extra_rules = extra_rules_dict['rules']
     extra_script_shortcut = read_yaml(extra_script_shortcut_yaml)
