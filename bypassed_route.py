@@ -106,10 +106,6 @@ def main():
         chnroute6_lists = r.content.decode('utf-8')[:-1].split('\n')
         # replace ips
         for ipr in chnroute6_lists:
-            # if ipr in replacing:
-            #     for replacing_ip in replacing[ipr]:
-            #         ipv6_list.append(replacing_ip)
-            # else:
             ipv6_list.append(ipr)
     if china_ip_route:
         # Load Chnroute Lists

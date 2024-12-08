@@ -66,7 +66,6 @@ rules:
 - DOMAIN-SUFFIX,wikimedia.org,Proxy
 - DOMAIN-SUFFIX,hdslb.com,Domestic
 - DOMAIN-SUFFIX,goo.gl,Proxy
-- DOMAIN-SUFFIX,westsite.cn,DIRECT
 - DOMAIN-SUFFIX,bu.edu,Proxy
 - DOMAIN-SUFFIX,jetbrains.com,Proxy
 - DOMAIN-SUFFIX,jetbrains.com.cn,Proxy
@@ -500,4 +499,4 @@ rules:
 - DOMAIN-SUFFIX,cnx-software.cn,Proxy
 - DOMAIN-SUFFIX,office.net,Proxy
 - DOMAIN-SUFFIX,office.com,Proxy
-- IP-CIDR,107.173.199.18,Proxy,no-resolve
+- IP-CIDR,107.173.199.18/32,Proxy,no-resolve

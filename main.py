@@ -554,6 +554,7 @@ if __name__ == "__main__":
     pt_proxy_group = {'name': 'PTProxy', 'type': "select", 'proxies': ['LoadBalance', 'DIRECT']}
     # additional rules
     if is_success:
+        clash_config['proxy-groups'].append(pt_proxy_group)
         temp = yaml.dump(userinfo, allow_unicode=True)
         with open(temp_yaml, 'w+', encoding='utf-8') as fl:
             fl.write(temp)
@@ -565,8 +566,6 @@ if __name__ == "__main__":
     extra_rules = extra_rules_dict['rules']
     extra_script_shortcut = read_yaml(extra_script_shortcut_yaml)
     clash_config['script']['shortcuts'].update(extra_script_shortcut['shortcuts'])
-    clash_config['proxy-groups'].append(pt_proxy_group)
-
     clash_config['rules'] = extra_rules + clash_config['rules']
     clash_config_yaml = yaml.dump(clash_config, allow_unicode=True)
     with open(out_yaml, 'w+', encoding='utf-8') as f:
