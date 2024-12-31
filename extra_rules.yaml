@@ -500,3 +500,5 @@ rules:
 - DOMAIN-SUFFIX,office.net,Proxy
 - DOMAIN-SUFFIX,office.com,Proxy
 - IP-CIDR,107.173.199.18/32,Proxy,no-resolve
+- DOMAIN,update.netsarangapi.com,Hijacking
+- DOMAIN-SUFFIX,internetdownloadmanager.com,Hijacking
