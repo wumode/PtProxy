@@ -114,25 +114,28 @@ def main():
         for ipr in chnroute_lists:
             ip_list.append(ipr)
     for domain in domains:
-        ipv6_addresses = doh_dns_lookup(domain, 'AAAA')
-        for address in ipv6_addresses:
-            has_flag = False
-            for subnet in ipv6_list:
-                if is_ip_in_subnet(address, subnet):
-                    has_flag = True
-                    break
-            if not has_flag:
-                ipv6_list.append(ipaddress.ip_network(f"{address}/128", strict=False))
+        print(domain['domain'])
+        if 6 in domain['bypass']:
+            ipv6_addresses = doh_dns_lookup(domain['domain'], 'AAAA')
+            for address in ipv6_addresses:
+                has_flag = False
+                for subnet in ipv6_list:
+                    if is_ip_in_subnet(address, subnet):
+                        has_flag = True
+                        break
+                if not has_flag:
+                    ipv6_list.append(ipaddress.ip_network(f"{address}/128", strict=False))
+        if 4 in domain['bypass']:
+            ip_addresses = doh_dns_lookup(domain['domain'], 'A')
+            for address in ip_addresses:
+                has_flag = False
+                for subnet in ip_list:
+                    if is_ip_in_subnet(address, subnet):
+                        has_flag = True
+                        break
+                if not has_flag:
+                    ip_list.append(f"{address}/32")
 
-        ip_addresses = doh_dns_lookup(domain, 'A')
-        for address in ip_addresses:
-            has_flag = False
-            for subnet in ip_list:
-                if is_ip_in_subnet(address, subnet):
-                    has_flag = True
-                    break
-            if not has_flag:
-                ip_list.append(f"{address}/32")
 
     # add ips
     for subnet in ips:
@@ -156,7 +159,7 @@ def main():
             continue
         for ip in ip_res[1]:
             records[ri]['v4'].append(ip)
-            if len(records[ri]['v4']) > 10:
+            if len(records[ri]['v4']) > 20:
                 del records[ri]['v4'][0]
         for ip in records[ri]['v4']:
             index = search_ip(ip, ip_list)
@@ -165,12 +168,12 @@ def main():
                 ip_list.pop(index)
         for ip in ip_res[2]:
             records[ri]['v6'].append(ip)
-            if len(records[ri]['v6']) > 10:
+            if len(records[ri]['v6']) > 20:
                 del records[ri]['v6'][0]
         for ip in records[ri]['v6']:
             index = search_ip(ip, ipv6_list)
             if index != -1:
-                print(f'exempt {records[ri]["domain"]}({ip}) from {ip_list[index]}')
+                print(f'exempt {records[ri]["domain"]}({ip}) from {ipv6_list[index]}')
                 ipv6_list.pop(index)
     for ip in exempt_ips:
         index = search_ip(ip, ip_list)

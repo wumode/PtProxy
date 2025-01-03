@@ -1,24 +1,72 @@
 domains:
-- 6.ipw.cn
-- tracker.byr.pt
-- tracker-public.tjupt.org
-- www.nicept.net
-- rousi.zip
-- hitpt.com
-- pthome.net
-- hdtime.org
-- pt.eastgame.org
-- www.pttime.org
-- ipv6.ip.sb
-- tracker.m-team.cc
-- tracker.m-team.io
-- t.hddolby.com
-- receiver.tdm.qq.com
-- p.qpic.cn
-- lgame.tdm.qq.com
-- 52pt.site
-- connects.icu
+- domain: 6.ipw.cn
+  bypass:
+    - 6
+- domain: tracker.byr.pt
+  bypass:
+    - 6
+- domain: tracker-public.tjupt.org
+  bypass:
+    - 6
+- domain: www.nicept.net
+  bypass:
+    - 6
+- domain: rousi.zip
+  bypass:
+    - 6
+- domain: hitpt.com
+  bypass:
+    - 6
+- domain: pthome.net
+  bypass:
+    - 6
+- domain: hdtime.org
+  bypass:
+    - 6
+- domain: pt.eastgame.org
+  bypass:
+    - 6
+- domain: www.pttime.org
+  bypass:
+    - 6
+- domain: ipv6.ip.sb
+  bypass:
+    - 6
+- domain: tracker.m-team.cc
+  bypass:
+    - 6
+- domain: tracker.m-team.io
+  bypass:
+    - 6
+- domain: t.hddolby.com
+  bypass:
+    - 6
+- domain: receiver.tdm.qq.com
+  bypass:
+    - 6
+    - 4
+- domain: p.qpic.cn
+  bypass:
+    - 6
+    - 4
+- domain: lgame.tdm.qq.com
+  bypass:
+    - 6
+    - 4
+- domain: 52pt.site
+  bypass:
+    - 6
+- domain: connects.icu
+  bypass:
+    - 6
 exempt_domains:
+- www.bilibili.com
+- api.bilibili.com
+- grpc.biliapi.net
+- passport.bilibili.com
+- api.vc.bilibili.com
+- broadcast.chat.bilibili.com
+- interface.bilibili.com
 - app.bilibili.com
 - app.biliapi.net
 - httpdns.bilivideo.com
@@ -31,6 +79,8 @@ exempt_domains:
 - router5.gamersky.com
 - router11.gamersky.com
 - cm.bilibili.com
+- dataflow.biliapi.com
+- byr.pt
 exempt_ips:
 - 103.41.167.237
 - 203.107.1.33
