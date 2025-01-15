@@ -116,6 +116,7 @@ rules:
 - DOMAIN-SUFFIX,mandrillapp.com,Proxy
 - DOMAIN-SUFFIX,sms-activate.org,Proxy
 - DOMAIN-SUFFIX,rightpdf.com,Proxy
+- DOMAIN,tracker.byr.pt,DIRECT
 - DOMAIN,byr.pt,PTProxy
 - DOMAIN-SUFFIX,npupt.com,Proxy
 - DOMAIN-SUFFIX,manuscriptcentral.com,Proxy
@@ -452,7 +453,6 @@ rules:
 - DOMAIN-SUFFIX,droyc-studios.com,Proxy
 - DOMAIN-SUFFIX,avbebe.com,Proxy
 - DOMAIN-SUFFIX,manwa.me,Proxy
-- DOMAIN-SUFFIX,githubusercontent.com,Proxy
 - DOMAIN-SUFFIX,mitmproxy.org,Proxy
 - DOMAIN-SUFFIX,vercel.app,Proxy
 - DOMAIN-SUFFIX,missav.uno,Proxy
@@ -502,3 +502,9 @@ rules:
 - IP-CIDR,107.173.199.18/32,Proxy,no-resolve
 - DOMAIN,update.netsarangapi.com,Hijacking
 - DOMAIN-SUFFIX,internetdownloadmanager.com,Hijacking
+- DOMAIN-SUFFIX,femjoy.com,Proxy
+- DOMAIN-SUFFIX,haijiao.com,Proxy
+- DOMAIN-SUFFIX,manwawa3.cc,Proxy
+- DOMAIN,static.m-team.cc,Proxy
+- DOMAIN-SUFFIX,missav.ws,Proxy
+- DOMAIN-SUFFIX,wordpress.com,Proxy

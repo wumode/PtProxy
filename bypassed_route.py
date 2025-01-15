@@ -158,8 +158,9 @@ def main():
         if not ip_res:
             continue
         for ip in ip_res[1]:
+            # if ip not in records[ri]['v4']:
             records[ri]['v4'].append(ip)
-            if len(records[ri]['v4']) > 20:
+            if len(records[ri]['v4']) > 30:
                 del records[ri]['v4'][0]
         for ip in records[ri]['v4']:
             index = search_ip(ip, ip_list)
@@ -167,8 +168,9 @@ def main():
                 print(f'exempt {records[ri]["domain"]}({ip}) from {ip_list[index]}')
                 ip_list.pop(index)
         for ip in ip_res[2]:
+            # if ip not in records[ri]['v6']:
             records[ri]['v6'].append(ip)
-            if len(records[ri]['v6']) > 20:
+            if len(records[ri]['v6']) > 30:
                 del records[ri]['v6'][0]
         for ip in records[ri]['v6']:
             index = search_ip(ip, ipv6_list)

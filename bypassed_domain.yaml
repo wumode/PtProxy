@@ -5,41 +5,46 @@ domains:
 - domain: tracker.byr.pt
   bypass:
     - 6
-- domain: tracker-public.tjupt.org
-  bypass:
-    - 6
 - domain: www.nicept.net
   bypass:
+    - 4
     - 6
 - domain: rousi.zip
   bypass:
+    - 4
     - 6
 - domain: hitpt.com
   bypass:
+    - 4
     - 6
 - domain: pthome.net
   bypass:
+    - 4
     - 6
 - domain: hdtime.org
   bypass:
     - 6
 - domain: pt.eastgame.org
   bypass:
+    - 4
     - 6
 - domain: www.pttime.org
   bypass:
+    - 4
     - 6
 - domain: ipv6.ip.sb
   bypass:
     - 6
 - domain: tracker.m-team.cc
   bypass:
+    - 4
     - 6
 - domain: tracker.m-team.io
   bypass:
     - 6
 - domain: t.hddolby.com
   bypass:
+    - 4
     - 6
 - domain: receiver.tdm.qq.com
   bypass:
@@ -59,6 +64,18 @@ domains:
 - domain: connects.icu
   bypass:
     - 6
+- domain: tracker.qingwa.pro
+  bypass:
+    - 4
+    - 6
+- domain: tracker.qingwapt.com
+  bypass:
+    - 4
+    - 6
+- domain: tracker.qingwapt.org
+  bypass:
+    - 4
+    - 6
 exempt_domains:
 - www.bilibili.com
 - api.bilibili.com
@@ -68,6 +85,8 @@ exempt_domains:
 - broadcast.chat.bilibili.com
 - interface.bilibili.com
 - app.bilibili.com
+- api.biliapi.net
+- live-trace.bilibili.com
 - app.biliapi.net
 - httpdns.bilivideo.com
 - api.zhihu.com
