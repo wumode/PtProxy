@@ -510,5 +510,3 @@ rules:
 - DOMAIN-SUFFIX,wordpress.com,Proxy
 - DOMAIN-SUFFIX,w.org,Proxy
 - DOMAIN-SUFFIX,fuukei.org,Proxy
-- DOMAIN-SUFFIX,w.org,Proxy
-- DOMAIN-SUFFIX,fuukei.org,Proxy
