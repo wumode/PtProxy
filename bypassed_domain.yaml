@@ -5,6 +5,9 @@ domains:
 - domain: tracker.byr.pt
   bypass:
     - 6
+- domain: tracker.hdarea.club
+  bypass:
+    - 6
 - domain: www.nicept.net
   bypass:
     - 4
@@ -80,6 +83,8 @@ exempt_domains:
 - www.bilibili.com
 - api.bilibili.com
 - grpc.biliapi.net
+- dataflow.biliapi.com
+- cm.bilibili.com
 - passport.bilibili.com
 - api.vc.bilibili.com
 - broadcast.chat.bilibili.com
@@ -89,6 +94,8 @@ exempt_domains:
 - live-trace.bilibili.com
 - app.biliapi.net
 - httpdns.bilivideo.com
+- pay.bilibili.com
+- api.live.bilibili.com
 - api.zhihu.com
 - router.gamersky.com
 - router1.gamersky.com
@@ -97,8 +104,6 @@ exempt_domains:
 - router4.gamersky.com
 - router5.gamersky.com
 - router11.gamersky.com
-- cm.bilibili.com
-- dataflow.biliapi.com
 - byr.pt
 exempt_ips:
 - 103.41.167.237

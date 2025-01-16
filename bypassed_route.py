@@ -170,7 +170,7 @@ def main():
         for ip in ip_res[2]:
             # if ip not in records[ri]['v6']:
             records[ri]['v6'].append(ip)
-            if len(records[ri]['v6']) > 30:
+            if len(records[ri]['v6']) > 40:
                 del records[ri]['v6'][0]
         for ip in records[ri]['v6']:
             index = search_ip(ip, ipv6_list)
