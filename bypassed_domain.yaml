@@ -79,6 +79,14 @@ domains:
   bypass:
     - 4
     - 6
+- domain: tracker.hdkyl.in
+  bypass:
+    - 4
+    - 6
+- domain: www.hdkylin.top
+  bypass:
+    - 4
+    - 6
 exempt_domains:
 - www.bilibili.com
 - api.bilibili.com
