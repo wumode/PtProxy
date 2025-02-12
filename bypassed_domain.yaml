@@ -87,6 +87,14 @@ domains:
   bypass:
     - 4
     - 6
+- domain: raingfh.top
+  bypass:
+    - 4
+    - 6
+- domain: hdfans.org
+  bypass:
+    - 4
+    - 6
 exempt_domains:
 - www.bilibili.com
 - api.bilibili.com

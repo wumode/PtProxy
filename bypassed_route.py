@@ -86,6 +86,25 @@ def search_ip(ip, ips_list):
     return -1
 
 
+def exclude_ip_range(range_b: str, range_a: str):
+    """
+    Exclude IP range A from IP range B and return the remaining subranges.
+
+    :param range_b: The larger IP range in CIDR notation (must include range_a).
+    :param range_a: The smaller IP range to exclude in CIDR notation.
+    :return: List of remaining IP subranges in CIDR notation.
+    """
+    net_b = ipaddress.ip_network(range_b, strict=False)
+    net_a = ipaddress.ip_network(range_a, strict=False)
+
+    if not (net_a.subnet_of(net_b)):
+        raise ValueError("Range A is not fully contained within Range B.")
+
+    remaining_ranges = list(net_b.address_exclude(net_a))
+
+    return [str(subnet) for subnet in remaining_ranges]
+
+
 def main():
     # Load domains from YAML file
     with open(sys.argv[1], 'r') as file:
@@ -160,23 +179,34 @@ def main():
         for ip in ip_res[1]:
             # if ip not in records[ri]['v4']:
             records[ri]['v4'].append(ip)
-            if len(records[ri]['v4']) > 30:
+            if len(records[ri]['v4']) > 80:
                 del records[ri]['v4'][0]
         for ip in records[ri]['v4']:
             index = search_ip(ip, ip_list)
             if index != -1:
                 print(f'exempt {records[ri]["domain"]}({ip}) from {ip_list[index]}')
+                ip_larger = ip_list[index]
                 ip_list.pop(index)
+                length = int(ip_larger.split('/')[1])
+                if length < 12:
+                    remaining_ip = exclude_ip_range(ip_larger, f'{ip}/{length+8}')
+                    ip_list.extend(remaining_ip)
+
         for ip in ip_res[2]:
             # if ip not in records[ri]['v6']:
             records[ri]['v6'].append(ip)
-            if len(records[ri]['v6']) > 40:
+            if len(records[ri]['v6']) > 80:
                 del records[ri]['v6'][0]
         for ip in records[ri]['v6']:
             index = search_ip(ip, ipv6_list)
             if index != -1:
                 print(f'exempt {records[ri]["domain"]}({ip}) from {ipv6_list[index]}')
+                ip_larger = ipv6_list[index]
                 ipv6_list.pop(index)
+                length = int(ip_larger.split('/')[1])
+                if length < 32:
+                    remaining_ip = exclude_ip_range(ip_larger, f'{ip}/{min(32, length + 8)}')
+                    ipv6_list.extend(remaining_ip)
     for ip in exempt_ips:
         index = search_ip(ip, ip_list)
         if index != -1:
