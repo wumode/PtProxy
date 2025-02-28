@@ -19,6 +19,8 @@ rules:
 # - SRC-IP-CIDR,198.18.0.1/16,DIRECT
 - RULE-SET,direct_rules,DIRECT
 - RULE-SET,proxied_rules,Proxy
+- RULE-SET,hijack_rules,Hijacking
+- RULE-SET,mitm_rules,Mitm
 - AND,((DOMAIN,api.zhihu.com),(NETWORK,UDP)),REJECT
 - DOMAIN,api.zhihu.com,Mitm
 - DOMAIN-SUFFIX,awesome-hd.me,DIRECT
