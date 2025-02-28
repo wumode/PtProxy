@@ -523,3 +523,9 @@ rules:
 - DOMAIN-SUFFIX,lukechampine.com,Proxy
 - DOMAIN-SUFFIX,bttbo.com,Proxy
 - DOMAIN-SUFFIX,last.fm,Proxy
+- DOMAIN,notifications-pa.googleapis.com,Openai
+- DOMAIN,oauthaccountmanager.googleapis.com,Openai
+- DOMAIN,oauth2.googleapis.com,Openai
+- DOMAIN-SUFFIX,readthedocs.io,Proxy
+- DOMAIN,s.magsrv.com,Hijacking
+- DOMAIN-SUFFIX,discourseoxidizingtransfer.com,Hijacking

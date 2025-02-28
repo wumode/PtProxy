@@ -95,6 +95,42 @@ domains:
   bypass:
     - 4
     - 6
+- domain: tracker.42465236.xyz
+  bypass:
+    - 4
+    - 6
+- domain: tracker.ilolicon.cc
+  bypass:
+    - 4
+    - 6
+- domain: ptl.gs
+  bypass:
+    - 4
+    - 6
+- domain: relay01.ptl.gs
+  bypass:
+    - 4
+    - 6
+- domain: tracker.monikadesign.uk
+  bypass:
+    - 4
+    - 6
+- domain: daisuki.monikadesign.uk
+  bypass:
+    - 4
+    - 6
+- domain: daikirai.monikadesign.uk
+  bypass:
+    - 4
+    - 6
+- domain: anime-no-index.com
+  bypass:
+    - 4
+    - 6
+- domain: ptsbao.club
+  bypass:
+    - 4
+    - 6
 exempt_domains:
 - www.bilibili.com
 - api.bilibili.com
