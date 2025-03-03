@@ -131,6 +131,14 @@ domains:
   bypass:
     - 4
     - 6
+- domain: tracker-public.tjupt.org
+  bypass:
+    - 4
+    - 6
+- domain: tracker.totheglory.im
+  bypass:
+    - 4
+    - 6
 exempt_domains:
 - www.bilibili.com
 - api.bilibili.com
