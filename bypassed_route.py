@@ -143,7 +143,8 @@ def main():
                         has_flag = True
                         break
                 if not has_flag:
-                    ipv6_list.append(ipaddress.ip_network(f"{address}/128", strict=False))
+                    ipv6_list.append(ipaddress.ip_network(f"{address}/128", strict=False).compressed)
+                    print(f"\t{address}/128")
         if 4 in domain['bypass']:
             ip_addresses = doh_dns_lookup(domain['domain'], 'A')
             for address in ip_addresses:
@@ -154,7 +155,7 @@ def main():
                         break
                 if not has_flag:
                     ip_list.append(f"{address}/32")
-
+                    print(f"\t{address}/32")
 
     # add ips
     for subnet in ips:
@@ -181,8 +182,14 @@ def main():
             records[ri]['v4'].append(ip)
             if len(records[ri]['v4']) > 80:
                 del records[ri]['v4'][0]
+        checked_ip = []
         for ip in records[ri]['v4']:
-            index = search_ip(ip, ip_list)
+            # print(f'checking {ip}')
+            if ip not in checked_ip:
+                index = search_ip(ip, ip_list)
+                checked_ip.append(ip)
+            else:
+                continue
             if index != -1:
                 print(f'exempt {records[ri]["domain"]}({ip}) from {ip_list[index]}')
                 ip_larger = ip_list[index]
@@ -191,14 +198,19 @@ def main():
                 if length < 12:
                     remaining_ip = exclude_ip_range(ip_larger, f'{ip}/{length+8}')
                     ip_list.extend(remaining_ip)
-
+        checked_ip = []
         for ip in ip_res[2]:
             # if ip not in records[ri]['v6']:
             records[ri]['v6'].append(ip)
             if len(records[ri]['v6']) > 80:
                 del records[ri]['v6'][0]
         for ip in records[ri]['v6']:
-            index = search_ip(ip, ipv6_list)
+            # print(f'checking {ip}')
+            if ip not in checked_ip:
+                index = search_ip(ip, ipv6_list)
+                checked_ip.append(ip)
+            else:
+                continue
             if index != -1:
                 print(f'exempt {records[ri]["domain"]}({ip}) from {ipv6_list[index]}')
                 ip_larger = ipv6_list[index]

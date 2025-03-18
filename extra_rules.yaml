@@ -1,531 +1,515 @@
 rules:
-- DOMAIN-SUFFIX,byr.cn,Proxy
-- DOMAIN-SUFFIX,chinadigitaltimes.net,Proxy
-- DOMAIN-SUFFIX,mohu.rocks,Proxy
-- DOMAIN-SUFFIX,redditstatic.com,Proxy
-- DOMAIN-SUFFIX,nslu2-linux.org,Proxy
-- DOMAIN-SUFFIX,redd.it,Proxy
-- DOMAIN-SUFFIX,redditmedia.com,Proxy
-- DOMAIN-SUFFIX,agi.com,Proxy
-- DOMAIN-SUFFIX,github.com,Proxy
-- DOMAIN-SUFFIX,github.io,Proxy
-- DOMAIN-SUFFIX,ytimg.com,Proxy
-- DOMAIN-SUFFIX,ggpht.com,Proxy
-- DOMAIN-SUFFIX,youtube.com,Proxy
-- DOMAIN-SUFFIX,daumcdn.net,Proxy
-- DOMAIN-SUFFIX,daumpotplayer.com,Proxy
-- DOMAIN-SUFFIX,ubuntu.com,Proxy
-- DOMAIN-SUFFIX,nvidia.com,Proxy
-- DOMAIN-SUFFIX,sourceforge.net,Proxy
-- DOMAIN-SUFFIX,osdn.net,Proxy
-- DOMAIN-SUFFIX,voachinese.com,Proxy
-- DOMAIN-SUFFIX,docker.io,Proxy
-- DOMAIN-SUFFIX,pythonhosted.org,Proxy
-- DOMAIN-SUFFIX,vtk.org,Proxy
-- DOMAIN-SUFFIX,microsoft.com,Proxy
-- DOMAIN-SUFFIX,uspto.gov,Proxy
-- DOMAIN-SUFFIX,xvideos-cdn.com,Proxy
-- DOMAIN-SUFFIX,sci-hub.se,Proxy
-- DOMAIN-SUFFIX,sci-hub.do,Proxy
-- DOMAIN-SUFFIX,qt.io,Proxy
-- DOMAIN-SUFFIX,stackoverflow.com,Proxy
-- DOMAIN-SUFFIX,sstatic.net,Proxy
-- DOMAIN-SUFFIX,imgur.com,Proxy
-- DOMAIN-SUFFIX,githubassets.com,Proxy
-- DOMAIN-SUFFIX,launchpad.net,Proxy
-- DOMAIN-SUFFIX,canonical.com,Proxy
-- DOMAIN-SUFFIX,pincong.rocks,Proxy
-- DOMAIN-SUFFIX,v2ex.com,Proxy
-- DOMAIN-SUFFIX,gudumibug.top,Proxy
-- DOMAIN-SUFFIX,synology.com,Proxy
-- DOMAIN-SUFFIX,origin-a.akamaihd.net,Proxy
-- DOMAIN-SUFFIX,nvidia.cn,Proxy
-- DOMAIN-SUFFIX,msn.com,Proxy
-- DOMAIN-SUFFIX,pixhost.org,Proxy
-- DOMAIN-SUFFIX,mixtape.moe,Proxy
-- DOMAIN-SUFFIX,numpy.org,Proxy
-- DOMAIN-SUFFIX,www.dmm.co,Proxy
-- DOMAIN-SUFFIX,maomiav.com,Proxy
-- DOMAIN-SUFFIX,themoviedb.org,Proxy
-- DOMAIN-SUFFIX,sehuatang.net,Proxy
-- DOMAIN-SUFFIX,synocommunity.com,Proxy
-- DOMAIN-SUFFIX,cphub.net,Proxy
-- DOMAIN-SUFFIX,x6img.com,Proxy
-- DOMAIN-SUFFIX,catcloud.fun,Proxy
-- DOMAIN-SUFFIX,transact.netsarang.com,Hijacking
-- DOMAIN-SUFFIX,update.netsarang.com,Hijacking
-- DOMAIN,mall.bilibili.com,Hijacking
-- DOMAIN,mi.gdt.qq.com,Hijacking
-- DOMAIN,pgdt.ugdtimg.com,Hijacking
-- DOMAIN-SUFFIX,www.netsarang.com,Proxy
-- DOMAIN-SUFFIX,www.netsarang.co.kr,Hijacking
-- DOMAIN-SUFFIX,sales.netsarang.com,Hijacking
-- DOMAIN-SUFFIX,pangolin-sdk-toutiao1.com,Hijacking
-- DOMAIN-SUFFIX,linux.org,Proxy
-- DOMAIN-SUFFIX,cfhthat.com,Proxy
-- DOMAIN-SUFFIX,wikimedia.org,Proxy
-- DOMAIN-SUFFIX,hdslb.com,Domestic
-- DOMAIN-SUFFIX,goo.gl,Proxy
-- DOMAIN-SUFFIX,bu.edu,Proxy
-- DOMAIN-SUFFIX,jetbrains.com,Proxy
-- DOMAIN-SUFFIX,jetbrains.com.cn,Proxy
-- DOMAIN-SUFFIX,edu.sa,Proxy
-- DOMAIN-SUFFIX,web605.cn,Proxy
-- DOMAIN-SUFFIX,bbci.co.uk,Proxy
-- DOMAIN-SUFFIX,ccache.org,Proxy
-- DOMAIN-SUFFIX,wallhaven.cc,Proxy
-- DOMAIN-SUFFIX,fastly.net,Proxy
-- DOMAIN-SUFFIX,api.zuihuimai.com,Hijacking
-- DOMAIN-SUFFIX,baichuan-sdk.taobao.com,Hijacking
-- DOMAIN-SUFFIX,pglstatp-toutiao.com,Hijacking
-- DOMAIN-SUFFIX,openathens.net,Proxy
-- DOMAIN-SUFFIX,jsdelivr.net,Proxy
-- DOMAIN-SUFFIX,cloudflareinsights.com,Proxy
-- DOMAIN-SUFFIX,zenodo.org,Proxy
-- DOMAIN-SUFFIX,esa.int,Proxy
-- DOMAIN-SUFFIX,supersonicads.com,Hijacking
-- DOMAIN-SUFFIX,us-east-1.amazonaws.com,Hijacking
-- DOMAIN-SUFFIX,us-east-1.elb.amazonaws.com,Hijacking
-- DOMAIN-SUFFIX,glulive.com,Hijacking
-- DOMAIN-KEYWORD,adcolony,Hijacking
-- DOMAIN-SUFFIX,ironsrc.mobi,Hijacking
-- DOMAIN-SUFFIX,googlesyndication.com,Hijacking
-- DOMAIN-SUFFIX,doubleclick.net,Hijacking
-- DOMAIN-SUFFIX,googleadservices.com,Hijacking
-- DOMAIN-SUFFIX,ksyuncdn.com,Hijacking
-- DOMAIN-SUFFIX,akadns.net,Hijacking
-- DOMAIN-SUFFIX,politiscales.fr,Proxy
-- DOMAIN-SUFFIX,konami.net,Proxy
-- DOMAIN-SUFFIX,cloudflare.com,Proxy
-- DOMAIN-SUFFIX,learnopencv.com,Proxy
-- DOMAIN-SUFFIX,gitbook.io,Proxy
-- DOMAIN-SUFFIX,orcid.org,Proxy
-- DOMAIN-SUFFIX,grss-ieee.org,Proxy
-- DOMAIN-SUFFIX,arrc.fun,Proxy
-- DOMAIN-SUFFIX,microsoftonline.com,Proxy
-- DOMAIN-SUFFIX,launchpad.net,Proxy
-- DOMAIN-SUFFIX,flurry.com,Hijacking
-- DOMAIN-SUFFIX,rt.applovin.com,Hijacking
-- DOMAIN-SUFFIX,netsarang.com,Proxy
-- DOMAIN-SUFFIX,v2fly.org,Proxy
-- DOMAIN-SUFFIX,mdpi.com,Proxy
-- DOMAIN-SUFFIX,api.cas.cn,Hijacking
-- DOMAIN-SUFFIX,grammarly.com,Proxy
-- DOMAIN-KEYWORD,openai,Openai
-- DOMAIN-SUFFIX,chatgpt.com,Openai
-- DOMAIN-SUFFIX,mandrillapp.com,Proxy
-- DOMAIN-SUFFIX,sms-activate.org,Proxy
-- DOMAIN-SUFFIX,rightpdf.com,Proxy
-- DOMAIN,tracker.byr.pt,DIRECT
-- DOMAIN,byr.pt,PTProxy
-- DOMAIN-SUFFIX,npupt.com,Proxy
-- DOMAIN-SUFFIX,manuscriptcentral.com,Proxy
-- GEOSITE,speedtest,Speedtest
-- DOMAIN-SUFFIX,pussytorrents.org,Proxy
-- DOMAIN-SUFFIX,chaturbate.com,Proxy
-- DOMAIN-SUFFIX,highwebmedia.com,Proxy
-- DOMAIN-SUFFIX,99854.men,Proxy
-- DOMAIN-SUFFIX,hpplay.cn,Hijacking
-- DOMAIN-SUFFIX,imdb.com,Proxy
-- DOMAIN-SUFFIX,tmdb.org,Proxy
-- DOMAIN-SUFFIX,openwrt.org,Proxy
-- DOMAIN-SUFFIX,jellyfin.org,Proxy
-- DOMAIN-SUFFIX,intel.com,Proxy
-- DOMAIN-SUFFIX,gigabyte.cn,Proxy
-- DOMAIN-SUFFIX,gigabyte.com,Proxy
-- DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
-- DOMAIN-SUFFIX,msftncsi.com,DIRECT
-- DOMAIN-SUFFIX,cpu-panda.com,Proxy
-- DOMAIN-SUFFIX,edu.cn,Domestic
-- DOMAIN-SUFFIX,etrovub.be,Proxy
-- DOMAIN-SUFFIX,dns.cloudflare.com,SafeDNS
-- DOMAIN-SUFFIX,doh.opendns.com,SafeDNS
-- DOMAIN-SUFFIX,adguard-dns.com,SafeDNS
-- DOMAIN-SUFFIX,private.canadianshield.cira.ca,SafeDNS
-- DOMAIN-SUFFIX,gns.google,SafeDNS
-- DOMAIN,odvr.nic.cz,SafeDNS
-- DOMAIN,public.dns.iij.jp,SafeDNS
-- DOMAIN-SUFFIX,hostloc.com,Proxy
-- DOMAIN,kp.m-team.cc,Proxy
-- DOMAIN,api2.m-team.cc,Proxy
-- DOMAIN,img.m-team.cc,Proxy
-- DOMAIN-SUFFIX,gushiciku.cn,Proxy
-- DOMAIN-SUFFIX,readfog.com,Proxy
-- DOMAIN-SUFFIX,azureedge.net,Proxy
-- DOMAIN-SUFFIX,mdpi-res.com,Proxy
-- DOMAIN-SUFFIX,auckland.ac.nz,Proxy
-- DOMAIN-SUFFIX,imgix.net,Proxy
-- DOMAIN-SUFFIX,ieee.org,Proxy
-- DOMAIN-SUFFIX,ala.im,Proxy
-- DOMAIN-SUFFIX,v2rayssr.com,Proxy
-- DOMAIN-SUFFIX,jb.gg,Proxy
-- DOMAIN,mb3admin.com,Mitm
-- DOMAIN-SUFFIX,opencv.org,Proxy
-- DOMAIN-SUFFIX,thetvdb.com,Proxy
-- DOMAIN,mitm.it,Mitm
-- DOMAIN-SUFFIX,wikiwand.com,Proxy
-- DOMAIN-SUFFIX,kxcdn.com.com,Proxy
-- DOMAIN-SUFFIX,funet.fi,Proxy
-- DOMAIN-SUFFIX,take2games.com,Proxy
-- DOMAIN-SUFFIX,office365.com,Proxy
-- DOMAIN-SUFFIX,jdbstatic.com,Proxy
-- DOMAIN-SUFFIX,jvid.com,Proxy
-- DOMAIN-SUFFIX,yadi.sk,Proxy
-- DOMAIN-SUFFIX,yandex.com,Proxy
-- DOMAIN-SUFFIX,photobucket.com,Proxy
-- DOMAIN-SUFFIX,freeimage.us,Proxy
-- DOMAIN-SUFFIX,loli.net,Proxy
-- DOMAIN-SUFFIX,photobucket.com,Proxy
-- DOMAIN-SUFFIX,imagebam.com,Proxy
-- DOMAIN-SUFFIX,imgbox.com,Proxy
-- DOMAIN-SUFFIX,img169.com,Proxy
-- DOMAIN-SUFFIX,funkyimg.com,Proxy
-- DOMAIN-SUFFIX,ax1x.com,Proxy
-- DOMAIN-SUFFIX,fc2.com,Proxy
-- DOMAIN-SUFFIX,bbppics.com,Proxy
-- DOMAIN-SUFFIX,akamai-video-content.com,Proxy
-- DOMAIN-SUFFIX,chkaja.com,Proxy
-- DOMAIN-SUFFIX,tclei.top,Proxy
-- DOMAIN-SUFFIX,curcolbudol.com,Proxy
-- DOMAIN-SUFFIX,sex8.cc,Proxy
-- DOMAIN-SUFFIX,xbluntan78.life,Proxy
-- DOMAIN-SUFFIX,chengrenn18.xyz,Proxy
-- DOMAIN-SUFFIX,aibaaiba.xyz,Proxy
-- DOMAIN-SUFFIX,riotgames.com,Proxy
-- DOMAIN-SUFFIX,leagueoflegends.com,Proxy
-- DOMAIN-SUFFIX,ygoprodeck.com,Proxy
-- DOMAIN-SUFFIX,doubanio.com,Mitm
-- DOMAIN-SUFFIX,xchina.co,Proxy
-- DOMAIN-SUFFIX,xchina.life,Proxy
-- DOMAIN-SUFFIX,katfile.com,Proxy
-- DOMAIN-SUFFIX,binstream.live,Hijacking
-- DOMAIN-SUFFIX,groueta.cc,Proxy
-- DOMAIN-SUFFIX,e-hentai.org,Proxy
-- DOMAIN-SUFFIX,pximg.net,Proxy
-- DOMAIN-SUFFIX,gravatar.com,Proxy
-- DOMAIN-SUFFIX,smartnews.be,Proxy
-- DOMAIN-SUFFIX,cnn.com,Proxy
-- DOMAIN-SUFFIX,deepl.com,Proxy
-- DOMAIN-SUFFIX,media-amazon.com,Proxy
-- DOMAIN-SUFFIX,video-delivery.net,Proxy
-- DOMAIN-SUFFIX,phncdn.com,Proxy
-- DOMAIN-SUFFIX,docker.com,Proxy
-- DOMAIN-SUFFIX,visualstudio.com,Proxy
-- DOMAIN-SUFFIX,upload.cc,Proxy
-- DOMAIN-SUFFIX,hotgirl.one,Proxy
-- DOMAIN-SUFFIX,discfan.net,Proxy
-- DOMAIN-SUFFIX,gudumibug.top,Proxy
-- DOMAIN-SUFFIX,ku66.net,Proxy
-- DOMAIN-SUFFIX,chkaja.com,Proxy
-- DOMAIN-SUFFIX,o--o.xyz,Proxy
-- DOMAIN-SUFFIX,huggingface.co,Proxy
-- DOMAIN-SUFFIX,ign.com,Proxy
-- DOMAIN-SUFFIX,npttech.com,Proxy
-- DOMAIN-SUFFIX,scorecardresearch.com,Proxy
-- DOMAIN-SUFFIX,ignimgs.com,Proxy
-- DOMAIN-SUFFIX,vscdn.com,Proxy
-- DOMAIN-SUFFIX,contentstack.io,Proxy
-- DOMAIN-SUFFIX,nexus-cdn.com,Proxy
-- DOMAIN-SUFFIX,lolesports.com,Proxy
-- DOMAIN-SUFFIX,netcdn.space,Proxy
-- DOMAIN-SUFFIX,bestgirlsexy.com,Proxy
-- DOMAIN-SUFFIX,hotgirl.biz,Proxy
-- DOMAIN-SUFFIX,xchina.biz,Proxy
-- DOMAIN-SUFFIX,mozilla.org,Proxy
-- DOMAIN-SUFFIX,tiktok.com,Proxy
-- DOMAIN-SUFFIX,ibytedtos.com,Proxy
-- DOMAIN-SUFFIX,ttwstatic.com,Proxy
-- DOMAIN-SUFFIX,byteoversea.com,Proxy
-- DOMAIN-SUFFIX,mkrobot.orh,Proxy
-- DOMAIN-SUFFIX,pypi.org,Proxy
-- DOMAIN-SUFFIX,pytorch.org,Proxy
-- DOMAIN-SUFFIX,metart.com,NorthAmerica
-- DOMAIN-SUFFIX,metartnetwork.com,NorthAmerica
-- DOMAIN-SUFFIX,fsm.name,Proxy
-- DOMAIN-SUFFIX,urbanairship.com,Proxy
-- DOMAIN-SUFFIX,apptentive.com,Proxy
-- DOMAIN-SUFFIX,ngtv.io,Proxy
-- DOMAIN-SUFFIX,outbrain.com,Proxy
-- DOMAIN-SUFFIX,warnermediacdn.com,Proxy
-- DOMAIN-SUFFIX,brightline.tv,Proxy
-- DOMAIN-SUFFIX,weatherapi.com,Proxy
-- DOMAIN-SUFFIX,gethomepage.dev,Proxy
-- DOMAIN-SUFFIX,unsplash.com,Proxy
-- DOMAIN-SUFFIX,bulianglin.com,Proxy
-- DOMAIN-SUFFIX,bbums.cn,Hijacking
-- DOMAIN-SUFFIX,bbums.org.cn,Hijacking
-- DOMAIN-SUFFIX,ptpimg.me,Proxy
-- DOMAIN-SUFFIX,helloimg.com,Proxy
-- DOMAIN-SUFFIX,pixhost.to,Proxy
-- DOMAIN-SUFFIX,sagernet.org,Proxy
-- DOMAIN-SUFFIX,band.us,Proxy
-- DOMAIN-SUFFIX,shuttle.gt-in.com,Proxy
-- DOMAIN-SUFFIX,ab12y.com,Proxy
-- DOMAIN-SUFFIX,wl-site5.com,Proxy
-- DOMAIN-SUFFIX,dmm.co.jp,Proxy
-- DOMAIN-SUFFIX,devsde.com,Proxy
-- DOMAIN-SUFFIX,mixtape.moe,Proxy
-- DOMAIN-SUFFIX,pixhost.org,Proxy
-- DOMAIN-SUFFIX,jwpcdn.com,Proxy
-- DOMAIN-SUFFIX,wpadmngr.com,Proxy
-- DOMAIN-SUFFIX,guardeddummysoothing.com,Proxy
-- DOMAIN-SUFFIX,tapecontent.net,Proxy
-- DOMAIN-SUFFIX,pornfhd.com,Proxy
-- DOMAIN-SUFFIX,auvugwsppxfrtiqlmjjb.buzz,Proxy
-- DOMAIN-SUFFIX,18av.pro,Proxy
-- DOMAIN-SUFFIX,limosiwooable.com,Proxy
-- DOMAIN-SUFFIX,tapecontent.net,Proxy
-- DOMAIN-SUFFIX,tapecontent.net,Proxy
-- DOMAIN-SUFFIX,004307.com,Proxy
-- DOMAIN-SUFFIX,ptt.sex,Proxy
-- DOMAIN-SUFFIX,ptt.sex,Proxy
-- DOMAIN-SUFFIX,fanart.tv,Proxy
-- DOMAIN-SUFFIX,deviantart.com,Proxy
-- DOMAIN-SUFFIX,trakt.tv,Proxy
-- DOMAIN-SUFFIX,politicalcompass.org,Proxy
-- DOMAIN-SUFFIX,leanplum.com,Proxy
-- DOMAIN-SUFFIX,amplitude.com,Proxy
-- DOMAIN-SUFFIX,platforms.team,Proxy
-- DOMAIN-SUFFIX,run.app,Proxy
-- DOMAIN-SUFFIX,braze.com,Proxy
-- DOMAIN-SUFFIX,bootstrapcdn.com,Proxy
-- DOMAIN-SUFFIX,mega.co.nz,Proxy
-- DOMAIN-SUFFIX,sijishes.com,Proxy
-- DOMAIN-SUFFIX,acggw.club,Proxy
-- DOMAIN-SUFFIX,cool18.com,Proxy
-- DOMAIN-SUFFIX,wp.com,Proxy
-- DOMAIN-SUFFIX,intercom.io,Proxy
-- DOMAIN-SUFFIX,intercomcdn.com,Proxy
-- DOMAIN-SUFFIX,wsrv.nl,Proxy
-- DOMAIN-SUFFIX,wpadmngr.com,Proxy
-- DOMAIN-SUFFIX,coinzillatag.com,Proxy
-- DOMAIN-SUFFIX,fuligirl.net,Proxy
-- DOMAIN-SUFFIX,wireshark.org,Proxy
-- DOMAIN-SUFFIX,xyjgjp.com,Proxy
-- DOMAIN-SUFFIX,mgstage.com,Proxy
-- DOMAIN-SUFFIX,6park.com,Proxy
-- DOMAIN-SUFFIX,npmjs.org,Proxy
-- DOMAIN-SUFFIX,oaistatic.com,Openai
-- DOMAIN-SUFFIX,ax1x.com,Proxy
-- DOMAIN-SUFFIX,www.straplez.com,Proxy
-- DOMAIN-SUFFIX,straplez.com,Proxy
-- DOMAIN-SUFFIX,0472.org,Proxy
-- DOMAIN-SUFFIX,heanet.ie,Proxy
-- DOMAIN-SUFFIX,androiddatahost.com,Proxy
-- DOMAIN-SUFFIX,moviepilot.com,Proxy
-- DOMAIN-SUFFIX,unrealengine.com,Proxy
-- DOMAIN-SUFFIX,exoticaz.to,Proxy
-- DOMAIN-SUFFIX,glusoft.com,Proxy
-- DOMAIN-SUFFIX,7-zip.org,Proxy
-- DOMAIN-SUFFIX,fandom.com,Proxy
-- DOMAIN-SUFFIX,frank2019.me,Proxy
-- DOMAIN-SUFFIX,nicovideo.jp,Proxy
-- DOMAIN-SUFFIX,termius.com,Proxy
-- DOMAIN-SUFFIX,clash.wiki,Proxy
-- DOMAIN-SUFFIX,wiki.org,Proxy
-- DOMAIN-SUFFIX,fotor.com,Proxy
-- DOMAIN-SUFFIX,flurry.com,Proxy
-- DOMAIN-SUFFIX,pangle.io,Proxy
-- DOMAIN-SUFFIX,z4a.net,Proxy
-- DOMAIN-SUFFIX,clipdrop.co,Proxy
-- DOMAIN-SUFFIX,zendesk.com,Proxy
-- DOMAIN-SUFFIX,auth0.com,Proxy
-- DOMAIN-SUFFIX,packagecloud.io,Proxy
-- DOMAIN-SUFFIX,businessinsider.com,Proxy
-- DOMAIN-SUFFIX,networksorcery.com,Proxy
-- DOMAIN-SUFFIX,kernel.org,Proxy
-- DOMAIN-SUFFIX,uwaterloo.ca,Proxy
-- DOMAIN-SUFFIX,openssl.org,Proxy
-- DOMAIN-SUFFIX,xs4all.nl,Proxy
-- DOMAIN-SUFFIX,libzip.org,Proxy
-- DOMAIN-SUFFIX,ffmpeg.org,Proxy
-- DOMAIN-SUFFIX,gnupg.org,Proxy
-- DOMAIN-SUFFIX,osuosl.org,Proxy
-- DOMAIN-SUFFIX,freedesktop.org,Proxy
-- DOMAIN-SUFFIX,gnu.org,Proxy
-- DOMAIN-SUFFIX,alsa-project.org,Proxy
-- DOMAIN-SUFFIX,libuv.org,Proxy
-- DOMAIN-SUFFIX,ruby-lang.org,Proxy
-- DOMAIN-SUFFIX,lua.org,Proxy
-- DOMAIN-SUFFIX,pyyaml.org,Proxy
-- DOMAIN-SUFFIX,python.org,Proxy
-- DOMAIN-SUFFIX,metacpan.org,Proxy
-- DOMAIN-SUFFIX,texo.network,Proxy
-- DOMAIN-SUFFIX,crates.io,Proxy
-- DOMAIN-SUFFIX,debian.org,Proxy
-- DOMAIN-SUFFIX,osano.com,Proxy
-- DOMAIN-SUFFIX,hcaptcha.com,Proxy
-- DOMAIN-SUFFIX,tiktokcdn.com,Proxy
-- DOMAIN-SUFFIX,tiktokv.com,Proxy
-- DOMAIN-SUFFIX,tiktokcdn-us.com,Proxy
-- DOMAIN-SUFFIX,patreon.com,Proxy
-- DOMAIN-SUFFIX,foldingathome.org,Proxy
-- IP-CIDR,129.32.209.206/24,Proxy,no-resolve
-- DOMAIN-SUFFIX,anaconda.com,Proxy
-- DOMAIN-SUFFIX,conda.io,Proxy
-- DOMAIN-SUFFIX,belle-vie.xyz,Proxy
-- DOMAIN-SUFFIX,statically.io,Proxy
-- DOMAIN-SUFFIX,agrosino.net,Proxy
-- DOMAIN,audiences.me,Mitm
-- DOMAIN-SUFFIX,biliapi.net,Mitm
-- DOMAIN-SUFFIX,biliapi.com,Mitm
-- DOMAIN-SUFFIX,bilibili.com,Mitm
-- DOMAIN,httpdns.bilivideo.com,Mitm
-- DOMAIN-SUFFIX,stun-2.chat.bilibili.com,Hijacking
-- DOMAIN-SUFFIX,stun.chat.bilibili.com,Hijacking
-- GEOSITE,steam@cn,DIRECT
-- GEOSITE,category-games@cn,DIRECT
-- IP-CIDR,203.107.1.33/32,Mitm,no-resolve
-- IP-CIDR,203.107.1.34/32,Mitm,no-resolve
-- IP-CIDR,203.107.1.65/32,Mitm,no-resolve
-- IP-CIDR,203.107.1.66/32,Mitm,no-resolve
-- IP-CIDR,103.41.167.237/32,Mitm,no-resolve
-- DOMAIN,router.gamersky.com,Mitm
-- DOMAIN,router1.gamersky.com,Mitm
-- DOMAIN,router2.gamersky.com,Mitm
-- DOMAIN,router3.gamersky.com,Mitm
-- DOMAIN,router11.gamersky.com,Mitm
-- DOMAIN,appapi2click.gamersky.com,Hijacking
-- DOMAIN-SUFFIX,erpweb.eu.org,Proxy
-- DOMAIN-SUFFIX,mij.rip,Proxy
-- DOMAIN-SUFFIX,adtroop.cn,Hijacking
-- DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,Hijacking
-- DOMAIN,open.e.kuaishou.com,Hijacking
-- DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,Hijacking
-- DOMAIN-SUFFIX,metacubex.one,Proxy
-- DOMAIN-SUFFIX,uuidgenerator.net,Proxy
-- DOMAIN-SUFFIX,op.gg,Proxy
-- DOMAIN-SUFFIX,rockstargames.com,Proxy
-- DOMAIN-SUFFIX,xchina.click,Proxy
-- DOMAIN-SUFFIX,digicert.com,Proxy
-- DOMAIN-SUFFIX,input.shouji.sogou.com,Hijacking
-- DOMAIN-SUFFIX,mplstudios.com,Proxy
-- DOMAIN-SUFFIX,redditspace.com,Proxy
-- DOMAIN-SUFFIX,windows.com,Proxy
-- DOMAIN-SUFFIX,clashverge.dev,Proxy
-- DOMAIN-SUFFIX,blogger.com,Proxy
-- DOMAIN-SUFFIX,frostsky.com,Proxy
-- DOMAIN-SUFFIX,sideloadly.io,Proxy
-- DOMAIN-SUFFIX,slproweb.com,Proxy
-- DOMAIN-SUFFIX,trollstore.app,Proxy
-- DOMAIN-SUFFIX,urldecoder.org,Proxy
-- DOMAIN-SUFFIX,linkcloud.me,Proxy
-- DOMAIN-SUFFIX,linkcloud.network,Proxy
-- DOMAIN-SUFFIX,imgtp.com,Proxy
-- DOMAIN-SUFFIX,ccp.ovh,Proxy
-- DOMAIN-SUFFIX,msgamestudios.com,Proxy
-- DOMAIN-SUFFIX,yarnpkg.com,Proxy
-- DOMAIN-SUFFIX,pypa.io,Proxy
-- DOMAIN-SUFFIX,linux.do,Proxy
-- DOMAIN-SUFFIX,staticflickr.com,Proxy
-- DOMAIN-SUFFIX,mapgenie.io,Proxy
-- DOMAIN-SUFFIX,typekit.net,Proxy
-- DOMAIN-SUFFIX,gta-5-map.com,Proxy
-- DOMAIN-SUFFIX,pcgamer.com,Proxy
-- DOMAIN-SUFFIX,metacritic.com,Proxy
-- DOMAIN-SUFFIX,jwplayer.com,Proxy
-- DOMAIN-SUFFIX,ks51hw546js1ro.xyz,Proxy
-- DOMAIN-SUFFIX,clash-meta.wiki,Proxy
-- DOMAIN-SUFFIX,cdn-image.com,Proxy
-- DOMAIN-SUFFIX,hayav.com,Proxy
-- DOMAIN-SUFFIX,arrc.fun,Proxy
-- DOMAIN-SUFFIX,hostloc.net,Proxy
-- DOMAIN-SUFFIX,netflav.tv,Proxy
-- DOMAIN-SUFFIX,eyny.com,Proxy
-- DOMAIN-SUFFIX,avbebe.com,Proxy
-- DOMAIN-SUFFIX,cdn-jupiter.com,Proxy
-- DOMAIN-SUFFIX,akabebe.com,Proxy
-- DOMAIN-SUFFIX,greenhalt.info,Proxy
-- IP-CIDR,208.67.222.222/32,Proxy,no-resolve
-- IP-CIDR,9.9.9.9/32,Proxy,no-resolve
-- DOMAIN-SUFFIX,githubusercontent.com,Proxy
-- DOMAIN-SUFFIX,mitmproxy.org,Proxy
-- DOMAIN-SUFFIX,vercel.app,Proxy
-- DOMAIN-SUFFIX,cdn2020.com,Proxy
-- DOMAIN-SUFFIX,cdnplaypro.com,Proxy
-- DOMAIN-SUFFIX,v1.mk,Proxy
-- DOMAIN-SUFFIX,v2rayse.com,Proxy
-- DOMAIN-SUFFIX,readthedocs.io,Proxy
-- DOMAIN-SUFFIX,cloudconvert.com,Proxy
-- DOMAIN-SUFFIX,convertio.co,Proxy
-- DOMAIN-SUFFIX,swag.live,Proxy
-- DOMAIN-SUFFIX,dmm.co.jp,Proxy
-- DOMAIN-SUFFIX,droyc-studios.com,Proxy
-- DOMAIN-SUFFIX,avbebe.com,Proxy
-- DOMAIN-SUFFIX,manwa.me,Proxy
-- DOMAIN-SUFFIX,mitmproxy.org,Proxy
-- DOMAIN-SUFFIX,vercel.app,Proxy
-- DOMAIN-SUFFIX,missav.uno,Proxy
-- DOMAIN-SUFFIX,synology.com,Proxy
-- DOMAIN-SUFFIX,cdn2020.com,Proxy
-- DOMAIN-SUFFIX,cdnplaypro.com,Proxy
-- DOMAIN-SUFFIX,sis.la,Proxy
-- DOMAIN-SUFFIX,filelions.live,Proxy
-- DOMAIN-SUFFIX,zuise.co,Proxy
-- DOMAIN-SUFFIX,sentry.io,Openai
-- DOMAIN-SUFFIX,revenuecat.com,Openai
-- DOMAIN-SUFFIX,oaiusercontent.com,Openai
-- DOMAIN-SUFFIX,91ai.net,Proxy
-- DOMAIN-SUFFIX,manhuabika.com,Proxy
-- DOMAIN-SUFFIX,appsflyersdk.com,Proxy
-- DOMAIN-SUFFIX,app-analytics-services.com,Openai
-- DOMAIN-SUFFIX,tiktokv.us,Proxy
-- DOMAIN-SUFFIX,snapkit.com,Proxy
-- DOMAIN-SUFFIX,app-analytics-services-att.com,Openai
-- DOMAIN-SUFFIX,cpu-monkey.com,Proxy
-- DOMAIN-SUFFIX,cpubenchmark.net,Proxy
-- DOMAIN-SUFFIX,hp.com,Proxy
-- DOMAIN-SUFFIX,proxmox.com,Proxy
-- DOMAIN-SUFFIX,hicy.cn,Proxy
-- DOMAIN-SUFFIX,proxmox.com,Proxy
-- DOMAIN-SUFFIX,immortalwrt.org,Proxy
-- DOMAIN-SUFFIX,browser-intake-datadoghq.com,Proxy
-- DOMAIN,log.avlyun.sec.intl.miui.com,Hijacking
-- DOMAIN,update.avlyun.sec.miui.com,Hijacking
-- DOMAIN,ixav-cse.avlyun.com,Hijacking
-- DOMAIN,logupdate.avlyun.sec.miui.com,Hijacking
-- DOMAIN,miui-fxcse.avlyun.com,Hijacking
-- DOMAIN,sdkconf.avlyun.com,Hijacking
-- DOMAIN,miav-cse.avlyun.com,Hijacking
-- DOMAIN,api.installer.xiaomi.com,Hijacking
-- DOMAIN,tmfsdk.m.qq.com,Hijacking
-- DOMAIN,a0.app.xiaomi.com,Hijacking
-- DOMAIN,adv.sec.miui.com,Hijacking
-- DOMAIN,flash.sec.miui.com,Hijacking
-- DOMAIN-SUFFIX,vantecusa.com,Proxy
-- DOMAIN-SUFFIX,googleusercontent.com,Proxy
-- DOMAIN-SUFFIX,googleapis.com,Proxy
-- DOMAIN-SUFFIX,synologydownload.com,Proxy
-- DOMAIN-SUFFIX,cnx-software.cn,Proxy
-- DOMAIN-SUFFIX,office.net,Proxy
-- DOMAIN-SUFFIX,office.com,Proxy
-- IP-CIDR,107.173.199.18/32,Proxy,no-resolve
-- DOMAIN,update.netsarangapi.com,Hijacking
-- DOMAIN-SUFFIX,internetdownloadmanager.com,Hijacking
-- DOMAIN-SUFFIX,femjoy.com,Proxy
-- DOMAIN-SUFFIX,haijiao.com,Proxy
-- DOMAIN-SUFFIX,manwawa3.cc,Proxy
-- DOMAIN,static.m-team.cc,Proxy
-- DOMAIN-SUFFIX,missav.ws,Proxy
-- DOMAIN-SUFFIX,wordpress.com,Proxy
-- DOMAIN-SUFFIX,w.org,Proxy
-- DOMAIN-SUFFIX,fuukei.org,Proxy
-- DOMAIN-SUFFIX,x.com,Proxy
-- DOMAIN-SUFFIX,surrit.com,Proxy
-- DOMAIN-SUFFIX,uaa.com,Proxy
-- DOMAIN-SUFFIX,huydwwai0.com,Proxy
-- DOMAIN-SUFFIX,toucwwhi0.com,Proxy
-- DOMAIN-SUFFIX,chunsise.bar,Proxy
-- DOMAIN-SUFFIX,kkbox.com,Proxy
-- DOMAIN-SUFFIX,f-droid.org,Proxy
-- DOMAIN-SUFFIX,imoutolove.me,Proxy
-- DOMAIN-SUFFIX,dumpmedia.com,Proxy
-- DOMAIN-SUFFIX,lukechampine.com,Proxy
-- DOMAIN-SUFFIX,bttbo.com,Proxy
-- DOMAIN-SUFFIX,last.fm,Proxy
-- DOMAIN,notifications-pa.googleapis.com,Openai
-- DOMAIN,oauthaccountmanager.googleapis.com,Openai
-- DOMAIN,oauth2.googleapis.com,Openai
-- DOMAIN-SUFFIX,readthedocs.io,Proxy
-- DOMAIN,s.magsrv.com,Hijacking
-- DOMAIN-SUFFIX,discourseoxidizingtransfer.com,Hijacking
+  - DOMAIN-SUFFIX,byr.cn,Proxy
+  - DOMAIN-SUFFIX,chinadigitaltimes.net,Proxy
+  - DOMAIN-SUFFIX,mohu.rocks,Proxy
+  - DOMAIN-SUFFIX,redditstatic.com,Proxy
+  - DOMAIN-SUFFIX,nslu2-linux.org,Proxy
+  - DOMAIN-SUFFIX,agi.com,Proxy
+  - DOMAIN-SUFFIX,github.com,Proxy
+  - DOMAIN-SUFFIX,github.io,Proxy
+  - DOMAIN-SUFFIX,ytimg.com,Proxy
+  - DOMAIN-SUFFIX,ggpht.com,Proxy
+  - DOMAIN-SUFFIX,youtube.com,Proxy
+  - DOMAIN-SUFFIX,daumcdn.net,Proxy
+  - DOMAIN-SUFFIX,daumpotplayer.com,Proxy
+  - DOMAIN-SUFFIX,ubuntu.com,Proxy
+  - DOMAIN-SUFFIX,nvidia.com,Proxy
+  - DOMAIN-SUFFIX,sourceforge.net,Proxy
+  - DOMAIN-SUFFIX,osdn.net,Proxy
+  - DOMAIN-SUFFIX,voachinese.com,Proxy
+  - DOMAIN-SUFFIX,docker.io,Proxy
+  - DOMAIN-SUFFIX,pythonhosted.org,Proxy
+  - DOMAIN-SUFFIX,vtk.org,Proxy
+  - DOMAIN-SUFFIX,microsoft.com,Proxy
+  - DOMAIN-SUFFIX,uspto.gov,Proxy
+  - DOMAIN-SUFFIX,xvideos-cdn.com,Proxy
+  - DOMAIN-SUFFIX,sci-hub.se,Proxy
+  - DOMAIN-SUFFIX,sci-hub.do,Proxy
+  - DOMAIN-SUFFIX,qt.io,Proxy
+  - DOMAIN-SUFFIX,stackoverflow.com,Proxy
+  - DOMAIN-SUFFIX,sstatic.net,Proxy
+  - DOMAIN-SUFFIX,imgur.com,Proxy
+  - DOMAIN-SUFFIX,githubassets.com,Proxy
+  - DOMAIN-SUFFIX,launchpad.net,Proxy
+  - DOMAIN-SUFFIX,canonical.com,Proxy
+  - DOMAIN-SUFFIX,pincong.rocks,Proxy
+  - DOMAIN-SUFFIX,v2ex.com,Proxy
+  - DOMAIN-SUFFIX,gudumibug.top,Proxy
+  - DOMAIN-SUFFIX,synology.com,Proxy
+  - DOMAIN-SUFFIX,origin-a.akamaihd.net,Proxy
+  - DOMAIN-SUFFIX,nvidia.cn,Proxy
+  - DOMAIN-SUFFIX,msn.com,Proxy
+  - DOMAIN-SUFFIX,pixhost.org,Proxy
+  - DOMAIN-SUFFIX,mixtape.moe,Proxy
+  - DOMAIN-SUFFIX,numpy.org,Proxy
+  - DOMAIN-SUFFIX,www.dmm.co,Proxy
+  - DOMAIN-SUFFIX,maomiav.com,Proxy
+  - DOMAIN-SUFFIX,themoviedb.org,Proxy
+  - DOMAIN-SUFFIX,sehuatang.net,Proxy
+  - DOMAIN-SUFFIX,synocommunity.com,Proxy
+  - DOMAIN-SUFFIX,cphub.net,Proxy
+  - DOMAIN-SUFFIX,x6img.com,Proxy
+  - DOMAIN-SUFFIX,catcloud.fun,Proxy
+  - DOMAIN,transact.netsarang.com,Hijacking
+  - DOMAIN,update.netsarang.com,Hijacking
+  - DOMAIN,mall.bilibili.com,Hijacking
+  - DOMAIN,mi.gdt.qq.com,Hijacking
+  - DOMAIN,pgdt.ugdtimg.com,Hijacking
+  - DOMAIN,www.netsarang.com,Proxy
+  - DOMAIN-SUFFIX,www.netsarang.co.kr,Hijacking
+  - DOMAIN,sales.netsarang.com,Hijacking
+  - DOMAIN-SUFFIX,pangolin-sdk-toutiao1.com,Hijacking
+  - DOMAIN-SUFFIX,linux.org,Proxy
+  - DOMAIN-SUFFIX,cfhthat.com,Proxy
+  - DOMAIN-SUFFIX,wikimedia.org,Proxy
+  - DOMAIN-SUFFIX,hdslb.com,Domestic
+  - DOMAIN-SUFFIX,goo.gl,Proxy
+  - DOMAIN-SUFFIX,bu.edu,Proxy
+  - DOMAIN-SUFFIX,jetbrains.com,Proxy
+  - DOMAIN-SUFFIX,jetbrains.com.cn,Proxy
+  - DOMAIN-SUFFIX,edu.sa,Proxy
+  - DOMAIN-SUFFIX,web605.cn,Proxy
+  - DOMAIN-SUFFIX,bbci.co.uk,Proxy
+  - DOMAIN-SUFFIX,ccache.org,Proxy
+  - DOMAIN-SUFFIX,wallhaven.cc,Proxy
+  - DOMAIN-SUFFIX,fastly.net,Proxy
+  - DOMAIN-SUFFIX,api.zuihuimai.com,Hijacking
+  - DOMAIN-SUFFIX,baichuan-sdk.taobao.com,Hijacking
+  - DOMAIN-SUFFIX,pglstatp-toutiao.com,Hijacking
+  - DOMAIN-SUFFIX,openathens.net,Proxy
+  - DOMAIN-SUFFIX,jsdelivr.net,Proxy
+  - DOMAIN-SUFFIX,cloudflareinsights.com,Proxy
+  - DOMAIN-SUFFIX,zenodo.org,Proxy
+  - DOMAIN-SUFFIX,esa.int,Proxy
+  - DOMAIN-SUFFIX,supersonicads.com,Hijacking
+  - DOMAIN-SUFFIX,us-east-1.amazonaws.com,Hijacking
+  - DOMAIN-SUFFIX,us-east-1.elb.amazonaws.com,Hijacking
+  - DOMAIN-SUFFIX,glulive.com,Hijacking
+  - DOMAIN-KEYWORD,adcolony,Hijacking
+  - DOMAIN-SUFFIX,ironsrc.mobi,Hijacking
+  - DOMAIN-SUFFIX,googlesyndication.com,Hijacking
+  - DOMAIN-SUFFIX,doubleclick.net,Hijacking
+  - DOMAIN-SUFFIX,googleadservices.com,Hijacking
+  - DOMAIN-SUFFIX,ksyuncdn.com,Hijacking
+  - DOMAIN-SUFFIX,akadns.net,Hijacking
+  - DOMAIN-SUFFIX,politiscales.fr,Proxy
+  - DOMAIN-SUFFIX,konami.net,Proxy
+  - DOMAIN-SUFFIX,cloudflare.com,Proxy
+  - DOMAIN-SUFFIX,learnopencv.com,Proxy
+  - DOMAIN-SUFFIX,gitbook.io,Proxy
+  - DOMAIN-SUFFIX,orcid.org,Proxy
+  - DOMAIN-SUFFIX,grss-ieee.org,Proxy
+  - DOMAIN-SUFFIX,arrc.fun,Proxy
+  - DOMAIN-SUFFIX,microsoftonline.com,Proxy
+  - DOMAIN-SUFFIX,flurry.com,Hijacking
+  - DOMAIN-SUFFIX,rt.applovin.com,Hijacking
+  - DOMAIN-SUFFIX,netsarang.com,Proxy
+  - DOMAIN-SUFFIX,v2fly.org,Proxy
+  - DOMAIN-SUFFIX,mdpi.com,Proxy
+  - DOMAIN-SUFFIX,api.cas.cn,Hijacking
+  - DOMAIN-SUFFIX,grammarly.com,Proxy
+  - DOMAIN-KEYWORD,openai,Openai
+  - DOMAIN-SUFFIX,chatgpt.com,Openai
+  - DOMAIN-SUFFIX,mandrillapp.com,Proxy
+  - DOMAIN-SUFFIX,sms-activate.org,Proxy
+  - DOMAIN-SUFFIX,rightpdf.com,Proxy
+  - DOMAIN,tracker.byr.pt,DIRECT
+  - DOMAIN,byr.pt,PTProxy
+  - DOMAIN-SUFFIX,npupt.com,Proxy
+  - DOMAIN-SUFFIX,manuscriptcentral.com,Proxy
+  - GEOSITE,speedtest,Speedtest
+  - DOMAIN-SUFFIX,pussytorrents.org,Proxy
+  - DOMAIN-SUFFIX,chaturbate.com,Proxy
+  - DOMAIN-SUFFIX,highwebmedia.com,Proxy
+  - DOMAIN-SUFFIX,99854.men,Proxy
+  - DOMAIN-SUFFIX,hpplay.cn,Hijacking
+  - DOMAIN-SUFFIX,imdb.com,Proxy
+  - DOMAIN-SUFFIX,tmdb.org,Proxy
+  - DOMAIN-SUFFIX,openwrt.org,Proxy
+  - DOMAIN-SUFFIX,jellyfin.org,Proxy
+  - DOMAIN-SUFFIX,intel.com,Proxy
+  - DOMAIN-SUFFIX,gigabyte.cn,Proxy
+  - DOMAIN-SUFFIX,gigabyte.com,Proxy
+  - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
+  - DOMAIN-SUFFIX,msftncsi.com,DIRECT
+  - DOMAIN-SUFFIX,cpu-panda.com,Proxy
+  - DOMAIN-SUFFIX,edu.cn,Domestic
+  - DOMAIN-SUFFIX,etrovub.be,Proxy
+  - DOMAIN-SUFFIX,dns.cloudflare.com,SafeDNS
+  - DOMAIN-SUFFIX,doh.opendns.com,SafeDNS
+  - DOMAIN-SUFFIX,adguard-dns.com,SafeDNS
+  - DOMAIN-SUFFIX,private.canadianshield.cira.ca,SafeDNS
+  - DOMAIN-SUFFIX,gns.google,SafeDNS
+  - DOMAIN,odvr.nic.cz,SafeDNS
+  - DOMAIN,public.dns.iij.jp,SafeDNS
+  - DOMAIN-SUFFIX,hostloc.com,Proxy
+  - DOMAIN,kp.m-team.cc,Proxy
+  - DOMAIN,api2.m-team.cc,Proxy
+  - DOMAIN,img.m-team.cc,Proxy
+  - DOMAIN-SUFFIX,gushiciku.cn,Proxy
+  - DOMAIN-SUFFIX,readfog.com,Proxy
+  - DOMAIN-SUFFIX,azureedge.net,Proxy
+  - DOMAIN-SUFFIX,mdpi-res.com,Proxy
+  - DOMAIN-SUFFIX,auckland.ac.nz,Proxy
+  - DOMAIN-SUFFIX,imgix.net,Proxy
+  - DOMAIN-SUFFIX,ieee.org,Proxy
+  - DOMAIN-SUFFIX,ala.im,Proxy
+  - DOMAIN-SUFFIX,v2rayssr.com,Proxy
+  - DOMAIN-SUFFIX,jb.gg,Proxy
+  - DOMAIN,mb3admin.com,Mitm
+  - DOMAIN-SUFFIX,opencv.org,Proxy
+  - DOMAIN-SUFFIX,thetvdb.com,Proxy
+  - DOMAIN,mitm.it,Mitm
+  - DOMAIN-SUFFIX,wikiwand.com,Proxy
+  - DOMAIN-SUFFIX,kxcdn.com.com,Proxy
+  - DOMAIN-SUFFIX,funet.fi,Proxy
+  - DOMAIN-SUFFIX,take2games.com,Proxy
+  - DOMAIN-SUFFIX,office365.com,Proxy
+  - DOMAIN-SUFFIX,jdbstatic.com,Proxy
+  - DOMAIN-SUFFIX,jvid.com,Proxy
+  - DOMAIN-SUFFIX,yadi.sk,Proxy
+  - DOMAIN-SUFFIX,yandex.com,Proxy
+  - DOMAIN-SUFFIX,photobucket.com,Proxy
+  - DOMAIN-SUFFIX,freeimage.us,Proxy
+  - DOMAIN-SUFFIX,loli.net,Proxy
+  - DOMAIN-SUFFIX,imagebam.com,Proxy
+  - DOMAIN-SUFFIX,imgbox.com,Proxy
+  - DOMAIN-SUFFIX,img169.com,Proxy
+  - DOMAIN-SUFFIX,funkyimg.com,Proxy
+  - DOMAIN-SUFFIX,ax1x.com,Proxy
+  - DOMAIN-SUFFIX,fc2.com,Proxy
+  - DOMAIN-SUFFIX,bbppics.com,Proxy
+  - DOMAIN-SUFFIX,akamai-video-content.com,Proxy
+  - DOMAIN-SUFFIX,chkaja.com,Proxy
+  - DOMAIN-SUFFIX,tclei.top,Proxy
+  - DOMAIN-SUFFIX,curcolbudol.com,Proxy
+  - DOMAIN-SUFFIX,sex8.cc,Proxy
+  - DOMAIN-SUFFIX,xbluntan78.life,Proxy
+  - DOMAIN-SUFFIX,chengrenn18.xyz,Proxy
+  - DOMAIN-SUFFIX,aibaaiba.xyz,Proxy
+  - DOMAIN-SUFFIX,riotgames.com,Proxy
+  - DOMAIN-SUFFIX,leagueoflegends.com,Proxy
+  - DOMAIN-SUFFIX,ygoprodeck.com,Proxy
+  - DOMAIN-SUFFIX,doubanio.com,Mitm
+  - DOMAIN-SUFFIX,xchina.co,Proxy
+  - DOMAIN-SUFFIX,xchina.life,Proxy
+  - DOMAIN-SUFFIX,katfile.com,Proxy
+  - DOMAIN-SUFFIX,binstream.live,Hijacking
+  - DOMAIN-SUFFIX,groueta.cc,Proxy
+  - DOMAIN-SUFFIX,e-hentai.org,Proxy
+  - DOMAIN-SUFFIX,pximg.net,Proxy
+  - DOMAIN-SUFFIX,gravatar.com,Proxy
+  - DOMAIN-SUFFIX,smartnews.be,Proxy
+  - DOMAIN-SUFFIX,cnn.com,Proxy
+  - DOMAIN-SUFFIX,deepl.com,Proxy
+  - DOMAIN-SUFFIX,media-amazon.com,Proxy
+  - DOMAIN-SUFFIX,video-delivery.net,Proxy
+  - DOMAIN-SUFFIX,phncdn.com,Proxy
+  - DOMAIN-SUFFIX,docker.com,Proxy
+  - DOMAIN-SUFFIX,visualstudio.com,Proxy
+  - DOMAIN-SUFFIX,upload.cc,Proxy
+  - DOMAIN-SUFFIX,hotgirl.one,Proxy
+  - DOMAIN-SUFFIX,discfan.net,Proxy
+  - DOMAIN-SUFFIX,gudumibug.top,Proxy
+  - DOMAIN-SUFFIX,ku66.net,Proxy
+  - DOMAIN-SUFFIX,chkaja.com,Proxy
+  - DOMAIN-SUFFIX,o--o.xyz,Proxy
+  - DOMAIN-SUFFIX,huggingface.co,Proxy
+  - DOMAIN-SUFFIX,ign.com,Proxy
+  - DOMAIN-SUFFIX,npttech.com,Proxy
+  - DOMAIN-SUFFIX,scorecardresearch.com,Proxy
+  - DOMAIN-SUFFIX,ignimgs.com,Proxy
+  - DOMAIN-SUFFIX,vscdn.com,Proxy
+  - DOMAIN-SUFFIX,contentstack.io,Proxy
+  - DOMAIN-SUFFIX,nexus-cdn.com,Proxy
+  - DOMAIN-SUFFIX,lolesports.com,Proxy
+  - DOMAIN-SUFFIX,netcdn.space,Proxy
+  - DOMAIN-SUFFIX,bestgirlsexy.com,Proxy
+  - DOMAIN-SUFFIX,hotgirl.biz,Proxy
+  - DOMAIN-SUFFIX,xchina.biz,Proxy
+  - DOMAIN-SUFFIX,mozilla.org,Proxy
+  - DOMAIN-SUFFIX,tiktok.com,Proxy
+  - DOMAIN-SUFFIX,ibytedtos.com,Proxy
+  - DOMAIN-SUFFIX,ttwstatic.com,Proxy
+  - DOMAIN-SUFFIX,byteoversea.com,Proxy
+  - DOMAIN-SUFFIX,mkrobot.orh,Proxy
+  - DOMAIN-SUFFIX,pypi.org,Proxy
+  - DOMAIN-SUFFIX,pytorch.org,Proxy
+  - DOMAIN-SUFFIX,metart.com,NorthAmerica
+  - DOMAIN-SUFFIX,metartnetwork.com,NorthAmerica
+  - DOMAIN-SUFFIX,fsm.name,Proxy
+  - DOMAIN-SUFFIX,urbanairship.com,Proxy
+  - DOMAIN-SUFFIX,apptentive.com,Proxy
+  - DOMAIN-SUFFIX,ngtv.io,Proxy
+  - DOMAIN-SUFFIX,outbrain.com,Proxy
+  - DOMAIN-SUFFIX,warnermediacdn.com,Proxy
+  - DOMAIN-SUFFIX,brightline.tv,Proxy
+  - DOMAIN-SUFFIX,weatherapi.com,Proxy
+  - DOMAIN-SUFFIX,gethomepage.dev,Proxy
+  - DOMAIN-SUFFIX,unsplash.com,Proxy
+  - DOMAIN-SUFFIX,bulianglin.com,Proxy
+  - DOMAIN-SUFFIX,bbums.cn,Hijacking
+  - DOMAIN-SUFFIX,bbums.org.cn,Hijacking
+  - DOMAIN-SUFFIX,ptpimg.me,Proxy
+  - DOMAIN-SUFFIX,helloimg.com,Proxy
+  - DOMAIN-SUFFIX,pixhost.to,Proxy
+  - DOMAIN-SUFFIX,sagernet.org,Proxy
+  - DOMAIN-SUFFIX,band.us,Proxy
+  - DOMAIN-SUFFIX,shuttle.gt-in.com,Proxy
+  - DOMAIN-SUFFIX,ab12y.com,Proxy
+  - DOMAIN-SUFFIX,wl-site5.com,Proxy
+  - DOMAIN-SUFFIX,dmm.co.jp,Proxy
+  - DOMAIN-SUFFIX,devsde.com,Proxy
+  - DOMAIN-SUFFIX,mixtape.moe,Proxy
+  - DOMAIN-SUFFIX,pixhost.org,Proxy
+  - DOMAIN-SUFFIX,jwpcdn.com,Proxy
+  - DOMAIN-SUFFIX,wpadmngr.com,Proxy
+  - DOMAIN-SUFFIX,guardeddummysoothing.com,Proxy
+  - DOMAIN-SUFFIX,tapecontent.net,Proxy
+  - DOMAIN-SUFFIX,pornfhd.com,Proxy
+  - DOMAIN-SUFFIX,auvugwsppxfrtiqlmjjb.buzz,Proxy
+  - DOMAIN-SUFFIX,18av.pro,Proxy
+  - DOMAIN-SUFFIX,limosiwooable.com,Proxy
+  - DOMAIN-SUFFIX,004307.com,Proxy
+  - DOMAIN-SUFFIX,ptt.sex,Proxy
+  - DOMAIN-SUFFIX,fanart.tv,Proxy
+  - DOMAIN-SUFFIX,deviantart.com,Proxy
+  - DOMAIN-SUFFIX,trakt.tv,Proxy
+  - DOMAIN-SUFFIX,politicalcompass.org,Proxy
+  - DOMAIN-SUFFIX,leanplum.com,Proxy
+  - DOMAIN-SUFFIX,amplitude.com,Proxy
+  - DOMAIN-SUFFIX,platforms.team,Proxy
+  - DOMAIN-SUFFIX,run.app,Proxy
+  - DOMAIN-SUFFIX,braze.com,Proxy
+  - DOMAIN-SUFFIX,bootstrapcdn.com,Proxy
+  - DOMAIN-SUFFIX,mega.co.nz,Proxy
+  - DOMAIN-SUFFIX,sijishes.com,Proxy
+  - DOMAIN-SUFFIX,acggw.club,Proxy
+  - DOMAIN-SUFFIX,cool18.com,Proxy
+  - DOMAIN-SUFFIX,wp.com,Proxy
+  - DOMAIN-SUFFIX,intercom.io,Proxy
+  - DOMAIN-SUFFIX,intercomcdn.com,Proxy
+  - DOMAIN-SUFFIX,wsrv.nl,Proxy
+  - DOMAIN-SUFFIX,wpadmngr.com,Proxy
+  - DOMAIN-SUFFIX,coinzillatag.com,Proxy
+  - DOMAIN-SUFFIX,fuligirl.net,Proxy
+  - DOMAIN-SUFFIX,wireshark.org,Proxy
+  - DOMAIN-SUFFIX,xyjgjp.com,Proxy
+  - DOMAIN-SUFFIX,mgstage.com,Proxy
+  - DOMAIN-SUFFIX,6park.com,Proxy
+  - DOMAIN-SUFFIX,npmjs.org,Proxy
+  - DOMAIN-SUFFIX,oaistatic.com,Openai
+  - DOMAIN-SUFFIX,ax1x.com,Proxy
+  - DOMAIN-SUFFIX,www.straplez.com,Proxy
+  - DOMAIN-SUFFIX,straplez.com,Proxy
+  - DOMAIN-SUFFIX,0472.org,Proxy
+  - DOMAIN-SUFFIX,heanet.ie,Proxy
+  - DOMAIN-SUFFIX,androiddatahost.com,Proxy
+  - DOMAIN-SUFFIX,moviepilot.com,Proxy
+  - DOMAIN-SUFFIX,unrealengine.com,Proxy
+  - DOMAIN-SUFFIX,exoticaz.to,Proxy
+  - DOMAIN-SUFFIX,glusoft.com,Proxy
+  - DOMAIN-SUFFIX,7-zip.org,Proxy
+  - DOMAIN-SUFFIX,fandom.com,Proxy
+  - DOMAIN-SUFFIX,frank2019.me,Proxy
+  - DOMAIN-SUFFIX,nicovideo.jp,Proxy
+  - DOMAIN-SUFFIX,termius.com,Proxy
+  - DOMAIN-SUFFIX,clash.wiki,Proxy
+  - DOMAIN-SUFFIX,wiki.org,Proxy
+  - DOMAIN-SUFFIX,fotor.com,Proxy
+  - DOMAIN-SUFFIX,pangle.io,Proxy
+  - DOMAIN-SUFFIX,z4a.net,Proxy
+  - DOMAIN-SUFFIX,clipdrop.co,Proxy
+  - DOMAIN-SUFFIX,zendesk.com,Proxy
+  - DOMAIN-SUFFIX,auth0.com,Proxy
+  - DOMAIN-SUFFIX,packagecloud.io,Proxy
+  - DOMAIN-SUFFIX,businessinsider.com,Proxy
+  - DOMAIN-SUFFIX,networksorcery.com,Proxy
+  - DOMAIN-SUFFIX,kernel.org,Proxy
+  - DOMAIN-SUFFIX,uwaterloo.ca,Proxy
+  - DOMAIN-SUFFIX,openssl.org,Proxy
+  - DOMAIN-SUFFIX,xs4all.nl,Proxy
+  - DOMAIN-SUFFIX,libzip.org,Proxy
+  - DOMAIN-SUFFIX,ffmpeg.org,Proxy
+  - DOMAIN-SUFFIX,gnupg.org,Proxy
+  - DOMAIN-SUFFIX,osuosl.org,Proxy
+  - DOMAIN-SUFFIX,freedesktop.org,Proxy
+  - DOMAIN-SUFFIX,gnu.org,Proxy
+  - DOMAIN-SUFFIX,alsa-project.org,Proxy
+  - DOMAIN-SUFFIX,libuv.org,Proxy
+  - DOMAIN-SUFFIX,ruby-lang.org,Proxy
+  - DOMAIN-SUFFIX,lua.org,Proxy
+  - DOMAIN-SUFFIX,pyyaml.org,Proxy
+  - DOMAIN-SUFFIX,python.org,Proxy
+  - DOMAIN-SUFFIX,metacpan.org,Proxy
+  - DOMAIN-SUFFIX,texo.network,Proxy
+  - DOMAIN-SUFFIX,crates.io,Proxy
+  - DOMAIN-SUFFIX,debian.org,Proxy
+  - DOMAIN-SUFFIX,osano.com,Proxy
+  - DOMAIN-SUFFIX,hcaptcha.com,Proxy
+  - DOMAIN-SUFFIX,tiktokcdn.com,Proxy
+  - DOMAIN-SUFFIX,tiktokv.com,Proxy
+  - DOMAIN-SUFFIX,tiktokcdn-us.com,Proxy
+  - DOMAIN-SUFFIX,patreon.com,Proxy
+  - DOMAIN-SUFFIX,foldingathome.org,Proxy
+  - IP-CIDR,129.32.209.206/24,Proxy,no-resolve
+  - DOMAIN-SUFFIX,anaconda.com,Proxy
+  - DOMAIN-SUFFIX,conda.io,Proxy
+  - DOMAIN-SUFFIX,belle-vie.xyz,Proxy
+  - DOMAIN-SUFFIX,statically.io,Proxy
+  - DOMAIN-SUFFIX,agrosino.net,Proxy
+  - DOMAIN,audiences.me,Mitm
+  - DOMAIN-SUFFIX,biliapi.net,Mitm
+  - DOMAIN-SUFFIX,biliapi.com,Mitm
+  - DOMAIN-SUFFIX,bilibili.com,Mitm
+  - DOMAIN,httpdns.bilivideo.com,Mitm
+  - DOMAIN-SUFFIX,stun-2.chat.bilibili.com,Hijacking
+  - DOMAIN-SUFFIX,stun.chat.bilibili.com,Hijacking
+  - GEOSITE,steam@cn,DIRECT
+  - GEOSITE,category-games@cn,DIRECT
+  - IP-CIDR,203.107.1.33/32,Mitm,no-resolve
+  - IP-CIDR,203.107.1.34/32,Mitm,no-resolve
+  - IP-CIDR,203.107.1.65/32,Mitm,no-resolve
+  - IP-CIDR,203.107.1.66/32,Mitm,no-resolve
+  - IP-CIDR,103.41.167.237/32,Mitm,no-resolve
+  - DOMAIN,router.gamersky.com,Mitm
+  - DOMAIN,router1.gamersky.com,Mitm
+  - DOMAIN,router2.gamersky.com,Mitm
+  - DOMAIN,router3.gamersky.com,Mitm
+  - DOMAIN,router11.gamersky.com,Mitm
+  - DOMAIN,appapi2click.gamersky.com,Hijacking
+  - DOMAIN-SUFFIX,erpweb.eu.org,Proxy
+  - DOMAIN-SUFFIX,mij.rip,Proxy
+  - DOMAIN-SUFFIX,adtroop.cn,Hijacking
+  - DOMAIN,open.e.kuaishou.com,Hijacking
+  - DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,Hijacking
+  - DOMAIN-SUFFIX,metacubex.one,Proxy
+  - DOMAIN-SUFFIX,uuidgenerator.net,Proxy
+  - DOMAIN-SUFFIX,op.gg,Proxy
+  - DOMAIN-SUFFIX,rockstargames.com,Proxy
+  - DOMAIN-SUFFIX,xchina.click,Proxy
+  - DOMAIN-SUFFIX,digicert.com,Proxy
+  - DOMAIN-SUFFIX,input.shouji.sogou.com,Hijacking
+  - DOMAIN-SUFFIX,mplstudios.com,Proxy
+  - DOMAIN-SUFFIX,redditspace.com,Proxy
+  - DOMAIN-SUFFIX,windows.com,Proxy
+  - DOMAIN-SUFFIX,clashverge.dev,Proxy
+  - DOMAIN-SUFFIX,blogger.com,Proxy
+  - DOMAIN-SUFFIX,frostsky.com,Proxy
+  - DOMAIN-SUFFIX,sideloadly.io,Proxy
+  - DOMAIN-SUFFIX,slproweb.com,Proxy
+  - DOMAIN-SUFFIX,trollstore.app,Proxy
+  - DOMAIN-SUFFIX,urldecoder.org,Proxy
+  - DOMAIN-SUFFIX,linkcloud.me,Proxy
+  - DOMAIN-SUFFIX,linkcloud.network,Proxy
+  - DOMAIN-SUFFIX,imgtp.com,Proxy
+  - DOMAIN-SUFFIX,ccp.ovh,Proxy
+  - DOMAIN-SUFFIX,msgamestudios.com,Proxy
+  - DOMAIN-SUFFIX,yarnpkg.com,Proxy
+  - DOMAIN-SUFFIX,pypa.io,Proxy
+  - DOMAIN-SUFFIX,linux.do,Proxy
+  - DOMAIN-SUFFIX,staticflickr.com,Proxy
+  - DOMAIN-SUFFIX,mapgenie.io,Proxy
+  - DOMAIN-SUFFIX,typekit.net,Proxy
+  - DOMAIN-SUFFIX,gta-5-map.com,Proxy
+  - DOMAIN-SUFFIX,pcgamer.com,Proxy
+  - DOMAIN-SUFFIX,metacritic.com,Proxy
+  - DOMAIN-SUFFIX,jwplayer.com,Proxy
+  - DOMAIN-SUFFIX,ks51hw546js1ro.xyz,Proxy
+  - DOMAIN-SUFFIX,clash-meta.wiki,Proxy
+  - DOMAIN-SUFFIX,cdn-image.com,Proxy
+  - DOMAIN-SUFFIX,hayav.com,Proxy
+  - DOMAIN-SUFFIX,arrc.fun,Proxy
+  - DOMAIN-SUFFIX,hostloc.net,Proxy
+  - DOMAIN-SUFFIX,netflav.tv,Proxy
+  - DOMAIN-SUFFIX,eyny.com,Proxy
+  - DOMAIN-SUFFIX,avbebe.com,Proxy
+  - DOMAIN-SUFFIX,cdn-jupiter.com,Proxy
+  - DOMAIN-SUFFIX,akabebe.com,Proxy
+  - DOMAIN-SUFFIX,greenhalt.info,Proxy
+  - IP-CIDR,208.67.222.222/32,Proxy,no-resolve
+  - IP-CIDR,9.9.9.9/32,Proxy,no-resolve
+  - DOMAIN-SUFFIX,githubusercontent.com,Proxy
+  - DOMAIN-SUFFIX,mitmproxy.org,Proxy
+  - DOMAIN-SUFFIX,vercel.app,Proxy
+  - DOMAIN-SUFFIX,cdn2020.com,Proxy
+  - DOMAIN-SUFFIX,v1.mk,Proxy
+  - DOMAIN-SUFFIX,v2rayse.com,Proxy
+  - DOMAIN-SUFFIX,readthedocs.io,Proxy
+  - DOMAIN-SUFFIX,cloudconvert.com,Proxy
+  - DOMAIN-SUFFIX,convertio.co,Proxy
+  - DOMAIN-SUFFIX,swag.live,Proxy
+  - DOMAIN-SUFFIX,dmm.co.jp,Proxy
+  - DOMAIN-SUFFIX,droyc-studios.com,Proxy
+  - DOMAIN-SUFFIX,manwa.me,Proxy
+  - DOMAIN-SUFFIX,missav.uno,Proxy
+  - DOMAIN-SUFFIX,synology.com,Proxy
+  - DOMAIN-SUFFIX,cdnplaypro.com,Proxy
+  - DOMAIN-SUFFIX,sis.la,Proxy
+  - DOMAIN-SUFFIX,filelions.live,Proxy
+  - DOMAIN-SUFFIX,zuise.co,Proxy
+  - DOMAIN-SUFFIX,91ai.net,Proxy
+  - DOMAIN-SUFFIX,manhuabika.com,Proxy
+  - DOMAIN-SUFFIX,appsflyersdk.com,Proxy
+  - DOMAIN-SUFFIX,app-analytics-services.com,Openai
+  - DOMAIN-SUFFIX,tiktokv.us,Proxy
+  - DOMAIN-SUFFIX,snapkit.com,Proxy
+  - DOMAIN-SUFFIX,app-analytics-services-att.com,Openai
+  - DOMAIN-SUFFIX,cpu-monkey.com,Proxy
+  - DOMAIN-SUFFIX,cpubenchmark.net,Proxy
+  - DOMAIN-SUFFIX,hp.com,Proxy
+  - DOMAIN-SUFFIX,proxmox.com,Proxy
+  - DOMAIN-SUFFIX,hicy.cn,Proxy
+  - DOMAIN-SUFFIX,immortalwrt.org,Proxy
+  - DOMAIN-SUFFIX,browser-intake-datadoghq.com,Proxy
+  - DOMAIN,log.avlyun.sec.intl.miui.com,Hijacking
+  - DOMAIN,update.avlyun.sec.miui.com,Hijacking
+  - DOMAIN,ixav-cse.avlyun.com,Hijacking
+  - DOMAIN,logupdate.avlyun.sec.miui.com,Hijacking
+  - DOMAIN,miui-fxcse.avlyun.com,Hijacking
+  - DOMAIN,sdkconf.avlyun.com,Hijacking
+  - DOMAIN,miav-cse.avlyun.com,Hijacking
+  - DOMAIN,api.installer.xiaomi.com,Hijacking
+  - DOMAIN,tmfsdk.m.qq.com,Hijacking
+  - DOMAIN,a0.app.xiaomi.com,Hijacking
+  - DOMAIN,adv.sec.miui.com,Hijacking
+  - DOMAIN,flash.sec.miui.com,Hijacking
+  - DOMAIN-SUFFIX,vantecusa.com,Proxy
+  - DOMAIN-SUFFIX,synologydownload.com,Proxy
+  - DOMAIN-SUFFIX,cnx-software.cn,Proxy
+  - DOMAIN-SUFFIX,office.net,Proxy
+  - DOMAIN-SUFFIX,office.com,Proxy
+  - IP-CIDR,107.173.199.18/32,Proxy,no-resolve
+  - DOMAIN,update.netsarangapi.com,Hijacking
+  - DOMAIN-SUFFIX,internetdownloadmanager.com,Hijacking
+  - DOMAIN-SUFFIX,femjoy.com,Proxy
+  - DOMAIN-SUFFIX,haijiao.com,Proxy
+  - DOMAIN-SUFFIX,manwawa3.cc,Proxy
+  - DOMAIN,static.m-team.cc,Proxy
+  - DOMAIN-SUFFIX,missav.ws,Proxy
+  - DOMAIN-SUFFIX,wordpress.com,Proxy
+  - DOMAIN-SUFFIX,w.org,Proxy
+  - DOMAIN-SUFFIX,fuukei.org,Proxy
+  - DOMAIN-SUFFIX,x.com,Proxy
+  - DOMAIN-SUFFIX,surrit.com,Proxy
+  - DOMAIN-SUFFIX,uaa.com,Proxy
+  - DOMAIN-SUFFIX,huydwwai0.com,Proxy
+  - DOMAIN-SUFFIX,toucwwhi0.com,Proxy
+  - DOMAIN-SUFFIX,chunsise.bar,Proxy
+  - DOMAIN-SUFFIX,kkbox.com,Proxy
+  - DOMAIN-SUFFIX,f-droid.org,Proxy
+  - DOMAIN-SUFFIX,imoutolove.me,Proxy
+  - DOMAIN-SUFFIX,dumpmedia.com,Proxy
+  - DOMAIN-SUFFIX,lukechampine.com,Proxy
+  - DOMAIN-SUFFIX,bttbo.com,Proxy
+  - DOMAIN-SUFFIX,last.fm,Proxy
+  - DOMAIN,notifications-pa.googleapis.com,Openai
+  - DOMAIN,oauthaccountmanager.googleapis.com,Openai
+  - DOMAIN,oauth2.googleapis.com,Openai
+  - DOMAIN-SUFFIX,readthedocs.io,Proxy
+  - DOMAIN,s.magsrv.com,Hijacking
+  - DOMAIN-SUFFIX,greasyfork.org,Proxy
+  - DOMAIN-SUFFIX,imgur.com,Proxy
+  - DOMAIN-SUFFIX,bgm.tv,Proxy
+  - AND,((DOMAIN,api.zhihu.com),(NETWORK,UDP)),REJECT
+  - DOMAIN,api.zhihu.com,Mitm

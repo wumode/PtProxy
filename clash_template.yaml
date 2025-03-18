@@ -108,8 +108,7 @@ proxy-groups:
 - name: Mitm
   type: select
   proxies:
-    - 'MitmProxy'
-    - 'MitmProxyX'
+    - MitmProxy
     - DIRECT
     - Hijacking
 - name: Final
@@ -123,17 +122,14 @@ proxy-groups:
 #  proxies:
 #    - Proxy
 #    - Domestic
-script:
-  shortcuts: {}
 # rule-providers: []
 rules: []
 dns:
   nameserver-policy:             # lookup domain through assigned nameserver
     '+.westsite.cn': '223.5.5.5'
-  fake-ip-filter:
-  - "+.*"
 profile:
-  tracing: false
+#  tracing: false
   store-selected: true
-log-level: error
-tcp-concurrent: true
+log-level: silent
+mode: rule
+#tcp-concurrent: true

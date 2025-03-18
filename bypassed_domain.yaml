@@ -10,11 +10,9 @@ domains:
     - 6
 - domain: www.nicept.net
   bypass:
-    - 4
     - 6
 - domain: rousi.zip
   bypass:
-    - 4
     - 6
 - domain: hitpt.com
   bypass:
@@ -33,7 +31,6 @@ domains:
     - 6
 - domain: www.pttime.org
   bypass:
-    - 4
     - 6
 - domain: ipv6.ip.sb
   bypass:
@@ -44,6 +41,7 @@ domains:
     - 6
 - domain: tracker.m-team.io
   bypass:
+    - 4
     - 6
 - domain: t.hddolby.com
   bypass:
@@ -63,9 +61,11 @@ domains:
     - 4
 - domain: 52pt.site
   bypass:
+    - 4
     - 6
 - domain: connects.icu
   bypass:
+    - 4
     - 6
 - domain: tracker.qingwa.pro
   bypass:
@@ -129,13 +129,22 @@ domains:
     - 6
 - domain: ptsbao.club
   bypass:
-    - 4
     - 6
 - domain: tracker-public.tjupt.org
   bypass:
-    - 4
     - 6
 - domain: tracker.totheglory.im
+  bypass:
+    - 4
+    - 6
+- domain: daydream.dmhy.best
+  bypass:
+    - 4
+    - 6
+- domain: on6.springsunday.net
+  bypass:
+    - 6
+- domain: zmpt.cc
   bypass:
     - 4
     - 6
@@ -171,5 +180,7 @@ exempt_ips:
 - 203.107.1.34
 - 203.107.1.65
 - 203.107.1.66
+- 104.21.48.1
+- 107.173.199.18
 ips:
 - 182.254.116.117/32

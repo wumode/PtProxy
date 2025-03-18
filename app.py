@@ -78,9 +78,7 @@ def server_config():
     if request.args.get('permission') not in users:
         abort(404)
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    headers = {'Time': f'{current_time}',
-               'Content-Type': 'application/octet-stream; charset=utf-8',
-               'Content-Disposition': 'attachment; filename="ptproxy.yaml"'}
+    headers = {'Time': f'{current_time}', "Content-Type": "text/plain; charset=utf-8"}
     user_agent = request.headers.get('User-Agent')
     version = request.args.get('version')
     try:
@@ -93,8 +91,13 @@ def server_config():
     response_file = configuration['out_yaml']
     if version in configuration['clash_config']:
         response_file = configuration['clash_config'][version]
-
-    response = make_response(send_file(response_file, as_attachment=True))
+    try:
+        with open(response_file, 'r', encoding='utf-8') as fr:
+            clash_config = fr.read()
+    except Exception as e:
+        print(f"Fail to open {response_file}: {e}")
+    response = make_response(clash_config)
+    response.mimetype = 'text/plain; charset=utf-8'
     response.headers = headers
     real_ip = request.remote_addr if not request.headers.get('X-Real-IP') else request.headers.get('X-Real-IP')
     ip_details = query_ip_detail(real_ip)
@@ -142,17 +145,17 @@ def server_rule_providers():
         abort(404)
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     headers = {'Time': f'{current_time}',
-               'Content-Type': 'application/octet-stream; charset=utf-8',
-               'Content-Disposition': f'attachment; filename="{rule_set}.yaml"'}
+               'Content-Type': "text/plain; charset=utf-8"}
     # user_agent = request.headers.get('User-Agent')
-    try:
-        with open(temp_yaml, 'r', encoding='utf-8') as fl:
-            temp = yaml.load(fl.read(), Loader=yaml.FullLoader)
-            headers['Subscription-Userinfo'] = \
-                f'upload={temp["upload"]}; download={temp["download"]}; total={temp["total"]}; expire={temp["expire"]}'
-    except Exception as e:
-        print(f"Fail to open {temp_yaml}: {e}")
-    response = make_response(send_file(configuration['rule_providers'][rule_set]['path'], as_attachment=True))
+    # try:
+    #     with open(temp_yaml, 'r', encoding='utf-8') as fl:
+    #         temp = yaml.load(fl.read(), Loader=yaml.FullLoader)
+    #         headers['Subscription-Userinfo'] = \
+    #             f'upload={temp["upload"]}; download={temp["download"]}; total={temp["total"]}; expire={temp["expire"]}'
+    # except Exception as e:
+    #     print(f"Fail to open {temp_yaml}: {e}")
+    response = make_response(ruleset_str(rule_set))
+    response.mimetype = 'text/plain; charset=utf-8'
     response.headers = headers
     return response
 
@@ -444,6 +447,15 @@ def save_rules(rules_path: str) -> list:
         extra_rules_string = yaml.dump(extra_rules, allow_unicode=True)
         f.write(extra_rules_string)
     return rules
+
+
+def ruleset_str(set_name: str) -> str:
+    global ruleset_rules
+    rule_set = {'payload': []}
+    for rule in ruleset_rules:
+        if rule['rule_set'] == set_name:
+            rule_set['payload'].append(f'{rule["wildcard_type"]}{rule["value"]}')
+    return yaml.dump(rule_set, allow_unicode=True)
 
 
 def save_ruleset_rules(rulesets: dict) -> list:

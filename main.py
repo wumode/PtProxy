@@ -14,14 +14,16 @@ import os
 from ping3 import ping
 import sys
 from urllib.parse import urlparse, parse_qs
+from typing import Optional
+
 from bark import bark_sender
 
 
-def read_yaml(path) -> dict:
+def read_yaml(path) -> Optional[dict]:
     with open(path, 'r', encoding='utf-8') as f:
         file_data = f.read()
-        rules = yaml.load(file_data, Loader=yaml.FullLoader)
-        return rules
+        rs = yaml.load(file_data, Loader=yaml.FullLoader)
+        return rs
 
 
 if len(sys.argv) < 2:
@@ -446,8 +448,8 @@ if __name__ == "__main__":
     clash_config = read_yaml(template_yaml)
     clash_config['rules'] += rules["rules"]
     clash_config['rule-providers'] = rules["rule-providers"]
-    clash_config['rule-providers']['proxied_rules']['url'] = configuration['rule_providers']['proxied_rules']['url']
-    clash_config['rule-providers']['direct_rules']['url'] = configuration['rule_providers']['direct_rules']['url']
+    for provider in clash_config['rule-providers']:
+        clash_config['rule-providers'][provider]['url'] = configuration['rule_providers'][provider]['url']
     user_agent_list = [
         "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"]
     headers = {"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -461,7 +463,9 @@ if __name__ == "__main__":
     headers['user-agent'] = user_agent_list[0]
     is_success = False
     userinfo = {'upload': 0, 'download': 0, 'total': 0, 'expire': 0}
-    for sub_link in sub_link_list:
+    for item in sub_link_list:
+        sub_link = item['url']
+        sub_type = item['type']
         print(sub_link)
         try:
             r = session.get(sub_link, timeout=10, headers=headers)
@@ -486,25 +490,30 @@ if __name__ == "__main__":
             userinfo['upload'] = variables['upload'] + userinfo['upload']
             userinfo['total'] = variables['total'] + userinfo['total']
             userinfo['expire'] = max(variables['expire'], userinfo['expire'])
-
-        nodes = parse_subscribe(v2ray_str)
-        clash_Proxy = []
-        clash_Proxy_names = []
-        for v2node in nodes:
+        clash_proxy = []
+        if sub_type == 'clash':
+            try:
+                clash_sub = yaml.load(v2ray_str, Loader=yaml.FullLoader)
+                clash_proxy = clash_sub.get('proxies')
+            except Exception as e:
+                barker.bark_notify(f'Failed to parse {sub_link} {e}',
+                                   'Error details',
+                                   {'Error': f'{e}', 'URL': sub_link},
+                                   configuration['bark']['group'],
+                                   'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png')
+        elif sub_type == 'v2ray':
+            nodes = parse_subscribe(v2ray_str)
+            for v2node in nodes:
+                clash_v2 = v2node.to_clash()
+                clash_proxy.append(clash_v2)
+        for proxy in clash_proxy:
             has_kw = False
             for kw in filter_keywords:
-                if kw in v2node.name:
+                if kw in proxy.get('name', ''):
                     has_kw = True
             if has_kw:
                 continue
-            clash_v2 = v2node.to_clash()
-            clash_Proxy.append(clash_v2)
-            clash_Proxy_names.append(clash_v2['name'])
-
-        clash_config['proxies'] += clash_Proxy
-
-
-
+            clash_config['proxies'].append(proxy)
     continents_nodes = {'Asia': [], 'Europe': [], 'SouthAmerica': [], 'NorthAmerica': [], 'Africa': [], 'Oceania': [], 'Asia except China': []}
     for proxy_node in clash_config['proxies']:
         continent = continent_name_from_node(proxy_node['name'])
@@ -564,8 +573,8 @@ if __name__ == "__main__":
         clash_config['proxies'] = prev_clash_config['proxies']
     extra_rules_dict = read_yaml(extra_rules_yaml)
     extra_rules = extra_rules_dict['rules']
-    extra_script_shortcut = read_yaml(extra_script_shortcut_yaml)
-    clash_config['script']['shortcuts'].update(extra_script_shortcut['shortcuts'])
+    # extra_script_shortcut = read_yaml(extra_script_shortcut_yaml)
+    # clash_config['script']['shortcuts'].update(extra_script_shortcut['shortcuts'])
     clash_config['rules'] = extra_rules + clash_config['rules']
     clash_config_yaml = yaml.dump(clash_config, allow_unicode=True)
     with open(out_yaml, 'w+', encoding='utf-8') as f:
