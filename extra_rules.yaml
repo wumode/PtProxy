@@ -514,3 +514,4 @@ rules:
   - AND,((DOMAIN,api.zhihu.com),(NETWORK,UDP)),REJECT
   - DOMAIN,api.zhihu.com,Mitm
   - IP-CIDR,146.19.24.47/32,Proxy,no-resolve
+  - DOMAIN-SUFFIX,bejson.com,Proxy
