@@ -148,6 +148,38 @@ domains:
   bypass:
     - 4
     - 6
+- domain: tracker.keepfrds.com
+  bypass:
+    - 4
+    - 6
+- domain: tracker.carpt.net
+  bypass:
+    - 4
+    - 6
+- domain: tracker.icc2022.xyz
+  bypass:
+    - 4
+    - 6
+- domain: ptzone.xyz
+  bypass:
+    - 4
+    - 6
+- domain: cspt.top
+  bypass:
+    - 4
+    - 6
+- domain: crabpt.vip
+  bypass:
+    - 4
+    - 6
+- domain: www.okpt.net
+  bypass:
+    - 4
+    - 6
+- domain: www.gamegamept.com
+  bypass:
+    - 4
+    - 6
 exempt_domains:
 - www.bilibili.com
 - api.bilibili.com

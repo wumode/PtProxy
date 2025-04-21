@@ -1,5 +1,4 @@
 rules:
-  - DOMAIN-SUFFIX,byr.cn,Proxy
   - DOMAIN-SUFFIX,chinadigitaltimes.net,Proxy
   - DOMAIN-SUFFIX,mohu.rocks,Proxy
   - DOMAIN-SUFFIX,redditstatic.com,Proxy
@@ -190,7 +189,6 @@ rules:
   - DOMAIN-SUFFIX,riotgames.com,Proxy
   - DOMAIN-SUFFIX,leagueoflegends.com,Proxy
   - DOMAIN-SUFFIX,ygoprodeck.com,Proxy
-  - DOMAIN-SUFFIX,doubanio.com,Mitm
   - DOMAIN-SUFFIX,xchina.co,Proxy
   - DOMAIN-SUFFIX,xchina.life,Proxy
   - DOMAIN-SUFFIX,katfile.com,Proxy
@@ -515,3 +513,17 @@ rules:
   - DOMAIN,api.zhihu.com,Mitm
   - IP-CIDR,146.19.24.47/32,Proxy,no-resolve
   - DOMAIN-SUFFIX,bejson.com,Proxy
+  - DOMAIN-SUFFIX,msi.com,Proxy
+  - DOMAIN-SUFFIX,windowsupdate.com,Proxy
+  - DOMAIN-SUFFIX,pbh-btn.com,Proxy
+  - DOMAIN-SUFFIX,rjcxb.com,Proxy
+  - DOMAIN-SUFFIX,ipify.org,Proxy
+  - DOMAIN-SUFFIX,pussytorrents.org,Proxy
+  - DOMAIN-SUFFIX,godaddy.com,Proxy
+  - DOMAIN-SUFFIX,springernature.com,Proxy
+  - DOMAIN-SUFFIX,24fa.com,Proxy
+  - DOMAIN-SUFFIX,sinisterbatchoddly.com,Proxy
+  - DOMAIN-SUFFIX,javedit.com,Proxy
+  - DOMAIN-SUFFIX,streamsb.net,Proxy
+  - DOMAIN-SUFFIX,98avcdn.xyz,Proxy
+  - DOMAIN-SUFFIX,milocdn.com,Proxy

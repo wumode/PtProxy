@@ -93,95 +93,92 @@ def is_valid_json(input_string):
 class V2rayNode(Node):
     def __init__(self):
         super().__init__()
-        self.host = ''
-        self.path = ""
-        self.tls = ""
-        self.verify_cert = False
-        self.add = ""
-        self.aid = ""
-        self.net = "ws"
-        self.headerType = "none"
-        self.v = "2"
-        self.type = "none"
-        self.uuid = ""
-        self.remarks = ""
-        self.v2class = ""
-        self.cipher = 'auto'
-        self.udp = True
-        self.alterId = 0
         self.name = ''
+        self.host = '0.0.0.0'
+        self.type = "vmess"
+        self.uuid = ""
+        self.udp = True
+        self.v2_config = {}
 
     def parse_link(self, link):
-        base64_encode_str = link[8:link.find('?')]
-        decode_str = base64_decode(base64_encode_str)
+        self.type = link[:5]
+        if '@' in link[8:link.find('?')]:
+            decode_str = link[8:link.find('?')]
+        else:
+            base64_encode_str = link[8:link.find('?')]
+            decode_str = base64_decode(base64_encode_str)
         query_str = link[link.find('?')+1:]
         if is_valid_json(decode_str):
-            v2_config = json.loads(decode_str)
+            self.v2_config = json.loads(decode_str)
         else:
-            v2_config = {}
-            matchObj = re.match(r"(.+):(.+)@(.+):(\d+)", decode_str)
+            self.v2_config = {}
+            matchObj = re.match(r"(.+:)?(.+)@(.+):(\d+)", decode_str)
             if matchObj is None:
+                print(f'Invalid link {link}')
                 return
-            v2_config['cipher'] = matchObj.group(1)
-            v2_config['uuid'] = matchObj.group(2)
-            v2_config['add'] = matchObj.group(3)
-            v2_config['port'] = int(matchObj.group(4))
-            query_params = parse_qs(query_str)
+            if matchObj.group(1):
+                self.v2_config['cipher'] = matchObj.group(1)[:-1]
+            self.uuid = matchObj.group(2)
+            self.host = matchObj.group(3)
+            self.port = int(matchObj.group(4))
+            query_params = parse_qs(query_str[:query_str.rfind('#')])
+            self.name = urllib.parse.unquote(query_str[query_str.rfind('#')+1:], 'utf-8')
             if 'alterId' in query_params:
-                v2_config['alterId'] = int(query_params['alterId'][0])
+                self.v2_config['alterId'] = int(query_params['alterId'][0])
             if 'remarks' in query_params:
-                v2_config['remarks'] = query_params['remarks'][0]
-                v2_config['name'] = query_params['remarks'][0]
-        if 'uuid' in v2_config:
-            self.uuid = v2_config['uuid']
-        else:
-            print(f'An error occurred while parsing {link}')
-            return
-        if 'host' in v2_config:
-            self.host = v2_config['host']
-        if 'port' in v2_config:
-            self.port = v2_config['port']
-        if 'path' in v2_config:
-            self.path = v2_config['path']
-        if 'tls' in v2_config:
-            self.tls = v2_config['tls']
-        if 'verify_cert' in v2_config:
-            self.verify_cert = v2_config['verify_cert']
-        if 'add' in v2_config:
-            self.add = v2_config['add']
-        if 'aid' in v2_config:
-            self.aid = v2_config['aid']
-        if 'net' in v2_config:
-            self.net = v2_config['net']
-        if 'headerType' in v2_config:
-            self.headerType = v2_config['headerType']
-        if 'v' in v2_config:
-            self.v = v2_config['v']
-        if 'type' in v2_config:
-            self.type = v2_config['type']
-        if 'remarks' in v2_config:
-            self.remarks = v2_config['remarks']
-            self.name = self.remarks
-        if 'class' in v2_config:
-            self.v2class = v2_config['class']
-        if 'alterId' in v2_config:
-            self.alterId = v2_config['alterId']
+                self.v2_config['remarks'] = query_params['remarks'][0]
+            if 'type' in query_params:
+                self.v2_config['net'] = query_params['type'][0]
+            if 'security' in query_params:
+                self.v2_config['tls'] = True
+                if query_params['security'][0] == 'reality':
+                    self.v2_config['reality-opts'] = {}
+            if 'sid' in query_params:
+                self.v2_config['reality-opts']['short-id'] = query_params['sid'][0]
+            if 'pbk' in query_params:
+                self.v2_config['reality-opts']['public-key'] = query_params['pbk'][0]
+            if 'sni' in query_params:
+                self.v2_config['servername'] = query_params['sni'][0]
+            if 'flow' in query_params:
+                self.v2_config['flow'] = query_params['flow'][0]
+            if 'fp' in query_params:
+                self.v2_config['client-fingerprint'] = query_params['fp'][0]
+        if 'uuid' in self.v2_config:
+            self.uuid = self.v2_config['uuid']
+        if 'port' in self.v2_config:
+            self.port = self.v2_config['port']
+        if 'add' in self.v2_config:
+            self.host = self.v2_config['add']
+        if 'remarks' in self.v2_config:
+            self.name = self.v2_config['remarks']
         self.able = True
 
     def to_clash(self):
-        clash_v2 = {"name": "", "type": "vmess", "server": "", "port": 0, "uuid": "", "alterId": 0, "cipher": "auto",
-                    "udp": True, "network": "ws", "ws-path": "/", "ws-headers": {"host": ""}}
-        clash_v2['name'] = self.name
-        clash_v2['server'] = self.add
-        clash_v2['port'] = self.port
-        clash_v2['uuid'] = self.uuid
-        clash_v2['alterId'] = self.aid
-        clash_v2['network'] = self.net
-        clash_v2['ws-path'] = self.path
-        clash_v2['ws-headers']['host'] = self.add
-        clash_v2['alterId'] = self.alterId
-        clash_v2['cipher'] = self.cipher
-        clash_v2['udp'] = self.udp
+        clash_v2 = {"name": self.name, "type": self.type, "server": self.host, "port": self.port, "uuid": self.uuid,
+                    "udp": True, "ip-version": "dual"}
+        if self.type == 'vmess':
+            clash_v2["network"] = "ws"
+            clash_v2["ws-path"] = "/"
+            clash_v2["ws-headers"] = {"host": ""}
+            clash_v2['uuid'] = self.uuid
+            clash_v2['alterId'] = self.v2_config["aid"]
+            clash_v2['network'] = self.v2_config["net"]
+            clash_v2['ws-headers']['host'] = self.v2_config["add"]
+            clash_v2['cipher'] = self.v2_config["cipher"]
+        elif self.type == 'vless':
+            clash_v2["skip_cert_verify_flag"] = False
+            if "net" in self.v2_config:
+                clash_v2['network'] = self.v2_config.get("net")
+            if "reality-opts" in self.v2_config:
+                clash_v2['reality-opts'] = self.v2_config["reality-opts"]
+            if "servername" in self.v2_config:
+                clash_v2['servername'] = self.v2_config["servername"]
+            if "flow" in self.v2_config:
+                clash_v2['flow'] = self.v2_config["flow"]
+            if "client-fingerprint" in self.v2_config:
+                clash_v2['client-fingerprint'] = self.v2_config["client-fingerprint"]
+            if "tls" in self.v2_config:
+                clash_v2['tls'] = self.v2_config["tls"]
         return clash_v2
 
 
@@ -374,6 +371,9 @@ def parse_subscribe(base64_encode_str):
         elif ss_link.startswith('vmess://'):
             node = V2rayNode()
             node.parse_link(ss_link)
+        elif ss_link.startswith('vless://'):
+            node = V2rayNode()
+            node.parse_link(ss_link)
         elif ss_link.startswith('trojan://'):
             node = TrojanNode()
             node.parse_link(ss_link)
@@ -460,19 +460,19 @@ if __name__ == "__main__":
                "sec-fetch-dest": "document",
                "sec-fetch-mode": "navigate",
                "upgrade-insecure-requests": '1'}
-    headers['user-agent'] = user_agent_list[0]
+    headers["user-agent"] = user_agent_list[0]
     is_success = False
-    userinfo = {'upload': 0, 'download': 0, 'total': 0, 'expire': 0}
+    userinfo = {"upload": 0, "download": 0, "total": 0, "expire": 0}
     for item in sub_link_list:
-        sub_link = item['url']
-        sub_type = item['type']
+        sub_link = item["url"]
+        sub_type = item["type"]
         print(sub_link)
         try:
             r = session.get(sub_link, timeout=10, headers=headers)
         except Exception as e:
-            barker.bark_notify(f'Failed to get {sub_link}',
-                               'Error details',
-                               {'Error': f'{e}', 'URL': sub_link},
+            barker.bark_notify(f"Failed to get {sub_link}",
+                               "Error details",
+                               {"Error": f"{e}", 'URL': sub_link},
                                configuration['bark']['group'],
                                'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png')
             continue
@@ -491,25 +491,26 @@ if __name__ == "__main__":
             userinfo['total'] = variables['total'] + userinfo['total']
             userinfo['expire'] = max(variables['expire'], userinfo['expire'])
         clash_proxy = []
-        if sub_type == 'clash':
+        if sub_type == "clash":
             try:
                 clash_sub = yaml.load(v2ray_str, Loader=yaml.FullLoader)
                 clash_proxy = clash_sub.get('proxies')
             except Exception as e:
-                barker.bark_notify(f'Failed to parse {sub_link} {e}',
+                barker.bark_notify(f"Failed to parse {sub_link} {e}",
                                    'Error details',
                                    {'Error': f'{e}', 'URL': sub_link},
                                    configuration['bark']['group'],
                                    'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/cloudflare-pages.png')
-        elif sub_type == 'v2ray':
+        elif sub_type == "v2ray":
             nodes = parse_subscribe(v2ray_str)
             for v2node in nodes:
                 clash_v2 = v2node.to_clash()
                 clash_proxy.append(clash_v2)
         for proxy in clash_proxy:
+            proxy["ip-version"] = "dual"
             has_kw = False
             for kw in filter_keywords:
-                if kw in proxy.get('name', ''):
+                if kw in proxy.get("name", ""):
                     has_kw = True
             if has_kw:
                 continue
@@ -528,7 +529,7 @@ if __name__ == "__main__":
     for continent_node in continents_nodes['Asia']:
         if '中国' in continent_node or '香港' in continent_node:
             continue
-        continents_nodes['Asia except China'].append(continent_node)
+        continents_nodes["Asia except China"].append(continent_node)
     proxy_group = {'name': 'Asia except China', 'type': 'select', 'proxies': continents_nodes['Asia except China']}
     clash_config['proxy-groups'].insert(3, proxy_group)
     openai_index = 0
@@ -560,7 +561,9 @@ if __name__ == "__main__":
         clash_config['proxy-groups'][1]['proxies'].append(proxy_node['name'])
         clash_config['proxy-groups'][2]['proxies'].append(proxy_node['name'])
     clash_config['proxies'] += extra_proxies['proxies']
-    pt_proxy_group = {'name': 'PTProxy', 'type': "select", 'proxies': ['LoadBalance', 'DIRECT']}
+    pt_proxy_group = {'name': 'PTProxy', 'type': "select", 'proxies': ['Proxy', 'DIRECT']}
+    for p in clash_config['proxies']:
+        pt_proxy_group['proxies'].append(p.get("name"))
     # additional rules
     if is_success:
         clash_config['proxy-groups'].append(pt_proxy_group)
