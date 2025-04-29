@@ -180,6 +180,14 @@ domains:
   bypass:
     - 4
     - 6
+- domain: tracker.xingyunge.top
+  bypass:
+    - 4
+    - 6
+- domain: tracker.xingyunge.sbs
+  bypass:
+    - 4
+    - 6
 exempt_domains:
 - www.bilibili.com
 - api.bilibili.com

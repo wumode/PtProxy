@@ -527,3 +527,6 @@ rules:
   - DOMAIN-SUFFIX,streamsb.net,Proxy
   - DOMAIN-SUFFIX,98avcdn.xyz,Proxy
   - DOMAIN-SUFFIX,milocdn.com,Proxy
+  - DOMAIN-SUFFIX,miliav.com,Proxy
+  - DOMAIN-SUFFIX,anaconda.org,Proxy
+  - DOMAIN-SUFFIX,webpkgcache.com,Proxy
