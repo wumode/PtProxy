@@ -188,6 +188,22 @@ domains:
   bypass:
     - 4
     - 6
+- domain: t.audiences.me
+  bypass:
+    - 4
+    - 6
+- domain: tracker.cinefiles.info
+  bypass:
+    - 4
+    - 6
+- domain: et8.org
+  bypass:
+    - 4
+    - 6
+- domain: t.et8.org
+  bypass:
+    - 4
+    - 6
 exempt_domains:
 - www.bilibili.com
 - api.bilibili.com
