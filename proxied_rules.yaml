@@ -1,16 +1,5 @@
 payload:
 - +.ipify.org
-- +.deepwiki.com
-- +.topazlabs.com
-- +.pornolab.biz
-- +.pornolab.net
-- +.yahoo.com
-- +.amazon.com
-- +.amazonaws.com
-- +.repost.aws
-- +.media-imdb.com
-- +.metartnetwork.com
-- +.rapidapi.com
-- +.imdbapi.dev
-- +.anthropic.com
-- +.claude.ai
+- +.example.com
+- +.wiktionary.org
+- +.manwa.la

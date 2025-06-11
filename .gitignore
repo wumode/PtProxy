@@ -1,3 +1,4 @@
 extra_proxies.yaml
 .idea
 __pycache__
+test.py

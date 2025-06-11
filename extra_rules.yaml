@@ -516,7 +516,6 @@ rules:
 - DOMAIN-SUFFIX,windowsupdate.com,Proxy
 - DOMAIN-SUFFIX,pbh-btn.com,Proxy
 - DOMAIN-SUFFIX,rjcxb.com,Proxy
-- DOMAIN-SUFFIX,ipify.org,Proxy
 - DOMAIN-SUFFIX,pussytorrents.org,Proxy
 - DOMAIN-SUFFIX,godaddy.com,Proxy
 - DOMAIN-SUFFIX,springernature.com,Proxy
@@ -538,4 +537,11 @@ rules:
 - DOMAIN-SUFFIX,amazonaws.com,Proxy
 - DOMAIN-SUFFIX,media-imdb.com,Proxy
 - DOMAIN-SUFFIX,metartnetwork.com,Proxy
-- DOMAIN-SUFFIX,anthropic.com,Proxy
+- DOMAIN-SUFFIX,anthropic.com,Openai
+- DOMAIN,oauthaccountmanager.googleapis.com,Openai
+- DOMAIN,ocsp.digicert.com,Openai
+- DOMAIN,oauth2.googleapis.com,Openai
+- DOMAIN-SUFFIX,googleapis.com,Openai
+- DOMAIN,notifications-pa.googleapis.com,Openai
+- DOMAIN-SUFFIX,google.dev,Openai
+- DOMAIN,aistudio.google.com,Openai
